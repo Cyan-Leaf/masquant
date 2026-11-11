@@ -114,11 +114,20 @@ def truncate_number(number, threshold=1e-2):
 
 
 def truncate_scale(model, args):
+    # MAS_SCALE_POS=1：把平滑因子投影到正半轴（|s| 再下限 1e-2）。原实现只处理 |s|<1e-2，
+    # 不约束符号，训练后会有 0.2~0.4% 的通道变负。
+    # MAS_SCALE_POS=2：标准投影 clamp(min=1e-2)（不翻号，越界的通道停在下界）
+    pos_mode = os.getenv("MAS_SCALE_POS", "0")
     if args.let:
         with torch.no_grad():
             for name, module in model.named_parameters():
                 if "smooth_scale" in name:
-                    module.data = truncate_number(module)
+                    if pos_mode == "1":
+                        module.data = module.data.abs().clamp(min=1e-2)
+                    elif pos_mode == "2":
+                        module.data = module.data.clamp(min=1e-2)
+                    else:
+                        module.data = truncate_number(module)
 
 def reuse_scale(model, args):
     with torch.no_grad():
@@ -133,12 +142,14 @@ def reuse_scale(model, args):
                         module.text_smooth_scale = model.self_attn.q_proj.text_smooth_scale
                         module.audio_smooth_scale = model.self_attn.q_proj.audio_smooth_scale
                         module.vision_smooth_scale = model.self_attn.q_proj.vision_smooth_scale
+                        module.video_smooth_scale = model.self_attn.q_proj.video_smooth_scale
                     if name == 'mlp.gate_proj':
                         print(f'reuse scale for {name} with up_proj. ')
                         module.all_in_one_smooth_scale = model.mlp.up_proj.all_in_one_smooth_scale
                         module.text_smooth_scale = model.mlp.up_proj.text_smooth_scale
                         module.audio_smooth_scale = model.mlp.up_proj.audio_smooth_scale
                         module.vision_smooth_scale = model.mlp.up_proj.vision_smooth_scale
+                        module.video_smooth_scale = model.mlp.up_proj.video_smooth_scale
                 else:
                     #这种是训练过程中，k != v != q, up != gate， 独立更新.
                     if name == 'self_attn.k_proj' or name == 'self_attn.v_proj':
@@ -147,12 +158,14 @@ def reuse_scale(model, args):
                         module.text_smooth_scale.data.copy_(model.self_attn.q_proj.text_smooth_scale.data) 
                         module.audio_smooth_scale.data.copy_(model.self_attn.q_proj.audio_smooth_scale.data) 
                         module.vision_smooth_scale.data.copy_(model.self_attn.q_proj.vision_smooth_scale.data)
+                        module.video_smooth_scale.data.copy_(model.self_attn.q_proj.video_smooth_scale.data)
                     if name == 'mlp.gate_proj':
                         print(f'reuse scale for {name} with up_proj, but update independently.  ')
                         module.all_in_one_smooth_scale.data.copy_(model.mlp.up_proj.all_in_one_smooth_scale.data)
                         module.text_smooth_scale.data.copy_(model.mlp.up_proj.text_smooth_scale.data)
                         module.audio_smooth_scale.data.copy_(model.mlp.up_proj.audio_smooth_scale.data)
                         module.vision_smooth_scale.data.copy_(model.mlp.up_proj.vision_smooth_scale.data)
+                        module.video_smooth_scale.data.copy_(model.mlp.up_proj.video_smooth_scale.data)
 
 def smooth_and_quant_temporary(model, args, isllama):
     if args.let:

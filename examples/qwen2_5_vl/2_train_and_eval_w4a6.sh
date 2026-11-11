@@ -5,7 +5,7 @@
 # and evaluates the quantized model on multimodal benchmarks.
 
 # Configuration
-MODEL_PATH="/nas/yuehu/models/vl/Qwen2.5-VL-3B-Instruct"  # Change this to your model path
+MODEL_PATH="${MODEL:-/path/to/Qwen2.5-VL-3B-Instruct}"  # Change this to your model path
 WBITS=4  # Weight quantization bits
 ABITS=6  # Activation quantization bits
 EPOCHS=2  # Training epochs

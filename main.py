@@ -5,8 +5,11 @@
 # import torch
 # torch.autograd.set_detect_anomaly(True)
 
-# import os
-# os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+import os as _os
+_DETERMINISTIC = _os.getenv("MAS_DETERMINISTIC", "0") == "1"
+if _DETERMINISTIC:
+    # 可复现模式：强制 cuBLAS/cuDNN 确定性算法。必须在 import torch 之前设置。
+    _os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 # Monkey patch for MiniCPM Resampler to fix _initialize_weights issue
 def patch_minicpm_resampler():
@@ -41,7 +44,11 @@ from models.LMClass import LMClass
 import torch
 import time
 from datautils import get_loaders
-from lmms_eval import evaluator as eval_multimodal
+try:
+    from lmms_eval import evaluator as eval_multimodal
+except ImportError:
+    eval_multimodal = None
+    print("[warn] lmms_eval not installed, multimodal benchmark evaluation disabled")
 # from lm_eval import evaluator
 # from lm_eval import evaluator
 from pprint import pprint
@@ -61,7 +68,20 @@ import json
 import csv
 import pdb
 
-torch.backends.cudnn.benchmark = True
+if _DETERMINISTIC:
+    import torch as _t
+    _t.backends.cudnn.deterministic = True
+    _t.backends.cudnn.benchmark = False
+    _t.backends.cuda.matmul.allow_tf32 = False
+    _t.use_deterministic_algorithms(True, warn_only=True)
+    # SDPA 的 flash / mem-efficient 后端反向用原子累加，本身不确定；只保留 math 后端
+    _t.backends.cuda.enable_flash_sdp(False)
+    _t.backends.cuda.enable_mem_efficient_sdp(False)
+    if hasattr(_t.backends.cuda, "enable_cudnn_sdp"):
+        _t.backends.cuda.enable_cudnn_sdp(False)
+    _t.backends.cuda.enable_math_sdp(True)
+else:
+    torch.backends.cudnn.benchmark = True
 
 net_choices = [
     "opt-125m",
@@ -155,6 +175,27 @@ def compute_sqnr_per_token(original, quantized):
     mean_sqnr = torch.mean(sqnr_matrix)
     
     return mean_sqnr.item()
+
+
+def dump_lmms_samples(t_results, output_dir):
+    """把 lmms-eval 的逐样本得分落盘，供配对 bootstrap 等统计分析使用。"""
+    samples = t_results.get("samples") if isinstance(t_results, dict) else None
+    if not samples or not output_dir:
+        return
+    os.makedirs(output_dir, exist_ok=True)
+    for task, items in samples.items():
+        path = os.path.join(output_dir, f"samples_{task}.jsonl")
+        with open(path, "w") as f:
+            for it in items:
+                rec = {"doc_id": it.get("doc_id")}
+                for k, v in it.items():
+                    if isinstance(v, (int, float, bool)) and k != "doc_id":
+                        rec[k] = v
+                resp = it.get("filtered_resps")
+                if resp is not None:
+                    rec["resp"] = str(resp)[:200]
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        print(f"saved per-sample results -> {path}")
 
 @torch.no_grad()
 def evaluate(llm, args, logger):
@@ -358,8 +399,10 @@ def evaluate(llm, args, logger):
     if args.eval_ppl:
         results_ppl = {}
         csv_file_path = args.ppl_result
-        # for dataset in ["wikitext2", "c4-new"]:
-        for dataset in ["wikitext2"]:
+        # MAS_PPL_DATASETS 可指定多个测试集（逗号分隔），默认只用 wikitext2。
+        # 加 c4 是为了检验"混合校准的收益是否只是 wikitext 同域匹配"（见报告 §2.1.4）。
+        _ppl_ds = [d.strip() for d in os.environ.get("MAS_PPL_DATASETS", "wikitext2").split(",") if d.strip()]
+        for dataset in _ppl_ds:
             cache_testloader = f'{args.cache_dir}/testloader_{args.model_family}_{dataset}_all.cache'
             if os.path.exists(cache_testloader):
                 testloader = torch.load(cache_testloader, weights_only=False)
@@ -489,6 +532,7 @@ def evaluate(llm, args, logger):
                 limit=None if args.limit_multimodal == 1.0 else args.limit_multimodal
             )
             results.update(t_results['results'])
+            dump_lmms_samples(t_results, getattr(args, "output_dir", None))
             logger.info(results)
         else:
             from models.LMMClass import LMMClass
@@ -502,6 +546,7 @@ def evaluate(llm, args, logger):
                 gen_kwargs="max_new_tokens=128"
             )
             results.update(t_results['results'])
+            dump_lmms_samples(t_results, getattr(args, "output_dir", None))
             logger.info(results)
             print(f'tasks_multimodal:  {results}')
     return results
@@ -540,6 +585,8 @@ def main_entry(args=None):
     parser.add_argument("--num_fewshot", type=int, default=0)
     parser.add_argument("--wbits", type=int, default=4)
     parser.add_argument("--abits", type=int, default=16)
+    parser.add_argument("--wfmt", type=str, default="int", choices=["int", "nvfp4"], help="weight quant format")
+    parser.add_argument("--afmt", type=str, default="int", choices=["int", "nvfp4"], help="activation quant format")
     parser.add_argument("--group_size", type=int, default=None)
     parser.add_argument("--alpha", type=float, default=0.5)
     parser.add_argument("--let_lr", type=float, default=5e-2)
@@ -582,6 +629,8 @@ def main_entry(args=None):
             "text-audio",
             "vision-audio",
             "text-audio-vision",
+            "text-vision-video",
+            "text-vision-mix",
             "mas_mix_dataset"
         ],
         help="Data type to calculate activation. Options: text-only, vision-only, audio-only, text-vision, text-audio, vision-audio"
@@ -649,13 +698,15 @@ def main_entry(args=None):
         "dynamic_method": args.w_dynamic_method,
         "group_size": args.group_size,
         "lwc":args.lwc,
-        "disable_zero_point": args.disable_zero_point
+        "disable_zero_point": args.disable_zero_point,
+        "format": args.wfmt,
     }
     args.act_quant_params = {
         "n_bits":  args.abits,
         "per_channel_axes": [],
         "symmetric": True,
         "dynamic_method": args.a_dynamic_method,
+        "format": args.afmt,
     }
     args.q_quant_params = {
         "n_bits": args.abits,
@@ -687,7 +738,13 @@ def main_entry(args=None):
 
     # act scales and shifts
     if args.act_scales is None:
-        args.act_scales = f'./act_scales/{args.net}-{args.dataset_type}-{args.nsamples}.pt'
+        _tr = os.environ.get("MAS_CALI_TEXT_RATIO", "0.5")
+        _act_tag = f"_tr{_tr}" if (args.dataset_type == "text-vision-mix" and _tr != "0.5") else ""
+        args.act_scales = f'./act_scales/{args.net}-{args.dataset_type}{_act_tag}-{args.nsamples}.pt'
+        if _act_tag and not os.path.exists(args.act_scales):
+            # 没有该比例专属的激活统计时回退到 0.5 混合的统计（上一轮比例扫描就是这样跑的）
+            args.act_scales = f'./act_scales/{args.net}-{args.dataset_type}-{args.nsamples}.pt'
+        print(f"act_scales: {args.act_scales}")
     if args.act_shifts is None:
         args.act_shifts = f'./act_shifts/{args.net}-{args.dataset_type}.pt'
 
@@ -696,7 +753,11 @@ def main_entry(args=None):
         logger.info("=== start quantization ===")
         tick = time.time()     
         # load calibration dataset
-        cache_dataloader = f'{args.cache_dir}/dataloader_{args.net}_{args.dataset_type}_{args.nsamples}.cache'
+        # 混合校准的比例会改变实际样本构成，必须进缓存键，否则不同 ratio 会串用同一份缓存
+        _ratio_tag = ""
+        if args.dataset_type == "text-vision-mix":
+            _ratio_tag = f"_tr{os.environ.get('MAS_CALI_TEXT_RATIO', '0.5')}"
+        cache_dataloader = f'{args.cache_dir}/dataloader_{args.net}_{args.dataset_type}{_ratio_tag}_{args.nsamples}.cache'
         print(f'try to load cache from: {cache_dataloader}')
         if os.path.exists(cache_dataloader):
             dataloader = torch.load(cache_dataloader, weights_only=False)

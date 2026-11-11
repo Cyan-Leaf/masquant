@@ -21,6 +21,8 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModelForCausalLM
 # from models.int_qwen_omni_layer import omni_quantize_model
 from quantize.svd_utils import get_id_matrix, get_white_matrix, modality_err_low_rank_decomposition, trans_scales, compute_sqnr
+from quantize.rank_alloc import allocate_ranks, allocate_ranks_by_energy, summarize_ranks, dump_ranks
+import torch.nn as nn
 from models.LMClass import LMClass
 import os
 from main import evaluate
@@ -68,6 +70,10 @@ parser.add_argument("--n_cali_samples", type=int, default=8)  # 白化校准集�
 parser.add_argument("--cali_data_type", type=str, default="text-audio-vision")  # 白化校准集类型
 parser.add_argument("--n_samples", type=int, default=None)  # 评测ppl测试集样本数
 parser.add_argument("--rank", type=float, default=None)  # 低秩分解的rank
+parser.add_argument("--adaptive_rank", type=str, default=None,
+                    choices=["greedy", "energy"], help="按层自适应分配 rank 的策略")
+parser.add_argument("--rank_min", type=int, default=32, help="自适应分配时每层秩下限")
+parser.add_argument("--rank_cap", type=float, default=None, help="自适应分配时每层秩上限比例")
 parser.add_argument("--quant_cmc", type=int, default=0)  # 白化矩阵存储
 parser.add_argument("--save_white_matrix_path", type=str, default="")  # 白化矩阵存储
 parser.add_argument("--save_low_rank_adapters", type=str, default="")  # 低秩适配器存储
@@ -145,6 +151,35 @@ args.p_quant_params = {
 }
 args.model_family = args.net.split('-')[0]
 
+def _compute_rank_map(model, text_scales, multimodal_scales, white_matrix, args, tag):
+    """先扫一遍每层的白化奇异值谱，再按预算/能量分配每层秩。"""
+    sigmas = {}
+    filter_modules = ['visual', 'lm_head', 'audio', 'down']
+    for name, m in model.named_modules():
+        if isinstance(m, nn.Linear) and not any(f in name for f in filter_modules):
+            T = white_matrix[name].to("cuda") if white_matrix is not None else None
+            device, dtype = m.weight.device, m.weight.dtype
+            text_scale = text_scales[name].to(device=device, dtype=dtype)
+            multimodal_scale = multimodal_scales[name].to(device=device, dtype=dtype)
+            stW = m.weight.data.mul(text_scale.view(1, -1))
+            from quantize.quantizer import UniformAffineQuantizer
+            wq = UniformAffineQuantizer(**args.weight_quant_params, shape=stW.shape)
+            qstW = wq(stW)
+            smW = m.weight.data.mul(multimodal_scale.view(1, -1))
+            qsmW = wq(smW) if args.quant_cmc else smW
+            err = (qsmW - qstW).T
+            mat = err.to(torch.float64) if T is None else torch.matmul(T, err.to(torch.float64))
+            sigmas[name] = torch.linalg.svdvals(mat).cpu()
+    if args.adaptive_rank == "greedy":
+        ranks = allocate_ranks(sigmas, args.rank, min_rank=args.rank_min, rank_ratio_cap=args.rank_cap)
+    else:
+        ranks = allocate_ranks_by_energy(sigmas, target_energy=args.rank, min_rank=args.rank_min,
+                                         max_rank_ratio=args.rank_cap)
+    print(f"[{tag}] adaptive rank summary: {summarize_ranks(ranks)}")
+    dump_ranks(ranks, f"./low_rank_adapters/rank_map_{tag}.json")
+    return ranks
+
+
 #加载模型
 llm = LMClass(args)
 llm.seqlen = 2048
@@ -185,7 +220,10 @@ if model_type == "omni":
 else:
     down_shape = llm.model.model.language_model.layers[0].mlp.down_proj.weight.shape[1]
 #转换scale格式
-text_scales, vision_scales, audio_scales = trans_scales(scales, down_shape, model_type)
+text_scales, vision_scales, audio_scales, video_scales = trans_scales(scales, down_shape, model_type)
+if os.getenv("MAS_NO_CMC", "0") == "1":
+    # 消融：不做低秩补偿（只有一份 Q(S_t W)，非文本模态的平滑差异不补）
+    os.environ["MAS_DISABLE_CMC"] = "1"
 
 #计算白化矩阵和低秩分支
 white_matrix = None
@@ -222,12 +260,23 @@ if args.LR:
                 white_matrix["audio"] = audio_white_matrix
             if save_white_matrix_path:
                 torch.save(white_matrix, save_white_matrix_path)
+        # 自适应 rank 分配（可选）
+        vision_rank_map = None
+        audio_rank_map = None
+        if args.adaptive_rank:
+            vision_rank_map = _compute_rank_map(llm.model, text_scales, vision_scales,
+                                                white_matrix["vision"], args, "vision")
+            if model_type == "omni":
+                audio_rank_map = _compute_rank_map(llm.model, text_scales, audio_scales,
+                                                   white_matrix["audio"], args, "audio")
         # 再计算低秩分解后的L1L2
         vision_low_rank_adapters = modality_err_low_rank_decomposition(llm.model, text_scales, vision_scales, white_matrix["vision"],
-                                                                rank, args.weight_quant_params, args.quant_cmc)
+                                                                rank, args.weight_quant_params, args.quant_cmc,
+                                                                rank_map=vision_rank_map)
         if model_type == "omni":
             audio_low_rank_adapters = modality_err_low_rank_decomposition(llm.model, text_scales, audio_scales, white_matrix["audio"],
-                                                                rank, args.weight_quant_params, args.quant_cmc)
+                                                                rank, args.weight_quant_params, args.quant_cmc,
+                                                                rank_map=audio_rank_map)
         low_rank_adapters = dict()
         low_rank_adapters["vision"] = vision_low_rank_adapters
         if model_type == "omni":
@@ -241,6 +290,7 @@ if args.LR:
 else:
     low_rank_adapters = {}
 
+
 if args.quantize:
     model = mas_quantize_model(
         llm.model,
@@ -248,6 +298,7 @@ if args.quantize:
         text_scales=text_scales,
         vision_scales=vision_scales,
         audio_scales=audio_scales,
+        video_scales=video_scales,
         # 注意，如果要统计不同模态对最终激活量化的影响，这里就不能设置为 True，否则会影响统计结果.
         args=args
     )

@@ -1,3 +1,10 @@
+> **本仓库 fork 自 [alibaba/EfficientAI](https://github.com/alibaba/EfficientAI) 的 `masquant/` 子目录，
+> 用于一门多模态学习课程的复现与改进作业。**
+> 复现结果、7 个已修复的 bug、以及全部改动的说明见 **[README_COURSE.md](README_COURSE.md)** 和
+> **[docs/复现与改进_实验报告.md](docs/复现与改进_实验报告.md)**。下面是上游原始 README。
+
+---
+
 # MAS-Quant: Modality-Aware Symmetric Quantization for Multimodal Large Language Models
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)

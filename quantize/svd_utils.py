@@ -30,6 +30,7 @@ def trans_scales(scales, down_shape, model_type):
     text_scales = {}
     vision_scales = {}
     audio_scales = {}
+    video_scales = {}
     if model_type == 'vl':
         prefix = "model.language_model."
     elif model_type == 'omni':
@@ -58,14 +59,20 @@ def trans_scales(scales, down_shape, model_type):
         audio_scales[f"{prefix}layers.{i}.mlp.gate_proj"] = scales[i]["mlp.gate_proj.audio_smooth_scale"].to("cuda")
         audio_scales[f"{prefix}layers.{i}.mlp.up_proj"] = scales[i]["mlp.up_proj.audio_smooth_scale"].to("cuda")
 
+        if "self_attn.q_proj.video_smooth_scale" in scales[i]:
+            for mod in ("q_proj", "k_proj", "v_proj", "o_proj"):
+                video_scales[f"{prefix}layers.{i}.self_attn.{mod}"] = scales[i][f"self_attn.{mod}.video_smooth_scale"].to("cuda")
+            for mod in ("gate_proj", "up_proj"):
+                video_scales[f"{prefix}layers.{i}.mlp.{mod}"] = scales[i][f"mlp.{mod}.video_smooth_scale"].to("cuda")
         text_scales[f"{prefix}layers.{i}.mlp.down_proj"] = torch.ones(down_shape, dtype=torch.bfloat16).to("cuda") #down没有参与训练
         vision_scales[f"{prefix}layers.{i}.mlp.down_proj"] = torch.ones(down_shape, dtype=torch.bfloat16).to("cuda") #down没有参与训练
         audio_scales[f"{prefix}layers.{i}.mlp.down_proj"] = torch.ones(down_shape, dtype=torch.bfloat16).to("cuda") #down没有参与训练
+        video_scales[f"{prefix}layers.{i}.mlp.down_proj"] = torch.ones(down_shape, dtype=torch.bfloat16).to("cuda")
         # text_scales[f"model.layers.{i}.mlp.down_proj"] = scales[i]["mlp.down_proj.text_smooth_scale"].to("cuda")
         # vision_scales[f"model.layers.{i}.mlp.down_proj"] = scales[i]["mlp.down_proj.vision_smooth_scale"].to("cuda")
         # audio_scales[f"model.layers.{i}.mlp.down_proj"] = scales[i]["mlp.down_proj.audio_smooth_scale"].to("cuda")
 
-    return text_scales, vision_scales, audio_scales #三模态各自返回
+    return text_scales, vision_scales, audio_scales, video_scales
 
 def trans_scales_mbq(scales, o_shape, down_shape):
     # 将omniquant的scale文件格式，转换为smoothquant的scale文件格式
@@ -188,7 +195,7 @@ def _svd(white_matrix, wo_eq):
             print("Warning: svd input matrix contains Inf!")
         return torch.linalg.svd(mat, full_matrices=False)
 
-def _low_rank(u, sigma, v, T, rank, dtype):
+def _low_rank(u, sigma, v, T, rank, dtype, min_rank=32):
     if rank <= 1: #此时输入的是一个rank比例
         rank = int(sigma.size(0) * rank)
     else: #此时输入的是rank的绝对值
@@ -201,8 +208,8 @@ def _low_rank(u, sigma, v, T, rank, dtype):
             if diff / diff_new < 1.05:
                 break
             diff = diff_new
-    if rank < 32:
-        rank = 32
+    if rank < min_rank:
+        rank = min_rank
 
     ur = u[:, :rank]
     sigma_mat = torch.diag(sigma[:rank])
@@ -240,7 +247,7 @@ def get_effectivate_rank(sigma, modality_err): #计算残差矩阵的有效秩
     erank_ratio = effective_rank / min_dim  # 有效秩比例（越小越低秩）
     return effective_rank, min_dim, erank_ratio
 
-def modality_err_low_rank_decomposition(model, text_scales, multimodal_scales, white_matrix, rank, weight_quant_params, quant_cmc):
+def modality_err_low_rank_decomposition(model, text_scales, multimodal_scales, white_matrix, rank, weight_quant_params, quant_cmc, rank_map=None):
     low_rank_adapters = {}
     effective_ranks = {}
     for name, m in model.named_modules():
@@ -267,7 +274,8 @@ def modality_err_low_rank_decomposition(model, text_scales, multimodal_scales, w
                 effective_rank.detach().cpu().item(), min_dim, erank_ratio.detach().cpu().item())
             print(f"[{name}] Effective Rank: {erank_ratio}")
 
-            l, r, rank_svd = _low_rank(u, sigma, v, T, rank, torch.float64) #高精度存储
+            this_rank = rank_map[name] if (rank_map is not None and name in rank_map) else rank
+            l, r, rank_svd = _low_rank(u, sigma, v, T, this_rank, torch.float64) #高精度存储
             reconstruct = torch.matmul(l,r)
             e = reconstruct - modality_err.T
             print("矩阵重构误差: ", e.mean().item())

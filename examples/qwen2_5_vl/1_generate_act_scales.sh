@@ -5,7 +5,7 @@
 # which will be used to initialize the modality-aware scales in the quantization process.
 
 # Configuration
-MODEL_PATH="/nas/yuehu/models/vl/Qwen2.5-VL-3B-Instruct"  # Change this to your model path
+MODEL_PATH="${MODEL:-/path/to/Qwen2.5-VL-3B-Instruct}"  # Change this to your model path
 DATASET_TYPE="text-vision"  # For VL model, use text-vision
 NSAMPLES=128  # Number of calibration samples
 GPU_ID=0  # GPU device ID

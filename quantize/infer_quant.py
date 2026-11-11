@@ -16,7 +16,8 @@ import torch
 from quantize.int_linear import QuantLinear
 
 def mas_quantize_model(
-        model, low_rank_adapters, text_scales, vision_scales, audio_scales, args
+        model, low_rank_adapters, text_scales, vision_scales, audio_scales, args,
+        video_scales=None
 ):
     dev = 'cuda'
     if "omni" in args.model.lower():
@@ -51,7 +52,12 @@ def mas_quantize_model(
                     m.Ra = None
             m.text_smooth_scale = text_scales[name]
             m.vision_smooth_scale = vision_scales[name]
-            m.audio_smooth_scale = audio_scales[name]
+            m.audio_smooth_scale = audio_scales[name] if audio_scales is not None else torch.ones_like(text_scales[name])
+            # 视频默认与图像共享尺度（见实验报告 §5.3：独立视频尺度反而有害）
+            if video_scales is not None and name in video_scales:
+                m.video_smooth_scale = video_scales[name]
+            else:
+                m.video_smooth_scale = m.vision_smooth_scale
             target_dtype = torch.bfloat16
             cur_dtype = m.weight.dtype
             m.q_weight = m.weight_quantizer(

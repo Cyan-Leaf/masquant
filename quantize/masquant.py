@@ -412,12 +412,19 @@ def masquant(
                             act_text = act_scales[f"{layer_name_prefix}.{i}.{name}.text_scale"].to(device=dev, dtype=dtype).clamp(min=1e-5)
                             act_audio = act_scales[f"{layer_name_prefix}.{i}.{name}.audio_scale"].to(device=dev, dtype=dtype).clamp(min=1e-5)
                             act_vision = act_scales[f"{layer_name_prefix}.{i}.{name}.vision_scale"].to(device=dev, dtype=dtype).clamp(min=1e-5)
+                            video_key = f"{layer_name_prefix}.{i}.{name}.video_scale"
+                            act_video = act_scales[video_key].to(device=dev, dtype=dtype).clamp(min=1e-5) if video_key in act_scales else None
+                            if act_video is not None and os.getenv("MAS_VIDEO_SHARE_VISION", "1") == "1":
+                                # 视频与图像同源，初始化时就合并统计：取两者逐通道最大
+                                act_vision = torch.maximum(act_vision, act_video)
+                                act_video = None
                             weight = module.weight.abs().max(dim=0)[0].clamp(min=1e-5)
                             scale_all_in_one = (act_all_in_one.pow(args.alpha)/weight.pow(1-args.alpha)).clamp(min=1e-5)
                             scale_text = (act_text.pow(args.alpha)/weight.pow(1-args.alpha)).clamp(min=1e-5)
                             scale_audio = (act_audio.pow(args.alpha)/weight.pow(1-args.alpha)).clamp(min=1e-5)
                             alpha_vision = args.alpha #0.75
                             scale_vision = (act_vision.pow(alpha_vision)/weight.pow(1-alpha_vision)).clamp(min=1e-5)
+                            scale_video = (act_video.pow(args.alpha)/weight.pow(1-args.alpha)).clamp(min=1e-5) if act_video is not None else None
                             print(f'register scales for {layer_name_prefix}.{i}.{name}')
                             
                             with torch.no_grad(): 
@@ -425,6 +432,10 @@ def masquant(
                                 module.text_smooth_scale.data.copy_(scale_text)
                                 module.audio_smooth_scale.data.copy_(scale_audio)
                                 module.vision_smooth_scale.data.copy_(scale_vision)
+                                if scale_video is not None:
+                                    module.video_smooth_scale.data.copy_(scale_video)
+                                else:
+                                    module.video_smooth_scale.data.copy_(scale_vision)
                                                             
                             # 考虑到 vision token 的激活range 相对 text 的大很多，所以 vision 的 scale 也相应要比 text 的 scale alpha 大一些，通过搜索的方式找到更合适的 scale 方法
                             # 0.5 每次增加 0.01 的方式，增加到 0.8，找到一个 loss 最低的 alpha 作为初始值
@@ -521,8 +532,11 @@ def masquant(
             reuse_scale(qlayer, args)
             
             # create optimizer
-            optimizer = torch.optim.AdamW(
-                [{"params":let_parameters(qlayer, use_shift),"lr":args.let_lr}],weight_decay=args.wd)            
+            param_groups = [{"params": let_parameters(qlayer, use_shift), "lr": args.let_lr}]
+            if args.lwc:
+                # 原实现创建了 LWC 的裁剪参数却没放进优化器，导致 --lwc 实际不训练
+                param_groups.append({"params": lwc_parameters(qlayer), "lr": args.lwc_lr})
+            optimizer = torch.optim.AdamW(param_groups, weight_decay=args.wd)            
             # loss_scaler = utils.NativeScalerWithGradNormCount()
             loss_scaler = utils.FlexibleScaler(dtype=dtype)
             
@@ -547,7 +561,13 @@ def masquant(
                         # print(f'fp_inps: {fp_inps[j]}')
                         
                         if args.loss_multi_modal: 
-                            (audio_mask, image_mask, text_mask) = multi_modal_mask_cache[j]
+                            mm = multi_modal_mask_cache[j]
+                            (audio_mask, image_mask, text_mask) = mm[:3]
+                            if text_mask is None:
+                                # 纯文本样本：模型前向不会构造 mask，全部视为文本 token
+                                text_mask = torch.ones_like(quant_out, dtype=torch.bool)
+                            video_mask = mm[3] if len(mm) == 4 else None
+                            video_loss = None
                             quant_diff = (quant_out-fp_inps[j]).pow(2)
                             text_diff = quant_diff*text_mask
                             audio_diff = quant_diff*audio_mask
@@ -558,22 +578,46 @@ def masquant(
                             vision_loss = vision_diff.sum() / image_mask.sum()
                             
                             loss_multi_modal = text_loss + audio_loss + vision_loss
+                            if video_mask is not None:
+                                video_diff = quant_diff * video_mask
+                                loss_multi_modal = loss_multi_modal + video_diff.sum() / video_mask.sum().clamp(min=1)
                             # print(f'loss_multi_modal: {loss_multi_modal}, text: {text_loss/loss_multi_modal}, vision: {vision_loss/loss_multi_modal}, audio: {audio_loss/loss_multi_modal}')
                             loss = loss_multi_modal
                         elif args.loss_multi_modal_mae: 
-                            (audio_mask, image_mask, text_mask) = multi_modal_mask_cache[j]
+                            mm = multi_modal_mask_cache[j]
+                            (audio_mask, image_mask, text_mask) = mm[:3]
+                            if text_mask is None:
+                                # 纯文本样本：模型前向不会构造 mask，全部视为文本 token
+                                text_mask = torch.ones_like(quant_out, dtype=torch.bool)
+                            video_mask = mm[3] if len(mm) == 4 else None
+                            video_loss = None
                             quant_diff = (quant_out-fp_inps[j]).abs()
                             text_diff = quant_diff*text_mask
                             audio_diff = quant_diff*audio_mask
                             vision_diff = quant_diff*image_mask
                             
                             total_mask = (text_mask.sum() + audio_mask.sum() + image_mask.sum())
-                            loss = (text_diff.sum() + audio_diff.sum() + vision_diff.sum()) / total_mask
+                            num = text_diff.sum() + audio_diff.sum() + vision_diff.sum()
+                            if video_mask is not None:
+                                num = num + (quant_diff * video_mask).sum()
+                                total_mask = total_mask + video_mask.sum()
+                            loss = num / total_mask
                         elif args.loss_multi_modal_mae_alpha: 
-                            (audio_mask, image_mask, text_mask) = multi_modal_mask_cache[j]
+                            mm = multi_modal_mask_cache[j]
+                            (audio_mask, image_mask, text_mask) = mm[:3]
+                            if text_mask is None:
+                                # 纯文本样本：模型前向不会构造 mask，全部视为文本 token
+                                text_mask = torch.ones_like(quant_out, dtype=torch.bool)
+                            video_mask = mm[3] if len(mm) == 4 else None
+                            video_loss = None
                             quant_diff = (quant_out-fp_inps[j]).abs()
                             text_diff = quant_diff*text_mask
                             total_mask = text_mask.sum()
+                            # 每个样本重新初始化：原代码在无图像/无音频样本上会沿用上一个样本的
+                            # vision_diff/audio_diff（其计算图已 backward），导致 "backward twice"
+                            vision_diff = torch.zeros((), device=quant_out.device, dtype=quant_diff.dtype)
+                            audio_diff = torch.zeros((), device=quant_out.device, dtype=quant_diff.dtype)
+                            vision_sel = None  # 无图像样本时下面不会赋值，per-modality 归一化要用到
                             
                             if audio_mask is not None:
                                 audio_diff = quant_diff*audio_mask
@@ -586,8 +630,9 @@ def masquant(
                                 audio_diff = audio_grad * audio_diff
                                 
                             if image_mask is not None:
-                                vision_diff = quant_diff*image_mask
-                                total_mask += image_mask.sum()
+                                vision_sel = image_mask if video_mask is None else (image_mask | video_mask)
+                                vision_diff = quant_diff*vision_sel
+                                total_mask += vision_sel.sum()
                                 # 针对 qwen-omni 模型，这个 0.5 是瞎猜的,  text : audio : vision = 1 : 1 : 0.5 
                                 vision_grad = 0.5
                                 if grad_info is not None:
@@ -597,11 +642,32 @@ def masquant(
                                     vision_grad = grad_info[f'layers.{i}']['vis_avg_grad'] / grad_info[f'layers.{i}']['cap_avg_grad']
                                     # vision_grad = 0.14992747247178426
                                     vision_grad = 0.126
+                                if os.getenv("MAS_VISION_GRAD"):
+                                    vision_grad = float(os.getenv("MAS_VISION_GRAD"))
                                 vision_diff = vision_grad * vision_diff
-                            if audio_mask is not None and image_mask is not None:
+                            if video_mask is not None:
+                                # 视频与图像同源（同一视觉编码器），共享平滑尺度：
+                                # 把 video token 并入 vision 的统计，二者用同一个 vision_smooth_scale
+                                video_loss = None
+                            # MAS_PER_MODALITY_NORM=1：按模态各自归一化后再加权求和。
+                            # 原实现分母是全局 token 数（total_mask），视觉 token 一多就主导梯度，
+                            # 与 MAS "每个模态的平滑尺度独立优化" 的语义不符（见报告 §5.5）。
+                            if os.getenv("MAS_PER_MODALITY_NORM", "0") == "1":
+                                # 每个模态先各自求平均（消除 token 数差异），再对"本样本存在的模态数"求平均。
+                                # 不除以模态数的话，纯文本样本只贡献 1 项、图文样本贡献 2 项，
+                                # loss 量级会随混合比例漂移（实测导致 ratio=0.75 时 loss 6.9、PPL 崩到 1263）。
+                                parts = [text_diff.sum() / text_mask.sum().clamp(min=1)]
+                                if audio_mask is not None:
+                                    parts.append(audio_diff.sum() / audio_mask.sum().clamp(min=1))
+                                if vision_sel is not None:
+                                    parts.append(vision_diff.sum() / vision_sel.sum().clamp(min=1))
+                                loss = sum(parts) / len(parts)
+                            elif audio_mask is not None and image_mask is not None:
                                 loss = (text_diff.sum() + audio_diff.sum() + vision_diff.sum()) / total_mask
                             else:
                                 loss = (text_diff.sum() + vision_diff.sum()) / total_mask
+                            if video_loss is not None:
+                                loss = loss + video_loss
                         else:
                             loss = loss_func(fp_inps[j].to(torch.float32), quant_out.to(torch.float32))
                         if args.aug_loss:
@@ -638,6 +704,9 @@ def masquant(
         # real smooth and quantization
         # smooth_and_quant_inplace(qlayer, args, is_llama)
         if args.epochs>0:
+            # 最后一次 optimizer.step 之后尺度可能又越过零点，保存/更新输入前再投影一次
+            if os.getenv("MAS_SCALE_POS", "0") in ("1", "2"):
+                truncate_scale(qlayer, args)
             # update input of quantization model
             with torch.no_grad():
                 # with torch.cuda.amp.autocast():

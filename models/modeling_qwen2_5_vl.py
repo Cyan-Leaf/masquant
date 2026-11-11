@@ -1668,6 +1668,7 @@ class Qwen2_5_VLModel(Qwen2_5_VLPreTrainedModel):
 
         image_mask = None
         text_mask =  None
+        video_mask = None
         if inputs_embeds is None:
             inputs_embeds = self.get_input_embeddings()(input_ids)
             if pixel_values is not None:
@@ -1706,6 +1707,11 @@ class Qwen2_5_VLModel(Qwen2_5_VLPreTrainedModel):
 
                 video_embeds = video_embeds.to(inputs_embeds.device, inputs_embeds.dtype)
                 inputs_embeds = inputs_embeds.masked_scatter(video_mask, video_embeds)
+
+                if text_mask is None:
+                    all_true_v = torch.full(video_mask.shape, True, dtype=torch.bool, device=inputs_embeds.device)
+                    text_mask = all_true_v
+                text_mask = text_mask & ~video_mask
 
             if attention_mask is not None:
                 attention_mask = attention_mask.to(inputs_embeds.device)
@@ -1753,7 +1759,7 @@ class Qwen2_5_VLModel(Qwen2_5_VLPreTrainedModel):
             output_hidden_states=output_hidden_states,
             return_dict=True,
             cache_position=cache_position,
-            multi_modal_mask=(None, image_mask, text_mask)
+            multi_modal_mask=(None, image_mask, text_mask, video_mask)
         )
 
         output = Qwen2_5_VLModelOutputWithPast(

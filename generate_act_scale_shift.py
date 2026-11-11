@@ -60,9 +60,11 @@ except ImportError:
 
 # 仅考虑vision/audio/text 的情况，其中 vision/audio 是不包含各自的 start/end token; text 是其余 system/start/end/video 相关的.
 def get_act_scales(model, dataloader, num_samples=128, model_type="qwen"):
+    video_token_index = -1
     if isinstance(model, transformers.models.qwen2_5_vl.modeling_qwen2_5_vl.Qwen2_5_VLForConditionalGeneration):
         audio_token_index = -1
         image_token_index = model.config.image_token_id
+        video_token_index = getattr(model.config, "video_token_id", -1)
     elif model_type == "minicpm":
         # MiniCPM uses Qwen2 architecture, has different token indices
         # For MiniCPM, we need to check the actual token IDs used
@@ -77,14 +79,14 @@ def get_act_scales(model, dataloader, num_samples=128, model_type="qwen"):
     else:
         audio_token_index = model.config.thinker_config.audio_token_index
         image_token_index = model.config.thinker_config.image_token_index
-        video_token_id = model.config.thinker_config.video_token_id
+        video_token_index = model.config.thinker_config.video_token_id
         model = model.thinker
     model.eval()
     device = next(model.parameters()).device
     act_scales = {}
-    text_mask = None; image_mask = None; audio_mask = None
+    text_mask = None; image_mask = None; audio_mask = None; video_mask = None
 
-    def stat_tensor(name, tensor, text_mask=None, image_mask=None, audio_mask=None, act_scales=None):
+    def stat_tensor(name, tensor, text_mask=None, image_mask=None, audio_mask=None, act_scales=None, video_mask=None):
         hidden_dim = tensor.shape[-1]
         tensor = tensor.view(-1, hidden_dim).abs().detach()
         comming_max = torch.max(tensor, dim=0)[0].float().cpu()
@@ -109,23 +111,39 @@ def get_act_scales(model, dataloader, num_samples=128, model_type="qwen"):
         else:
             comming_max_vision = torch.max(tensor_vision, dim=0)[0].float().cpu()        
         
+        if video_mask is not None:
+            video_mask_e = video_mask.squeeze().unsqueeze(-1).expand_as(tensor)
+            tensor_video = tensor[video_mask_e].view(-1, hidden_dim).abs().detach()
+            if tensor_video.numel() == 0:
+                comming_max_video = torch.zeros(tensor_video.shape[1], device="cpu")
+            else:
+                comming_max_video = torch.max(tensor_video, dim=0)[0].float().cpu()
+        else:
+            comming_max_video = None
+
         if any(k.startswith(name + ".") for k in act_scales.keys()):
             act_scales[name+".all_in_one_scale"] = torch.max(act_scales[name+".all_in_one_scale"], comming_max)
             act_scales[name+".text_scale"] = torch.max(act_scales[name+".text_scale"], comming_max_text)
             act_scales[name+".vision_scale"] = torch.max(act_scales[name+".vision_scale"], comming_max_vision)
             act_scales[name+".audio_scale"] = torch.max(act_scales[name+".audio_scale"], comming_max_audio)
+            if comming_max_video is not None:
+                if name+".video_scale" in act_scales:
+                    act_scales[name+".video_scale"] = torch.max(act_scales[name+".video_scale"], comming_max_video)
             # print(f'update {name}')
         else:
             act_scales[name+".all_in_one_scale"] = comming_max
             act_scales[name+".text_scale"] = comming_max_text
             act_scales[name+".vision_scale"] = comming_max_vision
             act_scales[name+".audio_scale"] = comming_max_audio
+            if comming_max_video is not None:
+                act_scales[name+".video_scale"] = comming_max_video
             # print(f'first insert {name}')
 
     def stat_input_hook(m, x, y, name, act_scales):
         if isinstance(x, tuple):
             x = x[0]
-        stat_tensor(name, x, text_mask=text_mask, image_mask=image_mask, audio_mask=audio_mask, act_scales=act_scales)
+        stat_tensor(name, x, text_mask=text_mask, image_mask=image_mask, audio_mask=audio_mask,
+                    act_scales=act_scales, video_mask=video_mask)
 
     hooks = []
     filter_modules = ['visual', 'lm_head', 'audio']
@@ -140,8 +158,14 @@ def get_act_scales(model, dataloader, num_samples=128, model_type="qwen"):
         else:
             image_mask = (dataloader[i]['input_ids'] == image_token_index) 
             audio_mask = (dataloader[i]['input_ids'] == audio_token_index)
+            if video_token_index is not None and video_token_index > 0:
+                video_mask = (dataloader[i]['input_ids'] == video_token_index)
+            else:
+                video_mask = None
             all_true = torch.full(image_mask.shape, True, dtype=torch.bool)
             text_mask = all_true & ~audio_mask & ~image_mask
+            if video_mask is not None:
+                text_mask = text_mask & ~video_mask
             inputs = {k: v.to(device) for k, v in dataloader[i].items()}
             
             model(**inputs)             
@@ -186,7 +210,7 @@ def build_model_and_tokenizer(model_name):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str,
-                        default='/nas/yuehu/models/vl/Qwen2.5-VL-3B-Instruct', help='model name')
+                        default=os.environ.get('MASQUANT_MODEL', 'Qwen2.5-VL-3B-Instruct'), help='model name or path')
     parser.add_argument('--scales-output-path', type=str, default='./act_scales/',
                         help='where to save the act scales')
     parser.add_argument("--calib_dataset",type=str,default="omnibench",
@@ -208,6 +232,8 @@ def parse_args():
             "text-audio",
             "vision-audio",
             "text-audio-vision",
+            "text-vision-video",
+            "text-vision-mix",
             "mas_mix_dataset"
         ],
         help="Data type to calculate activation. Options: text-only, vision-only, audio-only, text-vision, text-audio, vision-audio, mas_mix_dataset"
@@ -223,7 +249,11 @@ def main():
     model, tokenizer = build_model_and_tokenizer(args.model)
     args.net = args.model.rstrip('/').split('/')[-1]
     args.model_family = args.net.split('-')[0]
-    cache_dataloader = f'{args.cache_dir}/dataloader_{args.net}_{args.dataset_type}_{args.nsamples}.cache'
+    # 混合校准比例进文件名；默认 0.5 时保持旧文件名，兼容已有产物
+    args.ratio_tag = ""
+    if args.dataset_type == "text-vision-mix" and os.environ.get("MAS_CALI_TEXT_RATIO", "0.5") != "0.5":
+        args.ratio_tag = f"_tr{os.environ['MAS_CALI_TEXT_RATIO']}"
+    cache_dataloader = f'{args.cache_dir}/dataloader_{args.net}_{args.dataset_type}{args.ratio_tag}_{args.nsamples}.cache'
     if os.path.exists(cache_dataloader):
         dataloader = torch.load(cache_dataloader, weights_only=False)
         print(f"load calibration from {cache_dataloader}")
@@ -259,7 +289,7 @@ def main():
         model_type = "qwen"
     
     act_scales = get_act_scales(model, dataloader, args.nsamples, model_type=model_type)
-    save_path = os.path.join(args.scales_output_path,f'{args.net}-{args.dataset_type}-{args.nsamples}.pt')
+    save_path = os.path.join(args.scales_output_path,f'{args.net}-{args.dataset_type}{args.ratio_tag}-{args.nsamples}.pt')
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     torch.save(act_scales, save_path)
 

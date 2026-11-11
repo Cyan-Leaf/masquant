@@ -3,6 +3,19 @@ from datasets import load_dataset
 from typing import Dict
 from qwen_omni_utils import process_mm_info
 import json
+import os
+
+# 本地资源根目录，可用环境变量 MASQUANT_DATA_ROOT 覆盖
+DATA_ROOT = os.environ.get("MASQUANT_DATA_ROOT",
+                            os.path.join(os.path.dirname(os.path.abspath(__file__)), "data"))
+SHAREGPT4V_JSON = os.environ.get(
+    "MASQUANT_SHAREGPT4V_JSON",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                 "dataset", "sharegpt4v_instruct_gpt4-vision_cap100k_filtered_coco_image.json"),
+)
+LIBRISPEECH_JSON = os.environ.get(
+    "MASQUANT_LIBRISPEECH_JSON", os.path.join(DATA_ROOT, "libri_test_other.jsonl")
+)
 
 def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[list[dict]]:
     from datasets import load_dataset
@@ -27,8 +40,8 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
             for sample in dataset
         ]
     elif data_type == 'audio-only':
-        dataset_json = '/nas/yuehu/NEW/qwen_compressor/dataset/libri_test_other.jsonl'
-        prefix_path = "file:///nas/yuehu/assets/omni_data"
+        dataset_json = LIBRISPEECH_JSON
+        prefix_path = f"file://{DATA_ROOT}/"
         conversations = []
         with open(dataset_json, "r") as json_file:
             lines = json_file.readlines()
@@ -42,11 +55,11 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
                 conversations.append(prompt)
         return conversations[:n_sample]
     elif data_type == 'vision-only':
-        dataset_json = '/nas/yuehu/NEW/qwen_compressor/dataset/sharegpt4v_instruct_gpt4-vision_cap100k_filtered_coco_image.json'
+        dataset_json = SHAREGPT4V_JSON
         with open(dataset_json, "r") as json_file:
             dataset = json.load(json_file)
             
-        prefix_path = "file:///nas/yuehu/assets/dataset/"
+        prefix_path = f"file://{DATA_ROOT}/"
 
         dataset_ret = []
         for i in range(n_sample):
@@ -81,8 +94,8 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
 
         return dataset_ret
     elif data_type == 'text-audio':
-        dataset_json = '/nas/yuehu/NEW/qwen_compressor/dataset/libri_test_other.jsonl'
-        prefix_path = "file:///nas/yuehu/assets/omni_data"
+        dataset_json = LIBRISPEECH_JSON
+        prefix_path = f"file://{DATA_ROOT}/"
         conversations = []
         with open(dataset_json, "r") as json_file:
             lines = json_file.readlines()
@@ -91,11 +104,11 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
                 conversations.append(dataset["prompt"])
         return conversations[:n_sample]
     elif data_type == 'text-vision':
-        dataset_json = '/nas/yuehu/NEW/qwen_compressor/dataset/sharegpt4v_instruct_gpt4-vision_cap100k_filtered_coco_image.json'
+        dataset_json = SHAREGPT4V_JSON
         with open(dataset_json, "r") as json_file:
             dataset = json.load(json_file)
             
-        prefix_path = "file:///nas/yuehu/assets/dataset/"
+        prefix_path = f"file://{DATA_ROOT}/"
 
         dataset_ret = []
         for i in range(n_sample):
@@ -130,10 +143,56 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
             dataset_ret.append(item)
 
         return dataset_ret
+    elif data_type == 'text-vision-mix':
+        # 混合校准：一半 text-vision（图像描述），一半纯文本（wikitext 片段）。
+        # 动机：原 text-vision 校准集里文本 token 只占 ~8%（且多为重复的对话模板），
+        # MAS 的 text 平滑因子几乎无监督；补充纯文本样本让它得到充分拟合。
+        # 纯文本占比可用环境变量 MAS_CALI_TEXT_RATIO 调（默认 0.5，即之前的配置）；
+        # 扫这个比例时把它和 nsamples 一起改，保证 vis 数量仍够。
+        text_ratio = float(os.environ.get("MAS_CALI_TEXT_RATIO", "0.5"))
+        if not 0.0 <= text_ratio <= 1.0:
+            raise ValueError(f"MAS_CALI_TEXT_RATIO must be in [0,1], got {text_ratio}")
+        n_txt = int(round(n_sample * text_ratio))
+        n_vis = n_sample - n_txt
+        parts = []
+        if n_vis > 0:
+            parts += prepare_dataset(n_sample=n_vis, data_type='text-vision')
+        if n_txt > 0:
+            parts += _wikitext_chunks(n_txt)
+        return parts
+    elif data_type == 'text-vision-video':
+        # 图像 + 视频 + 文本（视频由 tools/make_videos.py 由 COCO 图像合成）
+        vid_dir = os.path.join(DATA_ROOT, 'video')
+        clips = sorted(f for f in os.listdir(vid_dir) if f.endswith('.mp4'))
+        with open(SHAREGPT4V_JSON, 'r') as json_file:
+            dataset = json.load(json_file)
+        prefix_path = f"file://{DATA_ROOT}/"
+        dataset_ret = []
+        for i in range(n_sample):
+            data_item = dataset[i]
+            user_text = ""
+            for conv in data_item["conversations"]:
+                if conv["from"] == "human":
+                    user_text = conv["value"].replace("<image>", "").replace("\n", "")
+            if len(clips) == 0:
+                raise FileNotFoundError(f"no video clips in {vid_dir}, run tools/make_videos.py first")
+            clip = clips[i % len(clips)]
+            item = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "image": prefix_path + data_item["image"]},
+                        {"type": "video", "video": f"file://{vid_dir}/{clip}", "fps": 1.0},
+                        {"type": "text", "text": user_text},
+                    ],
+                }
+            ]
+            dataset_ret.append(item)
+        return dataset_ret
     elif data_type == 'text-audio-vision' or data_type == 'mas_mix_dataset' :
-        dataset_json = 'data/jsonls/omnibench.jsonl'
+        dataset_json = os.path.join(DATA_ROOT, 'jsonls', 'omnibench.jsonl')
         if data_type == 'mas_mix_dataset':
-            dataset_json = 'data/jsonls/mas_mix_dataset.jsonl'        
+            dataset_json = os.path.join(DATA_ROOT, 'jsonls', 'mas_mix_dataset.jsonl')
         conversations = []
         with open(dataset_json, "r") as json_file:
             lines = json_file.readlines()
@@ -144,6 +203,26 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
     else:
         print(f'data_type: {data_type} is not supported yet.')
         return []
+
+
+
+def _wikitext_chunks(n, words_per_chunk=256, seed=0):
+    """从 wikitext-2 train 切出 n 段约 words_per_chunk 词的连续文本，作为纯文本校准样本。"""
+    import random
+    local = os.path.join(os.environ.get("MASQUANT_WIKITEXT_DIR", os.path.join(DATA_ROOT, "wikitext")),
+                         "train-00000-of-00001.parquet")
+    if os.path.exists(local):
+        ds = load_dataset("parquet", data_files={"train": local}, split="train")
+    else:
+        ds = load_dataset('wikitext', 'wikitext-2-raw-v1', split="train")
+    words = " ".join(t for t in ds["text"] if t.strip()).split()
+    rng = random.Random(seed)
+    out = []
+    for _ in range(n):
+        st = rng.randint(0, len(words) - words_per_chunk - 1)
+        text = " ".join(words[st:st + words_per_chunk])
+        out.append([{"role": "user", "content": [{"type": "text", "text": text}]}])
+    return out
 
 
 def batched(iterable, n: int, process_func):

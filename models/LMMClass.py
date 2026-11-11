@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import transformers
 import torch
 from .models_utils import BaseLM, find_layers
@@ -87,15 +88,18 @@ class LMMClass(lmms):
             self.model = self._model.to('cuda')
             self._config = self._model.config
             self.processor = AutoProcessor.from_pretrained(model_path)
+            # 批量生成需要 left padding，否则 FlashAttention 会报错
+            self.processor.tokenizer.padding_side = os.getenv("LMMS_PADDING_SIDE", "left")
             self._tokenizer = self.processor.tokenizer
             self.tokenizer = self._tokenizer
             self.system_prompt = "You are a helpful assistant."
             
-            self.batch_size_per_gpu = 1
+            self.batch_size_per_gpu = int(os.getenv("LMMS_EVAL_BATCH_SIZE", 1))
             self.max_num_frames = 768
             self.vocab_size = self._tokenizer.vocab_size
             self.device_map = 'auto'
             self.use_cache = True
+            self.max_pixels = int(os.getenv("LMMS_MAX_PIXELS", 0))
             
             self._model.eval()   
         
@@ -252,7 +256,10 @@ class LMMClass(lmms):
                         base64_image.save(buffer, format="JPEG")
                         base64_bytes = base64.b64encode(buffer.getvalue())
                         base64_string = base64_bytes.decode("utf-8")
-                        message.append({"role": "user", "content": [{"type": "image", "image": f"data:image/jpeg;base64,{base64_string}"}, {"type": "text", "text": context}]})
+                        img_item = {"type": "image", "image": f"data:image/jpeg;base64,{base64_string}"}
+                        if getattr(self, "max_pixels", 0):
+                            img_item["max_pixels"] = self.max_pixels
+                        message.append({"role": "user", "content": [img_item, {"type": "text", "text": context}]})
                     elif isinstance(visual, (list, tuple)) and all(isinstance(v, Image.Image) for v in visual):  # Multiple images
                         image_content = []
                         for v in visual:

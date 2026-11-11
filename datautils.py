@@ -1,4 +1,19 @@
 import pdb
+import os
+
+_WIKITEXT_LOCAL_DIR = os.environ.get(
+    "MASQUANT_WIKITEXT_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "wikitext")
+)
+
+
+def _load_wikitext2_split(split):
+    """优先从本地 parquet 加载 wikitext2，避免离线环境下访问 Hub 失败。"""
+    local = os.path.join(_WIKITEXT_LOCAL_DIR, f"{split}-00000-of-00001.parquet")
+    if os.path.exists(local):
+        return load_dataset("parquet", data_files={split: local}, split=split)
+    return load_dataset('wikitext', 'wikitext-2-raw-v1', split=split)
+
 from transformers import AutoTokenizer
 from datasets import load_dataset
 import numpy as np
@@ -21,8 +36,8 @@ def compute_sqnr(original, quantized):
 
 def get_wikitext2(nsamples, seed, seqlen, model):
     print("get_wikitext2")
-    traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
-    testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test')
+    traindata = _load_wikitext2_split('train')
+    testdata = _load_wikitext2_split('test')
 
     tokenizer = AutoTokenizer.from_pretrained(model, use_fast=False, trust_remote_code=True)
     trainenc = tokenizer("\n\n".join(traindata['text']), return_tensors='pt')
@@ -43,8 +58,8 @@ def get_wikitext2(nsamples, seed, seqlen, model):
 
 def get_wikitext2_new(nsamples, seed, seqlen, model):
     print("get_wikitext2 new")
-    traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
-    testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test')
+    traindata = _load_wikitext2_split('train')
+    testdata = _load_wikitext2_split('test')
 
     tokenizer = AutoTokenizer.from_pretrained(model, use_fast=False, trust_remote_code=True)
     trainenc = tokenizer("\n\n".join(traindata['text']), return_tensors='pt')
@@ -86,31 +101,45 @@ def get_ptb(nsamples, seed, seqlen, model):
     return trainloader, testenc
 
 def get_c4(nsamples, seed, seqlen, model):
+    """评测用的 C4 只需要 validation；本地有 json.gz 就离线读，避免联网。
+    用途：作为与 wikitext 不同领域的 PPL 测试集，检验混合校准的收益是否只是同域匹配（见报告 §2.1.4）。"""
     print("get_c4")
-    traindata = load_dataset(
-        'allenai/c4', data_files={'train': 'en/c4-train.00000-of-01024.json.gz'}, split='train'
-    )
-    valdata = load_dataset(
-        'allenai/c4', data_files={'validation': 'en/c4-validation.00000-of-00008.json.gz'}, split='validation'
-    )
+    import glob as _glob
+    _local_val = os.environ.get("MASQUANT_C4_VAL") or ""
+    if not _local_val:
+        _cands = sorted(_glob.glob(os.path.join(os.environ.get("MASQUANT_DATA_ROOT", "./data"),
+                                                "c4", "c4-validation*.json.gz")))
+        _local_val = _cands[0] if _cands else ""
+    if _local_val and os.path.exists(_local_val):
+        print(f"load local c4 validation: {_local_val}")
+        valdata = load_dataset('json', data_files=_local_val, split='train')
+        traindata = None  # 只评测，不需要 train
+    else:
+        traindata = load_dataset(
+            'allenai/c4', data_files={'train': 'en/c4-train.00000-of-01024.json.gz'}, split='train'
+        )
+        valdata = load_dataset(
+            'allenai/c4', data_files={'validation': 'en/c4-validation.00000-of-00008.json.gz'}, split='validation'
+        )
 
 
     tokenizer = AutoTokenizer.from_pretrained(model, use_fast=False)
 
     random.seed(seed)
     trainloader = []
-    for _ in range(nsamples):
-        while True:
-            i = random.randint(0, len(traindata) - 1)
-            trainenc = tokenizer(traindata[i]['text'], return_tensors='pt')
-            if trainenc.input_ids.shape[1] >= seqlen:
-                break
-        i = random.randint(0, trainenc.input_ids.shape[1] - seqlen - 1)
-        j = i + seqlen
-        inp = trainenc.input_ids[:, i:j]
-        tar = inp.clone()
-        tar[:, :-1] = -100
-        trainloader.append((inp, tar))
+    if traindata is not None:
+        for _ in range(nsamples):
+            while True:
+                i = random.randint(0, len(traindata) - 1)
+                trainenc = tokenizer(traindata[i]['text'], return_tensors='pt')
+                if trainenc.input_ids.shape[1] >= seqlen:
+                    break
+            i = random.randint(0, trainenc.input_ids.shape[1] - seqlen - 1)
+            j = i + seqlen
+            inp = trainenc.input_ids[:, i:j]
+            tar = inp.clone()
+            tar[:, :-1] = -100
+            trainloader.append((inp, tar))
 
     random.seed(0)
     valenc = []
