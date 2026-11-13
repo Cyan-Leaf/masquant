@@ -1,0 +1,500 @@
+{"doc_id": 0, "exact_match": 1, "resp": "['Dakota.']"}
+{"doc_id": 1, "exact_match": 1, "resp": "['COPENHAGEN']"}
+{"doc_id": 2, "exact_match": 1, "resp": "['ale']"}
+{"doc_id": 3, "exact_match": 1, "resp": "['BOWMORE']"}
+{"doc_id": 4, "exact_match": 1, "resp": "['10 years']"}
+{"doc_id": 5, "exact_match": 1, "resp": "['22']"}
+{"doc_id": 6, "exact_match": 0.0, "resp": "['10:25']"}
+{"doc_id": 7, "exact_match": 0.0, "resp": "['Audinett']"}
+{"doc_id": 8, "exact_match": 1, "resp": "['Bryan Owens']"}
+{"doc_id": 9, "exact_match": 1, "resp": "['Philippe Molitor']"}
+{"doc_id": 10, "exact_match": 1, "resp": "['off']"}
+{"doc_id": 11, "exact_match": 0.0, "resp": "['1800 candy']"}
+{"doc_id": 12, "exact_match": 1, "resp": "['Bud Light']"}
+{"doc_id": 13, "exact_match": 0.0, "resp": "['3 16']"}
+{"doc_id": 14, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 15, "exact_match": 0.0, "resp": "['red and yellow']"}
+{"doc_id": 16, "exact_match": 0.0, "resp": "['Jim Beam']"}
+{"doc_id": 17, "exact_match": 0.3, "resp": "['0%']"}
+{"doc_id": 18, "exact_match": 1, "resp": "['3']"}
+{"doc_id": 19, "exact_match": 0.0, "resp": "['12']"}
+{"doc_id": 20, "exact_match": 1, "resp": "['Yamaha.']"}
+{"doc_id": 21, "exact_match": 1, "resp": "['2012']"}
+{"doc_id": 22, "exact_match": 1, "resp": "['macbook']"}
+{"doc_id": 23, "exact_match": 0.9, "resp": "['CONTINUE']"}
+{"doc_id": 24, "exact_match": 1, "resp": "['WArning']"}
+{"doc_id": 25, "exact_match": 0.0, "resp": "['2015']"}
+{"doc_id": 26, "exact_match": 1, "resp": "['Willis']"}
+{"doc_id": 27, "exact_match": 1, "resp": "['Millrose Games']"}
+{"doc_id": 28, "exact_match": 1, "resp": "['Dumbledore']"}
+{"doc_id": 29, "exact_match": 1, "resp": "[\"King's Cross.\"]"}
+{"doc_id": 30, "exact_match": 0.0, "resp": "['Jorge Mejia Peralta']"}
+{"doc_id": 31, "exact_match": 1, "resp": "['yes']"}
+{"doc_id": 32, "exact_match": 1, "resp": "['Jeff Vandermeer & Mark Roberts']"}
+{"doc_id": 33, "exact_match": 0.0, "resp": "['12:30 PM']"}
+{"doc_id": 34, "exact_match": 1, "resp": "['@mediaczar']"}
+{"doc_id": 35, "exact_match": 1, "resp": "['Your mom']"}
+{"doc_id": 36, "exact_match": 1, "resp": "['30']"}
+{"doc_id": 37, "exact_match": 1, "resp": "['JESUS']"}
+{"doc_id": 38, "exact_match": 0.3, "resp": "['JESUS']"}
+{"doc_id": 39, "exact_match": 1, "resp": "['57859']"}
+{"doc_id": 40, "exact_match": 1, "resp": "['57859']"}
+{"doc_id": 41, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 42, "exact_match": 1, "resp": "['50']"}
+{"doc_id": 43, "exact_match": 1, "resp": "['Vodka']"}
+{"doc_id": 44, "exact_match": 1, "resp": "['Chase']"}
+{"doc_id": 45, "exact_match": 1, "resp": "['Honghe']"}
+{"doc_id": 46, "exact_match": 0.0, "resp": "['0.125000000000000001467983222222222222222e-06']"}
+{"doc_id": 47, "exact_match": 1, "resp": "['1 penny']"}
+{"doc_id": 48, "exact_match": 1, "resp": "['French']"}
+{"doc_id": 49, "exact_match": 1, "resp": "['California']"}
+{"doc_id": 50, "exact_match": 0.0, "resp": "['19:00 hss']"}
+{"doc_id": 51, "exact_match": 0.0, "resp": "['50 pence']"}
+{"doc_id": 52, "exact_match": 0.0, "resp": "['Rate']"}
+{"doc_id": 53, "exact_match": 1, "resp": "['9']"}
+{"doc_id": 54, "exact_match": 0.0, "resp": "['Ney York']"}
+{"doc_id": 55, "exact_match": 1, "resp": "['Life Cycle']"}
+{"doc_id": 56, "exact_match": 0.0, "resp": "['13']"}
+{"doc_id": 57, "exact_match": 0.0, "resp": "['Premier League']"}
+{"doc_id": 58, "exact_match": 0.0, "resp": "['5 pence']"}
+{"doc_id": 59, "exact_match": 0.0, "resp": "['1964']"}
+{"doc_id": 60, "exact_match": 0.3, "resp": "['Beer']"}
+{"doc_id": 61, "exact_match": 0.6, "resp": "['Corona.']"}
+{"doc_id": 62, "exact_match": 0.0, "resp": "['1853.']"}
+{"doc_id": 63, "exact_match": 1, "resp": "['19']"}
+{"doc_id": 64, "exact_match": 1, "resp": "['white']"}
+{"doc_id": 65, "exact_match": 1, "resp": "['Marvel']"}
+{"doc_id": 66, "exact_match": 0.0, "resp": "['2 and 3']"}
+{"doc_id": 67, "exact_match": 1, "resp": "['Cocoa']"}
+{"doc_id": 68, "exact_match": 0.0, "resp": "['Frys']"}
+{"doc_id": 69, "exact_match": 0.3, "resp": "['Jaron Lanier']"}
+{"doc_id": 70, "exact_match": 1, "resp": "['POSTCODE.']"}
+{"doc_id": 71, "exact_match": 1, "resp": "['NLS4 team']"}
+{"doc_id": 72, "exact_match": 1, "resp": "['WANITA']"}
+{"doc_id": 73, "exact_match": 0.0, "resp": "['Mizam Ent.']"}
+{"doc_id": 74, "exact_match": 0.0, "resp": "['Jez.']"}
+{"doc_id": 75, "exact_match": 1, "resp": "['2012']"}
+{"doc_id": 76, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 77, "exact_match": 1, "resp": "['JIBA']"}
+{"doc_id": 78, "exact_match": 0.0, "resp": "['9.0% ALC./VOL. 6 FL. OZ.']"}
+{"doc_id": 79, "exact_match": 1, "resp": "['SMASHED PUMPKIN']"}
+{"doc_id": 80, "exact_match": 1, "resp": "['Coors Light.']"}
+{"doc_id": 81, "exact_match": 0.0, "resp": "['SAFWAY.']"}
+{"doc_id": 82, "exact_match": 1, "resp": "['Cathy Williams']"}
+{"doc_id": 83, "exact_match": 0.3, "resp": "['Cathy Williams']"}
+{"doc_id": 84, "exact_match": 0.0, "resp": "['Krainerwurst, Burenwurst, Debrener']"}
+{"doc_id": 85, "exact_match": 1, "resp": "['Krainerwurst.']"}
+{"doc_id": 86, "exact_match": 1, "resp": "['Fox']"}
+{"doc_id": 87, "exact_match": 0.3, "resp": "['FOX']"}
+{"doc_id": 88, "exact_match": 1, "resp": "['Koala Kare.']"}
+{"doc_id": 89, "exact_match": 1, "resp": "['koala']"}
+{"doc_id": 90, "exact_match": 1, "resp": "['7:28']"}
+{"doc_id": 91, "exact_match": 1, "resp": "['Ariel.']"}
+{"doc_id": 92, "exact_match": 1, "resp": "['The Speaking Eye.']"}
+{"doc_id": 93, "exact_match": 1, "resp": "['southern homes']"}
+{"doc_id": 94, "exact_match": 1, "resp": "['648- HOME']"}
+{"doc_id": 95, "exact_match": 1, "resp": "['Yamaha.']"}
+{"doc_id": 96, "exact_match": 1, "resp": "['Startling Stories']"}
+{"doc_id": 97, "exact_match": 1, "resp": "['Ward Hawkins']"}
+{"doc_id": 98, "exact_match": 0.0, "resp": "['12:00']"}
+{"doc_id": 99, "exact_match": 0.6, "resp": "['clock']"}
+{"doc_id": 100, "exact_match": 0.0, "resp": "['18 399 5551']"}
+{"doc_id": 101, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 102, "exact_match": 0.0, "resp": "['K.DheeraJ.']"}
+{"doc_id": 103, "exact_match": 1, "resp": "['2011']"}
+{"doc_id": 104, "exact_match": 1, "resp": "['15:08:25']"}
+{"doc_id": 105, "exact_match": 1, "resp": "['Juicy.']"}
+{"doc_id": 106, "exact_match": 1, "resp": "['Best Cellars']"}
+{"doc_id": 107, "exact_match": 0.0, "resp": "['BPM']"}
+{"doc_id": 108, "exact_match": 1, "resp": "['Gum Plus']"}
+{"doc_id": 109, "exact_match": 1, "resp": "['Gum Plus.']"}
+{"doc_id": 110, "exact_match": 1, "resp": "['yes']"}
+{"doc_id": 111, "exact_match": 1, "resp": "['Clemson']"}
+{"doc_id": 112, "exact_match": 1, "resp": "['78']"}
+{"doc_id": 113, "exact_match": 0.0, "resp": "['nimm, Egoist, Ego.']"}
+{"doc_id": 114, "exact_match": 1, "resp": "['Renaud Camus.']"}
+{"doc_id": 115, "exact_match": 0.0, "resp": "['Révoltez-vous!']"}
+{"doc_id": 116, "exact_match": 0.0, "resp": "['Italy']"}
+{"doc_id": 117, "exact_match": 1, "resp": "['Matsuzakaya']"}
+{"doc_id": 118, "exact_match": 0.0, "resp": "['Brahms, Klaivierkonzert 1, Claudio Arrau, Concertgebouw-Orchester, Amsterdam, Bernard Haitink.']"}
+{"doc_id": 119, "exact_match": 0.0, "resp": "['Brahms, Klaivierkonzert 1, Claudio Arrau, Bernard Haitink, Concertgebouw-Orchester Amsterdam, Philips.']"}
+{"doc_id": 120, "exact_match": 0.0, "resp": "['MUGS']"}
+{"doc_id": 121, "exact_match": 0.0, "resp": "['Elephant.']"}
+{"doc_id": 122, "exact_match": 0.0, "resp": "['MR.']"}
+{"doc_id": 123, "exact_match": 0.0, "resp": "['ON/NC 0=']"}
+{"doc_id": 124, "exact_match": 0.0, "resp": "['4.116.08.11.01.08.10.02.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11.01.08.11']"}
+{"doc_id": 125, "exact_match": 1, "resp": "['Soul Doubt.']"}
+{"doc_id": 126, "exact_match": 1, "resp": "['soon']"}
+{"doc_id": 127, "exact_match": 1, "resp": "['Smoothies']"}
+{"doc_id": 128, "exact_match": 0.6, "resp": "['AJ52 UYV']"}
+{"doc_id": 129, "exact_match": 0.0, "resp": "['euromaster']"}
+{"doc_id": 130, "exact_match": 1, "resp": "['PH-SMA']"}
+{"doc_id": 131, "exact_match": 0.0, "resp": "['PH-']"}
+{"doc_id": 132, "exact_match": 1, "resp": "['Blogs']"}
+{"doc_id": 133, "exact_match": 0.3, "resp": "['londonunderground.blogspot.com.']"}
+{"doc_id": 134, "exact_match": 1, "resp": "['Yaam']"}
+{"doc_id": 135, "exact_match": 0.6, "resp": "['Winter Bar']"}
+{"doc_id": 136, "exact_match": 1, "resp": "['Inspirations']"}
+{"doc_id": 137, "exact_match": 0.0, "resp": "['Moi Dom.']"}
+{"doc_id": 138, "exact_match": 0.0, "resp": "['George']"}
+{"doc_id": 139, "exact_match": 0.0, "resp": "['olivetti-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-wooden-"}
+{"doc_id": 140, "exact_match": 1, "resp": "['Joke shop']"}
+{"doc_id": 141, "exact_match": 1, "resp": "['Halloween.']"}
+{"doc_id": 142, "exact_match": 0.3, "resp": "['5:35 PM']"}
+{"doc_id": 143, "exact_match": 1, "resp": "['12']"}
+{"doc_id": 144, "exact_match": 1, "resp": "['Pentagon Channel']"}
+{"doc_id": 145, "exact_match": 1, "resp": "['Army.']"}
+{"doc_id": 146, "exact_match": 0.6, "resp": "['Core Values']"}
+{"doc_id": 147, "exact_match": 1, "resp": "['Do you want to study in the U.S.A?']"}
+{"doc_id": 148, "exact_match": 1, "resp": "['Pulse Width Modulation']"}
+{"doc_id": 149, "exact_match": 0.0, "resp": "['Pwm']"}
+{"doc_id": 150, "exact_match": 0.0, "resp": "[\"Stahls'\"]"}
+{"doc_id": 151, "exact_match": 1, "resp": "['39']"}
+{"doc_id": 152, "exact_match": 1, "resp": "['Terrace Hotel']"}
+{"doc_id": 153, "exact_match": 1, "resp": "['Strand for stand']"}
+{"doc_id": 154, "exact_match": 1, "resp": "['PDX']"}
+{"doc_id": 155, "exact_match": 0.0, "resp": "['Iowa']"}
+{"doc_id": 156, "exact_match": 1, "resp": "['Live']"}
+{"doc_id": 157, "exact_match": 0.9, "resp": "['Piano Music']"}
+{"doc_id": 158, "exact_match": 1, "resp": "['Mike Lee']"}
+{"doc_id": 159, "exact_match": 1, "resp": "['Washington, DC.']"}
+{"doc_id": 160, "exact_match": 1, "resp": "['yes']"}
+{"doc_id": 161, "exact_match": 0.0, "resp": "['Pinky Stix']"}
+{"doc_id": 162, "exact_match": 1, "resp": "['UMD']"}
+{"doc_id": 163, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 164, "exact_match": 0.0, "resp": "['roses']"}
+{"doc_id": 165, "exact_match": 1, "resp": "['5']"}
+{"doc_id": 166, "exact_match": 0.0, "resp": "['BIOHAZARD: CODE:Veronica']"}
+{"doc_id": 167, "exact_match": 0.0, "resp": "['7 of clubs']"}
+{"doc_id": 168, "exact_match": 1, "resp": "['Samsung']"}
+{"doc_id": 169, "exact_match": 0.9, "resp": "['Color xpression.']"}
+{"doc_id": 170, "exact_match": 0.0, "resp": "['STTTGRTT']"}
+{"doc_id": 171, "exact_match": 1, "resp": "['Virginia']"}
+{"doc_id": 172, "exact_match": 0.6, "resp": "['Redhook.']"}
+{"doc_id": 173, "exact_match": 1, "resp": "['ALE']"}
+{"doc_id": 174, "exact_match": 0.9, "resp": "['Lancome.']"}
+{"doc_id": 175, "exact_match": 0.0, "resp": "['Dove Viva.']"}
+{"doc_id": 176, "exact_match": 0.0, "resp": "['250']"}
+{"doc_id": 177, "exact_match": 1, "resp": "['Pepsi.']"}
+{"doc_id": 178, "exact_match": 0.0, "resp": "['Adelstein.']"}
+{"doc_id": 179, "exact_match": 1, "resp": "['Geico']"}
+{"doc_id": 180, "exact_match": 1, "resp": "['390']"}
+{"doc_id": 181, "exact_match": 0.0, "resp": "['Aire sintético.']"}
+{"doc_id": 182, "exact_match": 1, "resp": "['Second Part.']"}
+{"doc_id": 183, "exact_match": 0.0, "resp": "['π (pi)']"}
+{"doc_id": 184, "exact_match": 1, "resp": "['tapiz']"}
+{"doc_id": 185, "exact_match": 0.9, "resp": "['Malbec']"}
+{"doc_id": 186, "exact_match": 0.0, "resp": "['Yes, it says \"JESUS HATES YOU\" on it.']"}
+{"doc_id": 187, "exact_match": 0.0, "resp": "['Yes, it says \"JESUS HATES YOU\" in all caps.']"}
+{"doc_id": 188, "exact_match": 1, "resp": "['Ian Rankin.']"}
+{"doc_id": 189, "exact_match": 0.0, "resp": "['Silver Bells']"}
+{"doc_id": 190, "exact_match": 0.9, "resp": "['12']"}
+{"doc_id": 191, "exact_match": 1, "resp": "['Toshiba']"}
+{"doc_id": 192, "exact_match": 0.0, "resp": "[\"Wega'anta\"]"}
+{"doc_id": 193, "exact_match": 1, "resp": "['Ape LAD!']"}
+{"doc_id": 194, "exact_match": 1, "resp": "['Canada']"}
+{"doc_id": 195, "exact_match": 1, "resp": "['W.']"}
+{"doc_id": 196, "exact_match": 1, "resp": "['AV-147-VZ']"}
+{"doc_id": 197, "exact_match": 1, "resp": "['Bar.']"}
+{"doc_id": 198, "exact_match": 0.0, "resp": "['beer']"}
+{"doc_id": 199, "exact_match": 1, "resp": "['Belgium']"}
+{"doc_id": 200, "exact_match": 1, "resp": "['baseball']"}
+{"doc_id": 201, "exact_match": 1, "resp": "['JR HIGHWAY BUS']"}
+{"doc_id": 202, "exact_match": 1, "resp": "['Turkish Airlines']"}
+{"doc_id": 203, "exact_match": 1, "resp": "['9350']"}
+{"doc_id": 204, "exact_match": 0.0, "resp": "['12:05']"}
+{"doc_id": 205, "exact_match": 0.6, "resp": "['VETERANS OF FOREIGN WARS']"}
+{"doc_id": 206, "exact_match": 0.3, "resp": "['VETERANS OF FOREIGN WARS.']"}
+{"doc_id": 207, "exact_match": 1, "resp": "['Same same.']"}
+{"doc_id": 208, "exact_match": 1, "resp": "['FLOUR.']"}
+{"doc_id": 209, "exact_match": 0.0, "resp": "['music']"}
+{"doc_id": 210, "exact_match": 1, "resp": "['Lenovo']"}
+{"doc_id": 211, "exact_match": 1, "resp": "['Lenovo']"}
+{"doc_id": 212, "exact_match": 1, "resp": "['Moritz']"}
+{"doc_id": 213, "exact_match": 0.0, "resp": "['Barcelona, Spain.']"}
+{"doc_id": 214, "exact_match": 1, "resp": "['schin']"}
+{"doc_id": 215, "exact_match": 1, "resp": "['Lufthansa']"}
+{"doc_id": 216, "exact_match": 0.0, "resp": "['commercial']"}
+{"doc_id": 217, "exact_match": 0.0, "resp": "['12:05']"}
+{"doc_id": 218, "exact_match": 1, "resp": "['A']"}
+{"doc_id": 219, "exact_match": 1, "resp": "['LG']"}
+{"doc_id": 220, "exact_match": 1, "resp": "['9:09']"}
+{"doc_id": 221, "exact_match": 0.6, "resp": "['uniqlo']"}
+{"doc_id": 222, "exact_match": 0.0, "resp": "['adidas']"}
+{"doc_id": 223, "exact_match": 0.0, "resp": "['Green Bay Packer']"}
+{"doc_id": 224, "exact_match": 1, "resp": "['Packers']"}
+{"doc_id": 225, "exact_match": 1, "resp": "['Nog 3 km, Nog 2 km, Nog 1 km.']"}
+{"doc_id": 226, "exact_match": 1, "resp": "['3']"}
+{"doc_id": 227, "exact_match": 0.9, "resp": "['brick']"}
+{"doc_id": 228, "exact_match": 1, "resp": "['Burnaby']"}
+{"doc_id": 229, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 230, "exact_match": 1, "resp": "['Seals']"}
+{"doc_id": 231, "exact_match": 1, "resp": "['Seals']"}
+{"doc_id": 232, "exact_match": 1, "resp": "['11:43']"}
+{"doc_id": 233, "exact_match": 0.0, "resp": "['1:30']"}
+{"doc_id": 234, "exact_match": 1, "resp": "['no']"}
+{"doc_id": 235, "exact_match": 0.0, "resp": "['LAFNIDS']"}
+{"doc_id": 236, "exact_match": 1, "resp": "['29']"}
+{"doc_id": 237, "exact_match": 1, "resp": "['Vodka']"}
+{"doc_id": 238, "exact_match": 1, "resp": "['007']"}
+{"doc_id": 239, "exact_match": 1, "resp": "['Russia!']"}
+{"doc_id": 240, "exact_match": 1, "resp": "['2']"}
+{"doc_id": 241, "exact_match": 0.0, "resp": "['9']"}
+{"doc_id": 242, "exact_match": 1, "resp": "['Wine']"}
+{"doc_id": 243, "exact_match": 0.0, "resp": "['Costebel.']"}
+{"doc_id": 244, "exact_match": 1, "resp": "['1']"}
+{"doc_id": 245, "exact_match": 1, "resp": "['107']"}
+{"doc_id": 246, "exact_match": 1, "resp": "['West Lothian']"}
+{"doc_id": 247, "exact_match": 1, "resp": "['59']"}
+{"doc_id": 248, "exact_match": 0.6, "resp": "['New York City']"}
+{"doc_id": 249, "exact_match": 1, "resp": "['New York City']"}
+{"doc_id": 250, "exact_match": 0.6, "resp": "['Malt']"}
+{"doc_id": 251, "exact_match": 0.9, "resp": "['2']"}
+{"doc_id": 252, "exact_match": 0.0, "resp": "['El Tocar Ojito']"}
+{"doc_id": 253, "exact_match": 0.9, "resp": "['Suntory Whisky.']"}
+{"doc_id": 254, "exact_match": 0.6, "resp": "['radiance.']"}
+{"doc_id": 255, "exact_match": 0.0, "resp": "['tdenergy.com']"}
+{"doc_id": 256, "exact_match": 0.0, "resp": "['2009-06-28 10:38:57 AM (UTC)']"}
+{"doc_id": 257, "exact_match": 0.0, "resp": "['2']"}
+{"doc_id": 258, "exact_match": 1, "resp": "['Corona Extra.']"}
+{"doc_id": 259, "exact_match": 0.6, "resp": "['2L']"}
+{"doc_id": 260, "exact_match": 1, "resp": "['Coca cola.']"}
+{"doc_id": 261, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 262, "exact_match": 1, "resp": "['Carnegie Hall.']"}
+{"doc_id": 263, "exact_match": 0.0, "resp": "['Yes, it is.']"}
+{"doc_id": 264, "exact_match": 1, "resp": "['Verizon']"}
+{"doc_id": 265, "exact_match": 1, "resp": "['Yes.']"}
+{"doc_id": 266, "exact_match": 1, "resp": "['KICKER.']"}
+{"doc_id": 267, "exact_match": 0.6, "resp": "['FOX HD']"}
+{"doc_id": 268, "exact_match": 1, "resp": "['HD']"}
+{"doc_id": 269, "exact_match": 1, "resp": "['Tanamera']"}
+{"doc_id": 270, "exact_match": 1, "resp": "['Kimberly Kay Hoang']"}
+{"doc_id": 271, "exact_match": 0.0, "resp": "['Dealing in Desire: Asian Ascendancy, Western Decline, and the Hidden Currencies of Global Sex Work']"}
+{"doc_id": 272, "exact_match": 1, "resp": "['Silicon Graphics.']"}
+{"doc_id": 273, "exact_match": 1, "resp": "['17.3 inch']"}
+{"doc_id": 274, "exact_match": 0.0, "resp": "['21.055 g (0.74 oz)']"}
+{"doc_id": 275, "exact_match": 0.0, "resp": "['Not a question.']"}
+{"doc_id": 276, "exact_match": 0.0, "resp": "['Ambrée.']"}
+{"doc_id": 277, "exact_match": 1, "resp": "['reynolds']"}
+{"doc_id": 278, "exact_match": 0.0, "resp": "['parking']"}
+{"doc_id": 279, "exact_match": 1, "resp": "['office']"}
+{"doc_id": 280, "exact_match": 1, "resp": "['office']"}
+{"doc_id": 281, "exact_match": 1, "resp": "['Motorola']"}
+{"doc_id": 282, "exact_match": 1, "resp": "['Bitcoin']"}
+{"doc_id": 283, "exact_match": 0.6, "resp": "['Psalms']"}
+{"doc_id": 284, "exact_match": 0.9, "resp": "['NORTEL']"}
+{"doc_id": 285, "exact_match": 0.0, "resp": "['TIME']"}
+{"doc_id": 286, "exact_match": 0.3, "resp": "['Portaria']"}
+{"doc_id": 287, "exact_match": 1, "resp": "['nokia']"}
+{"doc_id": 288, "exact_match": 0.0, "resp": "['Cub']"}
+{"doc_id": 289, "exact_match": 0.0, "resp": "['1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 ']"}
+{"doc_id": 290, "exact_match": 0.0, "resp": "['B']"}
+{"doc_id": 291, "exact_match": 1, "resp": "['STOP']"}
+{"doc_id": 292, "exact_match": 0.0, "resp": "['Yes, it does.']"}
+{"doc_id": 293, "exact_match": 1, "resp": "['English']"}
+{"doc_id": 294, "exact_match": 0.0, "resp": "['Yes, two ladders are seen.']"}
+{"doc_id": 295, "exact_match": 1, "resp": "['Titanfall']"}
+{"doc_id": 296, "exact_match": 0.0, "resp": "['Motorola.']"}
+{"doc_id": 297, "exact_match": 1, "resp": "['Natan']"}
+{"doc_id": 298, "exact_match": 0.0, "resp": "['10:35']"}
+{"doc_id": 299, "exact_match": 0.0, "resp": "['United Kingdom']"}
+{"doc_id": 300, "exact_match": 1, "resp": "['Basil.']"}
+{"doc_id": 301, "exact_match": 1, "resp": "['Yes.']"}
+{"doc_id": 302, "exact_match": 1, "resp": "['Boston - Tokyo']"}
+{"doc_id": 303, "exact_match": 0.0, "resp": "['No left turn.']"}
+{"doc_id": 304, "exact_match": 1, "resp": "['Only']"}
+{"doc_id": 305, "exact_match": 1, "resp": "['Stop']"}
+{"doc_id": 306, "exact_match": 1, "resp": "['p']"}
+{"doc_id": 307, "exact_match": 1, "resp": "['Essential oil']"}
+{"doc_id": 308, "exact_match": 1, "resp": "['Summer blend']"}
+{"doc_id": 309, "exact_match": 1, "resp": "['FEBRUARY 2012']"}
+{"doc_id": 310, "exact_match": 0.3, "resp": "[\"Nature's harvest 2009 shiraz.\"]"}
+{"doc_id": 311, "exact_match": 0.0, "resp": "[\"NATURE'S HARVEST 2009 SHIRAZ\"]"}
+{"doc_id": 312, "exact_match": 0.0, "resp": "['ibm']"}
+{"doc_id": 313, "exact_match": 0.0, "resp": "['8:20 2:03:50']"}
+{"doc_id": 314, "exact_match": 0.0, "resp": "['playing baseball']"}
+{"doc_id": 315, "exact_match": 1, "resp": "['First']"}
+{"doc_id": 316, "exact_match": 0.3, "resp": "['Hermes 3000.']"}
+{"doc_id": 317, "exact_match": 1, "resp": "['Tab.']"}
+{"doc_id": 318, "exact_match": 1, "resp": "['Staples']"}
+{"doc_id": 319, "exact_match": 1, "resp": "['Street Army.']"}
+{"doc_id": 320, "exact_match": 0.0, "resp": "['W. St. Remyont']"}
+{"doc_id": 321, "exact_match": 1, "resp": "['Komediantka']"}
+{"doc_id": 322, "exact_match": 0.0, "resp": "['SUN BAR']"}
+{"doc_id": 323, "exact_match": 1, "resp": "['317']"}
+{"doc_id": 324, "exact_match": 0.0, "resp": "['342']"}
+{"doc_id": 325, "exact_match": 1, "resp": "['90']"}
+{"doc_id": 326, "exact_match": 1, "resp": "['Extra Virgin']"}
+{"doc_id": 327, "exact_match": 0.0, "resp": "['9966']"}
+{"doc_id": 328, "exact_match": 1, "resp": "['Anniversary Ale']"}
+{"doc_id": 329, "exact_match": 0.9, "resp": "['Anniversary Ale']"}
+{"doc_id": 330, "exact_match": 1, "resp": "['2']"}
+{"doc_id": 331, "exact_match": 1, "resp": "['left']"}
+{"doc_id": 332, "exact_match": 0.6, "resp": "['Right one.']"}
+{"doc_id": 333, "exact_match": 0.0, "resp": "[\"Saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'Avvocato Francescantonio Pescatore. Sempier ego auditor tanum, nuncquam reponam. Juven.\"]"}
+{"doc_id": 334, "exact_match": 1, "resp": "['Francescantonio Pescatore']"}
+{"doc_id": 335, "exact_match": 0.0, "resp": "['21']"}
+{"doc_id": 336, "exact_match": 1, "resp": "['Chippewas']"}
+{"doc_id": 337, "exact_match": 1, "resp": "['Allure']"}
+{"doc_id": 338, "exact_match": 0.0, "resp": "['Eau Extreme']"}
+{"doc_id": 339, "exact_match": 1, "resp": "['2013']"}
+{"doc_id": 340, "exact_match": 0.0, "resp": "['7-12 febrero 2013']"}
+{"doc_id": 341, "exact_match": 1, "resp": "['1 million']"}
+{"doc_id": 342, "exact_match": 0.0, "resp": "[\"ray's\"]"}
+{"doc_id": 343, "exact_match": 0.0, "resp": "[\"meijer's\"]"}
+{"doc_id": 344, "exact_match": 0.0, "resp": "['5:21']"}
+{"doc_id": 345, "exact_match": 0.0, "resp": "['LaptopPort']"}
+{"doc_id": 346, "exact_match": 1, "resp": "['HBA']"}
+{"doc_id": 347, "exact_match": 1, "resp": "['Slide:ology']"}
+{"doc_id": 348, "exact_match": 1, "resp": "['Samsung']"}
+{"doc_id": 349, "exact_match": 0.0, "resp": "['saylor']"}
+{"doc_id": 350, "exact_match": 1, "resp": "['bud light']"}
+{"doc_id": 351, "exact_match": 1, "resp": "['New Post']"}
+{"doc_id": 352, "exact_match": 0.0, "resp": "['N. Lawrence Ave. 1234567890. 1234567890. 1234567890. 1234567890. 1234567890. 1234567890. 1234567890. 1234567890. 1234567890. 1234567890. 12']"}
+{"doc_id": 353, "exact_match": 0.0, "resp": "['64']"}
+{"doc_id": 354, "exact_match": 1, "resp": "['5']"}
+{"doc_id": 355, "exact_match": 0.0, "resp": "['Five pence.']"}
+{"doc_id": 356, "exact_match": 1, "resp": "['648-3004']"}
+{"doc_id": 357, "exact_match": 0.0, "resp": "['Green St. 74.']"}
+{"doc_id": 358, "exact_match": 0.0, "resp": "['10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000']"}
+{"doc_id": 359, "exact_match": 1, "resp": "['Canon.']"}
+{"doc_id": 360, "exact_match": 1, "resp": "['microsoft']"}
+{"doc_id": 361, "exact_match": 0.3, "resp": "['microsoft']"}
+{"doc_id": 362, "exact_match": 0.0, "resp": "['100ml']"}
+{"doc_id": 363, "exact_match": 0.0, "resp": "['water']"}
+{"doc_id": 364, "exact_match": 1, "resp": "['100% Good for you!']"}
+{"doc_id": 365, "exact_match": 1, "resp": "['Adidas.']"}
+{"doc_id": 366, "exact_match": 1, "resp": "['F.F.F.']"}
+{"doc_id": 367, "exact_match": 1, "resp": "['Energy drink.']"}
+{"doc_id": 368, "exact_match": 0.0, "resp": "['2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 ']"}
+{"doc_id": 369, "exact_match": 0.9, "resp": "['no']"}
+{"doc_id": 370, "exact_match": 1, "resp": "['global warming']"}
+{"doc_id": 371, "exact_match": 1, "resp": "['Stop']"}
+{"doc_id": 372, "exact_match": 1, "resp": "['HTC']"}
+{"doc_id": 373, "exact_match": 0.0, "resp": "['water']"}
+{"doc_id": 374, "exact_match": 1, "resp": "['ferry']"}
+{"doc_id": 375, "exact_match": 1, "resp": "['Black.']"}
+{"doc_id": 376, "exact_match": 0.9, "resp": "[\"Monteith's\"]"}
+{"doc_id": 377, "exact_match": 0.0, "resp": "['TRC']"}
+{"doc_id": 378, "exact_match": 1, "resp": "['Milt Thomas']"}
+{"doc_id": 379, "exact_match": 0.0, "resp": "['Cave of a Thousand Tales: The Life & Times of Hugh B. Cave']"}
+{"doc_id": 380, "exact_match": 1, "resp": "['Rock the Stripes.']"}
+{"doc_id": 381, "exact_match": 1, "resp": "['March']"}
+{"doc_id": 382, "exact_match": 0.0, "resp": "['Alfred.']"}
+{"doc_id": 383, "exact_match": 0.0, "resp": "['Newcom.']"}
+{"doc_id": 384, "exact_match": 0.3, "resp": "['MALORT Liqueur']"}
+{"doc_id": 385, "exact_match": 1, "resp": "['926g']"}
+{"doc_id": 386, "exact_match": 0.6, "resp": "['No']"}
+{"doc_id": 387, "exact_match": 1, "resp": "['yes']"}
+{"doc_id": 388, "exact_match": 0.0, "resp": "['Pimms']"}
+{"doc_id": 389, "exact_match": 1, "resp": "['yes']"}
+{"doc_id": 390, "exact_match": 0.9, "resp": "['1']"}
+{"doc_id": 391, "exact_match": 0.0, "resp": "['68.4 F 12:04 1/1 40 68.4 -14 12:04 1/1 40 68.4 -14 12:04 1/1 40 68.4 -14 12:04 1/1 40 68.4 -14 12:04 1/1 40 68.4 -14 12:04 1/1 40 68.4']"}
+{"doc_id": 392, "exact_match": 1, "resp": "['12:04']"}
+{"doc_id": 393, "exact_match": 0.0, "resp": "['bottom right corner of screen']"}
+{"doc_id": 394, "exact_match": 0.0, "resp": "['7/11 2001-054 0.2']"}
+{"doc_id": 395, "exact_match": 1, "resp": "['113 AEP 77.']"}
+{"doc_id": 396, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 397, "exact_match": 0.0, "resp": "['whitescaps']"}
+{"doc_id": 398, "exact_match": 1, "resp": "['Recycle!']"}
+{"doc_id": 399, "exact_match": 1, "resp": "[\"Macy's.\"]"}
+{"doc_id": 400, "exact_match": 1, "resp": "[\"macy's\"]"}
+{"doc_id": 401, "exact_match": 0.0, "resp": "['1 1/2']"}
+{"doc_id": 402, "exact_match": 0.9, "resp": "['Max']"}
+{"doc_id": 403, "exact_match": 0.0, "resp": "['285']"}
+{"doc_id": 404, "exact_match": 1, "resp": "['In.']"}
+{"doc_id": 405, "exact_match": 0.0, "resp": "['12']"}
+{"doc_id": 406, "exact_match": 1, "resp": "['SMART.']"}
+{"doc_id": 407, "exact_match": 1, "resp": "['SMART']"}
+{"doc_id": 408, "exact_match": 1, "resp": "['Muffins']"}
+{"doc_id": 409, "exact_match": 0.0, "resp": "['Angelo Ucci Cosmetici']"}
+{"doc_id": 410, "exact_match": 0.0, "resp": "['o/o']"}
+{"doc_id": 411, "exact_match": 0.9, "resp": "['Member']"}
+{"doc_id": 412, "exact_match": 1, "resp": "['07/10/2012']"}
+{"doc_id": 413, "exact_match": 1, "resp": "['BENTLEY UNIVERSITY']"}
+{"doc_id": 414, "exact_match": 1, "resp": "['Lenovo']"}
+{"doc_id": 415, "exact_match": 0.0, "resp": "['laptop']"}
+{"doc_id": 416, "exact_match": 0.0, "resp": "['13.05%']"}
+{"doc_id": 417, "exact_match": 1, "resp": "['New']"}
+{"doc_id": 418, "exact_match": 0.0, "resp": "['not visible in photo']"}
+{"doc_id": 419, "exact_match": 1, "resp": "['Jean-Paul Sartre']"}
+{"doc_id": 420, "exact_match": 1, "resp": "['Boston']"}
+{"doc_id": 421, "exact_match": 0.9, "resp": "['Yes']"}
+{"doc_id": 422, "exact_match": 0.0, "resp": "['Yes, it is a \"welcome\" sign.']"}
+{"doc_id": 423, "exact_match": 0.9, "resp": "['wood']"}
+{"doc_id": 424, "exact_match": 1, "resp": "[\"Sheppy's.\"]"}
+{"doc_id": 425, "exact_match": 0.9, "resp": "['FARMHOUSE CIDER.']"}
+{"doc_id": 426, "exact_match": 1, "resp": "['3.50']"}
+{"doc_id": 427, "exact_match": 0.3, "resp": "['70g']"}
+{"doc_id": 428, "exact_match": 1, "resp": "['Mission']"}
+{"doc_id": 429, "exact_match": 0.9, "resp": "['Drama and desire.']"}
+{"doc_id": 430, "exact_match": 0.6, "resp": "['Grappa Nonino.']"}
+{"doc_id": 431, "exact_match": 0.0, "resp": "['beer']"}
+{"doc_id": 432, "exact_match": 1, "resp": "['Taco Bell']"}
+{"doc_id": 433, "exact_match": 0.9, "resp": "['yes']"}
+{"doc_id": 434, "exact_match": 0.0, "resp": "['United States of America (USA)']"}
+{"doc_id": 435, "exact_match": 1, "resp": "['bus']"}
+{"doc_id": 436, "exact_match": 0.0, "resp": "['Briogalo.']"}
+{"doc_id": 437, "exact_match": 0.0, "resp": "['Briogal 1000']"}
+{"doc_id": 438, "exact_match": 1, "resp": "['Danger deep water.']"}
+{"doc_id": 439, "exact_match": 1, "resp": "['Deep water.']"}
+{"doc_id": 440, "exact_match": 0.0, "resp": "['Big Maha']"}
+{"doc_id": 441, "exact_match": 1, "resp": "['1848.co.il']"}
+{"doc_id": 442, "exact_match": 1, "resp": "['The Beatles']"}
+{"doc_id": 443, "exact_match": 0.0, "resp": "['beatles']"}
+{"doc_id": 444, "exact_match": 0.0, "resp": "['1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05-17 1794-05']"}
+{"doc_id": 445, "exact_match": 1, "resp": "['Temper']"}
+{"doc_id": 446, "exact_match": 0.0, "resp": "['EBAY']"}
+{"doc_id": 447, "exact_match": 0.0, "resp": "['Yes, it is.']"}
+{"doc_id": 448, "exact_match": 1, "resp": "['F9']"}
+{"doc_id": 449, "exact_match": 1, "resp": "['Google']"}
+{"doc_id": 450, "exact_match": 1, "resp": "['Google']"}
+{"doc_id": 451, "exact_match": 0.3, "resp": "['China']"}
+{"doc_id": 452, "exact_match": 1, "resp": "['China']"}
+{"doc_id": 453, "exact_match": 0.0, "resp": "['DVR']"}
+{"doc_id": 454, "exact_match": 0.0, "resp": "['6,7%']"}
+{"doc_id": 455, "exact_match": 1, "resp": "['Alternative transportation.']"}
+{"doc_id": 456, "exact_match": 0.0, "resp": "['All Style']"}
+{"doc_id": 457, "exact_match": 1, "resp": "['26']"}
+{"doc_id": 458, "exact_match": 1, "resp": "['welcome to the deep space diner']"}
+{"doc_id": 459, "exact_match": 1, "resp": "['Deep space diner']"}
+{"doc_id": 460, "exact_match": 1, "resp": "['Power Monger']"}
+{"doc_id": 461, "exact_match": 1, "resp": "['Start.']"}
+{"doc_id": 462, "exact_match": 1, "resp": "['The North Shore Watch and Other Poems']"}
+{"doc_id": 463, "exact_match": 0.0, "resp": "['1:30']"}
+{"doc_id": 464, "exact_match": 1, "resp": "['12:34 am']"}
+{"doc_id": 465, "exact_match": 1, "resp": "['Fajita.']"}
+{"doc_id": 466, "exact_match": 1, "resp": "['Fajita Revolution.']"}
+{"doc_id": 467, "exact_match": 1, "resp": "['F6']"}
+{"doc_id": 468, "exact_match": 0.0, "resp": "['Media Cafe 2']"}
+{"doc_id": 469, "exact_match": 1, "resp": "['media cafe']"}
+{"doc_id": 470, "exact_match": 0.0, "resp": "['Gendered']"}
+{"doc_id": 471, "exact_match": 1, "resp": "['GENTLE.']"}
+{"doc_id": 472, "exact_match": 1, "resp": "['FAIL']"}
+{"doc_id": 473, "exact_match": 1, "resp": "['Pizza & Subs']"}
+{"doc_id": 474, "exact_match": 1, "resp": "[\"Big Al's\"]"}
+{"doc_id": 475, "exact_match": 0.0, "resp": "['School shirt']"}
+{"doc_id": 476, "exact_match": 1, "resp": "['Yes']"}
+{"doc_id": 477, "exact_match": 1, "resp": "['5']"}
+{"doc_id": 478, "exact_match": 0.0, "resp": "['Marjasse']"}
+{"doc_id": 479, "exact_match": 0.0, "resp": "['Toro']"}
+{"doc_id": 480, "exact_match": 1, "resp": "['Stop']"}
+{"doc_id": 481, "exact_match": 0.6, "resp": "['Butter Beats']"}
+{"doc_id": 482, "exact_match": 0.0, "resp": "['12:00']"}
+{"doc_id": 483, "exact_match": 0.0, "resp": "['1.5 in.']"}
+{"doc_id": 484, "exact_match": 1, "resp": "['18']"}
+{"doc_id": 485, "exact_match": 0.0, "resp": "['ps2']"}
+{"doc_id": 486, "exact_match": 1, "resp": "['Rx']"}
+{"doc_id": 487, "exact_match": 0.0, "resp": "['Texas Rangers']"}
+{"doc_id": 488, "exact_match": 1, "resp": "['T']"}
+{"doc_id": 489, "exact_match": 0.0, "resp": "['htc 10']"}
+{"doc_id": 490, "exact_match": 0.0, "resp": "['H']"}
+{"doc_id": 491, "exact_match": 0.0, "resp": "['Brother ScanNcut Star B...']"}
+{"doc_id": 492, "exact_match": 1, "resp": "['Google']"}
+{"doc_id": 493, "exact_match": 0.6, "resp": "['Google']"}
+{"doc_id": 494, "exact_match": 1, "resp": "['MARGARET MACMILLAN.']"}
+{"doc_id": 495, "exact_match": 1, "resp": "['Coco']"}
+{"doc_id": 496, "exact_match": 0.6, "resp": "['Chanel']"}
+{"doc_id": 497, "exact_match": 1, "resp": "['Qantas']"}
+{"doc_id": 498, "exact_match": 1, "resp": "['Qantas']"}
+{"doc_id": 499, "exact_match": 0.0, "resp": "['20 30 40 50 60 70 80 90 10 11 12 1 2 3 4 5 6 7 8 9 10 11 12 1 2 3 4 5 6 7 8 9 10 11 12 1 2 3 4 5 6 7 8 9 10 11 12 1 2 3 4 5 6 7 ']"}

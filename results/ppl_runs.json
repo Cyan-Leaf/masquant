@@ -1,0 +1,442 @@
+{
+  "rtn": {
+    "table": "表 1.1",
+    "note": "RTN，不做平滑（端到端崩溃）",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      6076.0757
+    ],
+    "mean": 6076.0757,
+    "std": 0.0,
+    "logs": [
+      "logs/ppl_rtn_w4a8.log"
+    ]
+  },
+  "sq": {
+    "table": "表 1.1",
+    "note": "SmoothQuant 闭式解，统一 scale、不训练",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      22.6336
+    ],
+    "mean": 22.6336,
+    "std": 0.0,
+    "logs": [
+      "logs/det_sweep_sq.log"
+    ]
+  },
+  "uni_opt": {
+    "table": "表 1.1",
+    "note": "统一 scale + 训练（原校准）",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      15.5608
+    ],
+    "mean": 15.5608,
+    "std": 0.0,
+    "logs": [
+      "logs/det_sweep_uniformopt.log"
+    ]
+  },
+  "mas_noopt": {
+    "table": "表 1.1",
+    "note": "MAS 闭式解初始化，不训练",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      19.4384
+    ],
+    "mean": 19.4384,
+    "std": 0.0,
+    "logs": [
+      "logs/det_sweep_mas_noopt.log"
+    ]
+  },
+  "mas_origcal": {
+    "table": "表 1.1",
+    "note": "MAS 训练 2epoch，官方 text-vision 校准",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      17.03,
+      18.4611,
+      19.8887
+    ],
+    "mean": 18.4599,
+    "std": 1.4294,
+    "logs": [
+      "logs/rep_A_mas_r1.log",
+      "logs/rep_A_mas_r2.log",
+      "logs/rep_A_mas_r3.log"
+    ]
+  },
+  "mas_mix05": {
+    "table": "表 1.1/2.1",
+    "note": "MAS + 混合校准，纯文本占比 0.5（推荐）",
+    "dataset": "wikitext2",
+    "n": 6,
+    "values": [
+      15.9571,
+      16.2197,
+      15.8788,
+      16.0823,
+      17.3018,
+      16.6711
+    ],
+    "mean": 16.3518,
+    "std": 0.543,
+    "logs": [
+      "logs/par_C_mas_mix_r1.log",
+      "logs/par_C_mas_mix_r2.log",
+      "logs/par_C_mas_mix_r3.log",
+      "logs/par_S_ratio05_r1.log",
+      "logs/par_S_ratio05_r2.log",
+      "logs/par_S_ratio05_r3.log"
+    ]
+  },
+  "mas_ratio075_posproject": {
+    "table": "表 6.5",
+    "note": "平滑因子正值约束（abs 投影）",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      15.448,
+      16.8703,
+      15.767
+    ],
+    "mean": 16.0284,
+    "std": 0.7463,
+    "logs": [
+      "logs/par_P_ratio075_r1.log",
+      "logs/par_P_ratio075_r2.log",
+      "logs/par_P_ratio075_r3.log"
+    ]
+  },
+  "mas_mix075": {
+    "table": "表 2.1",
+    "note": "MAS + 混合校准 0.75，用匹配的 act_scales 初始化",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      15.855,
+      16.5254,
+      16.1764
+    ],
+    "mean": 16.1856,
+    "std": 0.3353,
+    "logs": [
+      "logs/par_M_ratio075_r1.log",
+      "logs/par_M_ratio075_r2.log",
+      "logs/par_M_ratio075_r3.log"
+    ]
+  },
+  "auto_alpha": {
+    "table": "表 6.x",
+    "note": "MAS + 逐层 α 搜索（0.5~0.8）",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      16.6355,
+      15.6678,
+      15.4249
+    ],
+    "mean": 15.9094,
+    "std": 0.6404,
+    "logs": [
+      "logs/par_AL_autoalpha_r1.log",
+      "logs/par_AL_autoalpha_r2.log",
+      "logs/par_AL_autoalpha_r3.log"
+    ]
+  },
+  "pn_ratio05": {
+    "table": "表 5.2b",
+    "note": "按模态归一化 loss，ratio=0.5",
+    "dataset": "wikitext2",
+    "n": 4,
+    "values": [
+      15.25,
+      18.7418,
+      16.4831,
+      18.7038
+    ],
+    "mean": 17.2947,
+    "std": 1.7243,
+    "logs": [
+      "logs/par_PN2_pn1_rt05_r1.log",
+      "logs/par_PN2_pn1_rt05_r2.log",
+      "logs/par_PN2_pn1_rt05_r3.log",
+      "logs/par_PN2_pn1_rt05_r4.log"
+    ]
+  },
+  "pn_ratio075": {
+    "table": "表 5.2b",
+    "note": "按模态归一化 loss，ratio=0.75",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      16.0436,
+      15.8618,
+      16.0608
+    ],
+    "mean": 15.9887,
+    "std": 0.1103,
+    "logs": [
+      "logs/par_PN2_pn1_rt075_r1.log",
+      "logs/par_PN2_pn1_rt075_r2.log",
+      "logs/par_PN2_pn1_rt075_r3.log"
+    ]
+  },
+  "mas_w4a6": {
+    "table": "表 2.3",
+    "note": "W4A6 + MAS",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      26.5408,
+      25.8124,
+      24.7891
+    ],
+    "mean": 25.7141,
+    "std": 0.88,
+    "logs": [
+      "logs/par_G_mas_w4a6_r1.log",
+      "logs/par_N_mas_w4a6_r2.log",
+      "logs/par_N_mas_w4a6_r3.log"
+    ]
+  },
+  "mas_lwc": {
+    "table": "表 1.1",
+    "note": "MAS + LWC（原校准）—— PPL 低但下游显著变差",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      16.1539,
+      15.1103,
+      15.0853
+    ],
+    "mean": 15.4498,
+    "std": 0.6099,
+    "logs": [
+      "logs/par_C_mas_lwc_r1.log",
+      "logs/par_G_mas_lwc_r2.log",
+      "logs/par_G_mas_lwc_r3.log"
+    ]
+  },
+  "mas_mix_lwc": {
+    "table": "表 1.1",
+    "note": "MAS + LWC（混合校准），方差很大",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      17.5442,
+      14.1531,
+      14.4531
+    ],
+    "mean": 15.3835,
+    "std": 1.8773,
+    "logs": [
+      "logs/par_G_mas_mix_lwc_r1.log",
+      "logs/par_N_mas_mix_lwc_r2.log",
+      "logs/par_N_mas_mix_lwc_r3.log"
+    ]
+  },
+  "uniform_mix05": {
+    "table": "表 1.1",
+    "note": "统一 scale + 混合校准 + 同训练",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      16.3146,
+      17.3668,
+      17.9276
+    ],
+    "mean": 17.203,
+    "std": 0.8189,
+    "logs": [
+      "logs/par_C_uniformopt_mix_r1.log",
+      "logs/par_C_uniformopt_mix_r2.log",
+      "logs/par_C_uniformopt_mix_r3.log"
+    ]
+  },
+  "uniform_mix075": {
+    "table": "表 2.1",
+    "note": "统一 scale + 混合校准 0.75",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      15.9094,
+      16.5555,
+      16.1219
+    ],
+    "mean": 16.1956,
+    "std": 0.3293,
+    "logs": [
+      "logs/par_MU_ratio075_r1.log",
+      "logs/par_MU_ratio075_r2.log",
+      "logs/par_MU_ratio075_r3.log"
+    ]
+  },
+  "nvfp4_mas_trained": {
+    "table": "表 3.1",
+    "note": "NVFP4 W4A4 + MAS 训练",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      12.1078,
+      12.1688,
+      12.1369
+    ],
+    "mean": 12.1378,
+    "std": 0.0305,
+    "logs": [
+      "logs/par_G_nvfp4_mas_r1.log",
+      "logs/par_N_nvfp4_mas_r2.log",
+      "logs/par_N_nvfp4_mas_r3.log"
+    ]
+  },
+  "nvfp4_mas_noopt": {
+    "table": "表 3.1",
+    "note": "NVFP4 W4A4 + MAS 仅初始化（全表最好）",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      11.7484
+    ],
+    "mean": 11.7484,
+    "std": 0.0,
+    "logs": [
+      "logs/ppl_nvfp4_mas_noopt.log"
+    ]
+  },
+  "nvfp4_sq_noopt": {
+    "table": "表 3.1",
+    "note": "NVFP4 W4A4 + SmoothQuant",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      12.056
+    ],
+    "mean": 12.056,
+    "std": 0.0,
+    "logs": [
+      "logs/ppl_nvfp4_sq_noopt.log"
+    ]
+  },
+  "nvfp4_scale_k05": {
+    "table": "表 3.4",
+    "note": "NVFP4 训练后把尺度 ×0.5",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      12.1551
+    ],
+    "mean": 12.1551,
+    "std": 0.0,
+    "logs": [
+      "logs/nvscale_k05.log"
+    ]
+  },
+  "nvfp4_scale_k075": {
+    "table": "表 3.4",
+    "note": "NVFP4 训练后把尺度 ×0.75",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      12.0806
+    ],
+    "mean": 12.0806,
+    "std": 0.0,
+    "logs": [
+      "logs/nvscale_k075.log"
+    ]
+  },
+  "nvfp4_scale_k125": {
+    "table": "表 3.4",
+    "note": "NVFP4 训练后把尺度 ×1.25",
+    "dataset": "wikitext2",
+    "n": 1,
+    "values": [
+      12.0084
+    ],
+    "mean": 12.0084,
+    "std": 0.0,
+    "logs": [
+      "logs/nvscale_k125.log"
+    ]
+  },
+  "mix_ratio0125": {
+    "table": "表 2.1.1",
+    "note": "纯文本占比 0.125",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      18.7539,
+      20.7276,
+      21.2964
+    ],
+    "mean": 20.2593,
+    "std": 1.3344,
+    "logs": [
+      "logs/par_MR_ratio0125_r1.log",
+      "logs/par_MR_ratio0125_r2.log",
+      "logs/par_MR_ratio0125_r3.log"
+    ]
+  },
+  "mix_ratio025": {
+    "table": "表 2.1.1",
+    "note": "纯文本占比 0.25",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      22.3735,
+      17.0427,
+      16.6034
+    ],
+    "mean": 18.6732,
+    "std": 3.2121,
+    "logs": [
+      "logs/par_MR_ratio025_r1.log",
+      "logs/par_MR_ratio025_r2.log",
+      "logs/par_MR_ratio025_r3.log"
+    ]
+  },
+  "mix_ratio0375": {
+    "table": "表 2.1.1",
+    "note": "纯文本占比 0.375",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      17.0445,
+      16.1452,
+      17.0281
+    ],
+    "mean": 16.7393,
+    "std": 0.5145,
+    "logs": [
+      "logs/par_MR_ratio0375_r1.log",
+      "logs/par_MR_ratio0375_r2.log",
+      "logs/par_MR_ratio0375_r3.log"
+    ]
+  },
+  "mix_ratio0875": {
+    "table": "表 2.1.1",
+    "note": "纯文本占比 0.875",
+    "dataset": "wikitext2",
+    "n": 3,
+    "values": [
+      15.7687,
+      16.5626,
+      16.5334
+    ],
+    "mean": 16.2882,
+    "std": 0.4502,
+    "logs": [
+      "logs/par_MR_ratio0875_r1.log",
+      "logs/par_MR_ratio0875_r2.log",
+      "logs/par_MR_ratio0875_r3.log"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "uniform/text-vision-video": {
+    "kl": 5.376735985279083,
+    "agree": 0.091796875
+  },
+  "uniform/text-vision": {
+    "kl": 4.759273856878281,
+    "agree": 0.205078125
+  },
+  "mas/text-vision-video": {
+    "kl": 1.479209303855896,
+    "agree": 0.458984375
+  },
+  "mas/text-vision": {
+    "kl": 1.2337578311562538,
+    "agree": 0.525390625
+  }
+}

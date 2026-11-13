@@ -1,0 +1,419 @@
+{
+  "task": "scienceqa_img",
+  "n": 2017,
+  "acc": {
+    "fp16": 0.8061477441745166,
+    "mas075": 0.7868120971740208,
+    "sq": 0.7550818046603868
+  },
+  "flips": {
+    "mas075": {
+      "ref_right_me_wrong": 122,
+      "ref_wrong_me_right": 83,
+      "cases": [
+        {
+          "doc_id": 0,
+          "fp16": {
+            "question": "Which of the following could Gordon's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if the spacecraft was damaged when using a parachute with a ",
+              "how steady a parachute with a 1 m vent was at 200 km per hou",
+              "whether a parachute with a 1 m vent would swing too much at "
+            ],
+            "response": "['B']",
+            "target": "1",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which of the following could Gordon's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if the spacecraft was damaged when using a parachute with a ",
+              "how steady a parachute with a 1 m vent was at 200 km per hou",
+              "whether a parachute with a 1 m vent would swing too much at "
+            ],
+            "response": "['C.']",
+            "target": "1",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "Which of the following could Gordon's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if the spacecraft was damaged when using a parachute with a ",
+              "how steady a parachute with a 1 m vent was at 200 km per hou",
+              "whether a parachute with a 1 m vent would swing too much at "
+            ],
+            "response": "['B.']",
+            "target": "1",
+            "correct": 1.0
+          }
+        },
+        {
+          "doc_id": 25,
+          "fp16": {
+            "question": "Which of the following could Cooper's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if at least 20% of the park would be shaded by trees in each",
+              "which design would have the least traffic noise in the conce",
+              "which design would have the greatest distance between the co"
+            ],
+            "response": "['C']",
+            "target": "2",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which of the following could Cooper's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if at least 20% of the park would be shaded by trees in each",
+              "which design would have the least traffic noise in the conce",
+              "which design would have the greatest distance between the co"
+            ],
+            "response": "['A']",
+            "target": "2",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "Which of the following could Cooper's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if at least 20% of the park would be shaded by trees in each",
+              "which design would have the least traffic noise in the conce",
+              "which design would have the greatest distance between the co"
+            ],
+            "response": "['B']",
+            "target": "2",
+            "correct": 0.0
+          }
+        },
+        {
+          "doc_id": 42,
+          "fp16": {
+            "question": "Which country is highlighted?",
+            "hint": "",
+            "choices": [
+              "Vanuatu",
+              "Tonga",
+              "the Marshall Islands",
+              "Nauru"
+            ],
+            "response": "['D']",
+            "target": "3",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which country is highlighted?",
+            "hint": "",
+            "choices": [
+              "Vanuatu",
+              "Tonga",
+              "the Marshall Islands",
+              "Nauru"
+            ],
+            "response": "['A']",
+            "target": "3",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "Which country is highlighted?",
+            "hint": "",
+            "choices": [
+              "Vanuatu",
+              "Tonga",
+              "the Marshall Islands",
+              "Nauru"
+            ],
+            "response": "['B.']",
+            "target": "3",
+            "correct": 0.0
+          }
+        },
+        {
+          "doc_id": 105,
+          "fp16": {
+            "question": "What is the capital of Kentucky?",
+            "hint": "",
+            "choices": [
+              "Lexington",
+              "Frankfort",
+              "Anchorage",
+              "Baton Rouge"
+            ],
+            "response": "['B.']",
+            "target": "1",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "What is the capital of Kentucky?",
+            "hint": "",
+            "choices": [
+              "Lexington",
+              "Frankfort",
+              "Anchorage",
+              "Baton Rouge"
+            ],
+            "response": "['A.']",
+            "target": "1",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "What is the capital of Kentucky?",
+            "hint": "",
+            "choices": [
+              "Lexington",
+              "Frankfort",
+              "Anchorage",
+              "Baton Rouge"
+            ],
+            "response": "['B.']",
+            "target": "1",
+            "correct": 1.0
+          }
+        },
+        {
+          "doc_id": 106,
+          "fp16": {
+            "question": "Can Polytrichum commune cells make their own food?",
+            "hint": "This organism is Polytrichum commune. It is a member of the plant kingdom.\nPolytrichum commune is also called the common haircap moss. This plant gets its commo",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "response": "['A.']",
+            "target": "0",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Can Polytrichum commune cells make their own food?",
+            "hint": "This organism is Polytrichum commune. It is a member of the plant kingdom.\nPolytrichum commune is also called the common haircap moss. This plant gets its commo",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "response": "['B.']",
+            "target": "0",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "Can Polytrichum commune cells make their own food?",
+            "hint": "This organism is Polytrichum commune. It is a member of the plant kingdom.\nPolytrichum commune is also called the common haircap moss. This plant gets its commo",
+            "choices": [
+              "yes",
+              "no"
+            ],
+            "response": "['A.']",
+            "target": "0",
+            "correct": 1.0
+          }
+        }
+      ]
+    },
+    "sq": {
+      "ref_right_me_wrong": 186,
+      "ref_wrong_me_right": 83,
+      "cases": [
+        {
+          "doc_id": 4,
+          "fp16": {
+            "question": "Which property do these three objects have in common?",
+            "hint": "Select the best answer.",
+            "choices": [
+              "shiny",
+              "slippery",
+              "opaque"
+            ],
+            "response": "['C']",
+            "target": "2",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which property do these three objects have in common?",
+            "hint": "Select the best answer.",
+            "choices": [
+              "shiny",
+              "slippery",
+              "opaque"
+            ],
+            "response": "['C.']",
+            "target": "2",
+            "correct": 1.0
+          },
+          "sq": {
+            "question": "Which property do these three objects have in common?",
+            "hint": "Select the best answer.",
+            "choices": [
+              "shiny",
+              "slippery",
+              "opaque"
+            ],
+            "response": "['A']",
+            "target": "2",
+            "correct": 0.0
+          }
+        },
+        {
+          "doc_id": 18,
+          "fp16": {
+            "question": "Select the bird below.",
+            "hint": "Birds have feathers, two wings, and a beak. A robin is an example of a bird.",
+            "choices": [
+              "cane toad",
+              "ostrich"
+            ],
+            "response": "['B']",
+            "target": "1",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Select the bird below.",
+            "hint": "Birds have feathers, two wings, and a beak. A robin is an example of a bird.",
+            "choices": [
+              "cane toad",
+              "ostrich"
+            ],
+            "response": "['B.']",
+            "target": "1",
+            "correct": 1.0
+          },
+          "sq": {
+            "question": "Select the bird below.",
+            "hint": "Birds have feathers, two wings, and a beak. A robin is an example of a bird.",
+            "choices": [
+              "cane toad",
+              "ostrich"
+            ],
+            "response": "['C.']",
+            "target": "1",
+            "correct": 0.0
+          }
+        },
+        {
+          "doc_id": 25,
+          "fp16": {
+            "question": "Which of the following could Cooper's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if at least 20% of the park would be shaded by trees in each",
+              "which design would have the least traffic noise in the conce",
+              "which design would have the greatest distance between the co"
+            ],
+            "response": "['C']",
+            "target": "2",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which of the following could Cooper's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if at least 20% of the park would be shaded by trees in each",
+              "which design would have the least traffic noise in the conce",
+              "which design would have the greatest distance between the co"
+            ],
+            "response": "['A']",
+            "target": "2",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "Which of the following could Cooper's test show?",
+            "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirement",
+            "choices": [
+              "if at least 20% of the park would be shaded by trees in each",
+              "which design would have the least traffic noise in the conce",
+              "which design would have the greatest distance between the co"
+            ],
+            "response": "['B']",
+            "target": "2",
+            "correct": 0.0
+          }
+        },
+        {
+          "doc_id": 42,
+          "fp16": {
+            "question": "Which country is highlighted?",
+            "hint": "",
+            "choices": [
+              "Vanuatu",
+              "Tonga",
+              "the Marshall Islands",
+              "Nauru"
+            ],
+            "response": "['D']",
+            "target": "3",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which country is highlighted?",
+            "hint": "",
+            "choices": [
+              "Vanuatu",
+              "Tonga",
+              "the Marshall Islands",
+              "Nauru"
+            ],
+            "response": "['A']",
+            "target": "3",
+            "correct": 0.0
+          },
+          "sq": {
+            "question": "Which country is highlighted?",
+            "hint": "",
+            "choices": [
+              "Vanuatu",
+              "Tonga",
+              "the Marshall Islands",
+              "Nauru"
+            ],
+            "response": "['B.']",
+            "target": "3",
+            "correct": 0.0
+          }
+        },
+        {
+          "doc_id": 81,
+          "fp16": {
+            "question": "Which of these states is farthest west?",
+            "hint": "",
+            "choices": [
+              "Missouri",
+              "Florida",
+              "Montana",
+              "Oregon"
+            ],
+            "response": "['D']",
+            "target": "3",
+            "correct": 1.0
+          },
+          "mas075": {
+            "question": "Which of these states is farthest west?",
+            "hint": "",
+            "choices": [
+              "Missouri",
+              "Florida",
+              "Montana",
+              "Oregon"
+            ],
+            "response": "['D']",
+            "target": "3",
+            "correct": 1.0
+          },
+          "sq": {
+            "question": "Which of these states is farthest west?",
+            "hint": "",
+            "choices": [
+              "Missouri",
+              "Florida",
+              "Montana",
+              "Oregon"
+            ],
+            "response": "['C.']",
+            "target": "3",
+            "correct": 0.0
+          }
+        }
+      ]
+    }
+  }
+}

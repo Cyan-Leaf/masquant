@@ -1,0 +1,500 @@
+{"doc_id": 0, "exact_match": 0.0, "resp": "['C. whether a parachute with a 1 m vent would swing too much at 400 km per hour']"}
+{"doc_id": 1, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 2, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 3, "exact_match": 0.0, "resp": "['C. 2:2']"}
+{"doc_id": 4, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 5, "exact_match": 0.0, "resp": "['B. The magnitude of the magnetic force is smaller in Pair 1.']"}
+{"doc_id": 6, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 7, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 8, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 9, "exact_match": 1.0, "resp": "['B. The magnetic force is stronger in Pair 1.']"}
+{"doc_id": 10, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 11, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 12, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 13, "exact_match": 1.0, "resp": "[\"D. Greta can trade her tomatoes for Allie's broccoli.\"]"}
+{"doc_id": 14, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 15, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 16, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 17, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 18, "exact_match": 0.0, "resp": "['C']"}
+{"doc_id": 19, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 20, "exact_match": 1.0, "resp": "['B. the number of days until a seed germinated']"}
+{"doc_id": 21, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 22, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 23, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 24, "exact_match": 0.0, "resp": "['A. 3:1']"}
+{"doc_id": 25, "exact_match": 1.0, "resp": "['C. which design would have the greatest distance between the concert area and the road. (C)']"}
+{"doc_id": 26, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 27, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 28, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 29, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 30, "exact_match": 1.0, "resp": "['A. fragile']"}
+{"doc_id": 31, "exact_match": 1.0, "resp": "['C']"}
+{"doc_id": 32, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 33, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 34, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 35, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 36, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 37, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 38, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 39, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 40, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 41, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 42, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 43, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 44, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 45, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 46, "exact_match": 1.0, "resp": "['B. The magnetic force is stronger in Pair 2.']"}
+{"doc_id": 47, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 48, "exact_match": 0.0, "resp": "['C. Solution A']"}
+{"doc_id": 49, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 50, "exact_match": 1.0, "resp": "['A. smooth']"}
+{"doc_id": 51, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 52, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 53, "exact_match": 0.0, "resp": "['B. The magnitude of the magnetic force is smaller in Pair 1.']"}
+{"doc_id": 54, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 55, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 56, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 57, "exact_match": 1.0, "resp": "['C']"}
+{"doc_id": 58, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 59, "exact_match": 0.0, "resp": "['E. 1/4']"}
+{"doc_id": 60, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 61, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 62, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 63, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 64, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 65, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 66, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 67, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 68, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 69, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 70, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 71, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 72, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 73, "exact_match": 1.0, "resp": "['A. parasitic']"}
+{"doc_id": 74, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 75, "exact_match": 1.0, "resp": "['C']"}
+{"doc_id": 76, "exact_match": 1.0, "resp": "['B. bat star']"}
+{"doc_id": 77, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 78, "exact_match": 1.0, "resp": "['B. a compound']"}
+{"doc_id": 79, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 80, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 81, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 82, "exact_match": 1.0, "resp": "['C.黄色']"}
+{"doc_id": 83, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 84, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 85, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 86, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 87, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 88, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 89, "exact_match": 1.0, "resp": "['D']"}
+{"doc_id": 90, "exact_match": 1.0, "resp": "['D']"}
+{"doc_id": 91, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 92, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 93, "exact_match": 1.0, "resp": "['B']"}
+{"doc_id": 94, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 95, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 96, "exact_match": 1.0, "resp": "['B. Solution B']"}
+{"doc_id": 97, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 98, "exact_match": 1.0, "resp": "['A. weather']"}
+{"doc_id": 99, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 100, "exact_match": 1.0, "resp": "['B. sample B']"}
+{"doc_id": 101, "exact_match": 0.0, "resp": "['C. Solution A']"}
+{"doc_id": 102, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 103, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 104, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 105, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 106, "exact_match": 0.0, "resp": "['B. ']"}
+{"doc_id": 107, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 108, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 109, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 110, "exact_match": 1.0, "resp": "['B. sample B']"}
+{"doc_id": 111, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 112, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 113, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 114, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 115, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 116, "exact_match": 0.0, "resp": "['C. fragile']"}
+{"doc_id": 117, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 118, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 119, "exact_match": 1.0, "resp": "['B. Australia']"}
+{"doc_id": 120, "exact_match": 1.0, "resp": "['C. sample B']"}
+{"doc_id": 121, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 122, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 123, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 124, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 125, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 126, "exact_match": 1.0, "resp": "['A. shiny']"}
+{"doc_id": 127, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 128, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 129, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 130, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 131, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 132, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 133, "exact_match": 1.0, "resp": "['A. a liquid']"}
+{"doc_id": 134, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 135, "exact_match": 0.0, "resp": "['C. the Federated States of Micronesia']"}
+{"doc_id": 136, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 137, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 138, "exact_match": 1.0, "resp": "['B. water mold']"}
+{"doc_id": 139, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 140, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 141, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 142, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 143, "exact_match": 1.0, "resp": "['B. yellow']"}
+{"doc_id": 144, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 145, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 146, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 147, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 148, "exact_match": 0.0, "resp": "['B. the Pacific Ocean']"}
+{"doc_id": 149, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 150, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 151, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 152, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 153, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 154, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 155, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 156, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 157, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 158, "exact_match": 0.0, "resp": "['B. ']"}
+{"doc_id": 159, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 160, "exact_match": 1.0, "resp": "['B. The magnitude of the magnetic force is greater in Pair 1.']"}
+{"doc_id": 161, "exact_match": 0.0, "resp": "['E. 3:1']"}
+{"doc_id": 162, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 163, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 164, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 165, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 166, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 167, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 168, "exact_match": 0.0, "resp": "['C. The magnitude of the magnetic force is greater in Pair 1.']"}
+{"doc_id": 169, "exact_match": 1.0, "resp": "['C. The magnetic force is stronger in Pair 1. (The magnets in Pair 1 are closer together, which should make the magnetic force stronger.)']"}
+{"doc_id": 170, "exact_match": 1.0, "resp": "['D. black bear']"}
+{"doc_id": 171, "exact_match": 0.0, "resp": "['B. fragile']"}
+{"doc_id": 172, "exact_match": 0.0, "resp": "['A. The magnitude of the magnetic force is smaller in Pair 1.']"}
+{"doc_id": 173, "exact_match": 1.0, "resp": "[\"C. Reid can trade his tomatoes for Daniel's broccoli.\"]"}
+{"doc_id": 174, "exact_match": 1.0, "resp": "['B. fragile']"}
+{"doc_id": 175, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 176, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 177, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 178, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 179, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 180, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 181, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 182, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 183, "exact_match": 1.0, "resp": "['C. Solution B']"}
+{"doc_id": 184, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 185, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 186, "exact_match": 0.0, "resp": "['A']"}
+{"doc_id": 187, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 188, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 189, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 190, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 191, "exact_match": 1.0, "resp": "['B. transparent']"}
+{"doc_id": 192, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 193, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 194, "exact_match": 1.0, "resp": "['A. gray wolf']"}
+{"doc_id": 195, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 196, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 197, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 198, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 199, "exact_match": 1.0, "resp": "['A. if adding the blade guards made the drone fly poorly']"}
+{"doc_id": 200, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 201, "exact_match": 1.0, "resp": "['C. The strength of the magnetic force is the same in both pairs.']"}
+{"doc_id": 202, "exact_match": 0.0, "resp": "['B. The magnetic force is weaker in Pair 2.']"}
+{"doc_id": 203, "exact_match": 1.0, "resp": "['A. if a new batch of concrete was firm enough to use']"}
+{"doc_id": 204, "exact_match": 1.0, "resp": "['C. Both my state and national government officials have power over important issues.']"}
+{"doc_id": 205, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 206, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 207, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 208, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 209, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 210, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 211, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 212, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 213, "exact_match": 1.0, "resp": "['C. a liquid']"}
+{"doc_id": 214, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 215, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 216, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 217, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 218, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 219, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 220, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 221, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 222, "exact_match": 0.0, "resp": "['D. 1/4']"}
+{"doc_id": 223, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 224, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 225, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 226, "exact_match": 1.0, "resp": "['B. whether the new turbine could produce 10% more electricity']"}
+{"doc_id": 227, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 228, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 229, "exact_match": 1.0, "resp": "['A. towards the pliers']"}
+{"doc_id": 230, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 231, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 232, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 233, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 234, "exact_match": 0.0, "resp": "['C. the Pacific Ocean']"}
+{"doc_id": 235, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 236, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 237, "exact_match": 0.0, "resp": "['B. the Marshall Islands']"}
+{"doc_id": 238, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 239, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 240, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 241, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 242, "exact_match": 0.0, "resp": "['A']"}
+{"doc_id": 243, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 244, "exact_match": 1.0, "resp": "['C. a solid']"}
+{"doc_id": 245, "exact_match": 0.0, "resp": "['A. true']"}
+{"doc_id": 246, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 247, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 248, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 249, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 250, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 251, "exact_match": 1.0, "resp": "['B. whether the filter was clogged']"}
+{"doc_id": 252, "exact_match": 1.0, "resp": "['D']"}
+{"doc_id": 253, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 254, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 255, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 256, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 257, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 258, "exact_match": 1.0, "resp": "['B. The magnitude of the magnetic force is greater in Pair 1.']"}
+{"doc_id": 259, "exact_match": 1.0, "resp": "['C. The strength of the magnetic force is the same in both pairs.']"}
+{"doc_id": 260, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 261, "exact_match": 1.0, "resp": "['C. hard']"}
+{"doc_id": 262, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 263, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 264, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 265, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 266, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 267, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 268, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 269, "exact_match": 0.0, "resp": "['A. The magnetic force is weaker in Pair 2. (The answer is A)']"}
+{"doc_id": 270, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 271, "exact_match": 1.0, "resp": "['A. the amount of oxygen in the tanks']"}
+{"doc_id": 272, "exact_match": 0.0, "resp": "['B. chloroform']"}
+{"doc_id": 273, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 274, "exact_match": 1.0, "resp": "['B. Solution A']"}
+{"doc_id": 275, "exact_match": 0.0, "resp": "['A. The magnitude of the magnetic force is smaller in Pair 1.']"}
+{"doc_id": 276, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 277, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 278, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 279, "exact_match": 0.0, "resp": "['C. The magnitude of the magnetic force is greater in Pair 1. (3)']"}
+{"doc_id": 280, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 281, "exact_match": 0.0, "resp": "['D.']"}
+{"doc_id": 282, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 283, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 284, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 285, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 286, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 287, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 288, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 289, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 290, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 291, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 292, "exact_match": 0.0, "resp": "['B. 3°C']"}
+{"doc_id": 293, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 294, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 295, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 296, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 297, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 298, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 299, "exact_match": 1.0, "resp": "['A. The magnitude of the magnetic force is smaller in Pair 1.']"}
+{"doc_id": 300, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 301, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 302, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 303, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 304, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 305, "exact_match": 0.0, "resp": "['D.']"}
+{"doc_id": 306, "exact_match": 1.0, "resp": "['B. to the left than to the right']"}
+{"doc_id": 307, "exact_match": 0.0, "resp": "['C. whether a parachute with a 1 m vent would swing too much at 400 km per hour']"}
+{"doc_id": 308, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 309, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 310, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 311, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 312, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 313, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 314, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 315, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 316, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 317, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 318, "exact_match": 1.0, "resp": "['B. rough']"}
+{"doc_id": 319, "exact_match": 1.0, "resp": "['B. Solution A']"}
+{"doc_id": 320, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 321, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 322, "exact_match": 0.0, "resp": "['D. ']"}
+{"doc_id": 323, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 324, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 325, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 326, "exact_match": 1.0, "resp": "['B']"}
+{"doc_id": 327, "exact_match": 1.0, "resp": "['B. Solution A']"}
+{"doc_id": 328, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 329, "exact_match": 1.0, "resp": "['A. 2. 1. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30. 31. 32. 33. 34']"}
+{"doc_id": 330, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 331, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 332, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 333, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 334, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 335, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 336, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 337, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 338, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 339, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 340, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 341, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 342, "exact_match": 0.0, "resp": "['A']"}
+{"doc_id": 343, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 344, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 345, "exact_match": 1.0, "resp": "['A. sample B']"}
+{"doc_id": 346, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 347, "exact_match": 0.0, "resp": "['B. The magnitude of the magnetic force is greater in Pair 2.']"}
+{"doc_id": 348, "exact_match": 1.0, "resp": "['B. The magnitude of the magnetic force is greater in Pair 2.']"}
+{"doc_id": 349, "exact_match": 0.0, "resp": "['C. the Pacific Ocean']"}
+{"doc_id": 350, "exact_match": 1.0, "resp": "['B. fragile']"}
+{"doc_id": 351, "exact_match": 0.0, "resp": "['E. 4:0']"}
+{"doc_id": 352, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 353, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 354, "exact_match": 1.0, "resp": "['C']"}
+{"doc_id": 355, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 356, "exact_match": 1.0, "resp": "['C. He smelled sulfur and saw pieces of molten rock shooting out of the water.']"}
+{"doc_id": 357, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 358, "exact_match": 0.0, "resp": "['A']"}
+{"doc_id": 359, "exact_match": 1.0, "resp": "['C. fuzzy']"}
+{"doc_id": 360, "exact_match": 1.0, "resp": "['A. ']"}
+{"doc_id": 361, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 362, "exact_match": 0.0, "resp": "['A. The magnetic force is stronger in Pair 1.']"}
+{"doc_id": 363, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 364, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 365, "exact_match": 1.0, "resp": "['A. if a new batch of concrete was firm enough to use']"}
+{"doc_id": 366, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 367, "exact_match": 1.0, "resp": "['C. a solid']"}
+{"doc_id": 368, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 369, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 370, "exact_match": 1.0, "resp": "['C. They were made of metal.']"}
+{"doc_id": 371, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 372, "exact_match": 1.0, "resp": "[\"B. The strength of the magnetic force is the same in both pairs. (This is a trick question, as it doesn't matter which pair has more or less space between the magnets; the strength of the magnetic f"}
+{"doc_id": 373, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 374, "exact_match": 1.0, "resp": "['C. Solution A']"}
+{"doc_id": 375, "exact_match": 1.0, "resp": "['B. Solution B']"}
+{"doc_id": 376, "exact_match": 1.0, "resp": "['C. which side of the roof got more sun over one day']"}
+{"doc_id": 377, "exact_match": 1.0, "resp": "['A. The magnitude of the magnetic force is the same in both pairs.']"}
+{"doc_id": 378, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 379, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 380, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 381, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 382, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 383, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 384, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 385, "exact_match": 1.0, "resp": "['B. black-headed heron']"}
+{"doc_id": 386, "exact_match": 0.0, "resp": "['A. The magnitude of the magnetic force is greater in Pair 2.']"}
+{"doc_id": 387, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 388, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 389, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 390, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 391, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 392, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 393, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 394, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 395, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 396, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 397, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 398, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 399, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 400, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 401, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 402, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 403, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 404, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 405, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 406, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 407, "exact_match": 0.0, "resp": "[\"B. Colin can trade his almonds for Austin's tomatoes.\"]"}
+{"doc_id": 408, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 409, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 410, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 411, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 412, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 413, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 414, "exact_match": 0.0, "resp": "['C. lichen']"}
+{"doc_id": 415, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 416, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 417, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 418, "exact_match": 0.0, "resp": "['B. sample A']"}
+{"doc_id": 419, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 420, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 421, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 422, "exact_match": 0.0, "resp": "['C. Solution A']"}
+{"doc_id": 423, "exact_match": 0.0, "resp": "['A']"}
+{"doc_id": 424, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 425, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 426, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 427, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 428, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 429, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 430, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 431, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 432, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 433, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 434, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 435, "exact_match": 1.0, "resp": "['B. Solution B']"}
+{"doc_id": 436, "exact_match": 1.0, "resp": "['A. aardvark']"}
+{"doc_id": 437, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 438, "exact_match": 0.0, "resp": "['A. orca']"}
+{"doc_id": 439, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 440, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 441, "exact_match": 1.0, "resp": "['A. The strength of the magnetic force is the same in both pairs.']"}
+{"doc_id": 442, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 443, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 444, "exact_match": 1.0, "resp": "['C. sample B']"}
+{"doc_id": 445, "exact_match": 1.0, "resp": "['B. ']"}
+{"doc_id": 446, "exact_match": 1.0, "resp": "['D.']"}
+{"doc_id": 447, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 448, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 449, "exact_match": 1.0, "resp": "['B. The magnitude of the magnetic force is smaller in Pair 1.']"}
+{"doc_id": 450, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 451, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 452, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 453, "exact_match": 1.0, "resp": "['D']"}
+{"doc_id": 454, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 455, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 456, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 457, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 458, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 459, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 460, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 461, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 462, "exact_match": 0.0, "resp": "['B. 1/4']"}
+{"doc_id": 463, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 464, "exact_match": 1.0, "resp": "['A']"}
+{"doc_id": 465, "exact_match": 0.0, "resp": "['C. the Marshall Islands']"}
+{"doc_id": 466, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 467, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 468, "exact_match": 1.0, "resp": "['B. the sandstone layer']"}
+{"doc_id": 469, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 470, "exact_match": 1.0, "resp": "['D']"}
+{"doc_id": 471, "exact_match": 0.0, "resp": "['B. ']"}
+{"doc_id": 472, "exact_match": 0.0, "resp": "['B. The magnitude of the magnetic force is smaller in Pair 2.']"}
+{"doc_id": 473, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 474, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 475, "exact_match": 1.0, "resp": "['C.']"}
+{"doc_id": 476, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 477, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 478, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 479, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 480, "exact_match": 0.0, "resp": "['C.']"}
+{"doc_id": 481, "exact_match": 1.0, "resp": "['D']"}
+{"doc_id": 482, "exact_match": 1.0, "resp": "['B. black howler']"}
+{"doc_id": 483, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 484, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 485, "exact_match": 0.0, "resp": "['B.']"}
+{"doc_id": 486, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 487, "exact_match": 1.0, "resp": "['A. smooth  (The glass bowl and helium balloons both have a smooth surface.)']"}
+{"doc_id": 488, "exact_match": 0.0, "resp": "['A.']"}
+{"doc_id": 489, "exact_match": 1.0, "resp": "['A. the sand dunes, the prairie sandreed, and the greater prairie chickens']"}
+{"doc_id": 490, "exact_match": 1.0, "resp": "['A. the number of times the plots were burned each year']"}
+{"doc_id": 491, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 492, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 493, "exact_match": 1.0, "resp": "['A.']"}
+{"doc_id": 494, "exact_match": 1.0, "resp": "['A. a compound']"}
+{"doc_id": 495, "exact_match": 1.0, "resp": "['A. The magnitude of the magnetic force is the same in both pairs.']"}
+{"doc_id": 496, "exact_match": 1.0, "resp": "['B. whether she added enough nutrients to help the bacteria produce 20% more insulin']"}
+{"doc_id": 497, "exact_match": 1.0, "resp": "['B.']"}
+{"doc_id": 498, "exact_match": 1.0, "resp": "['B. The magnitude of the magnetic force is greater in Pair 2.']"}
+{"doc_id": 499, "exact_match": 1.0, "resp": "['C.']"}
