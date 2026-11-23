@@ -242,7 +242,36 @@ python tools/make_figures.py --outdir docs/figs
 
 ---
 
-## 12. 数字自查清单
+## 12. B200 复跑与补充实验（2026-11-23 新增）
+
+**这是一整套独立的结果**，与 §1–§11 的原机器结果并列，**不要混用**：绝对值不可跨机器直接比较，
+详见 [`复现性诊断.md`](复现性诊断.md)。
+
+| 内容 | 数据文件 | 文档 |
+|---|---|---|
+| 跨机器复现排查（训练噪声、确定性模式、act_scales 差异、逐层 loss） | [`results/repro_b200/logs/`](../results/repro_b200/logs/)（60+ 个原始日志，gzip） | [`复现性诊断.md`](复现性诊断.md) |
+| B200 上的 benchmark（fp16 / sq / mas / uniform，SQA 2000 + TVQA 2000） | [`results/bench_b200/`](../results/bench_b200/)、`boot_*.json` | 复现性诊断 §3.2 |
+| **NVFP4 W4A4 下游**（rtn / mas 闭式解） | `results/bench_b200/nvfp4_{rtn,mas}/`、`boot_nvfp4.json` | [`补充实验.md`](补充实验.md) §1 |
+| **W4A6 下游**（sq / mas 混合校准） | `results/bench_b200/{sq,mas}_w4a6/`、`boot_w4a6_nvfp4.json` | 补充实验 §2 |
+| 学习率稳健性（`--let_lr 1e-2` ×4） | `results/repro_b200/logs/lr01_*.log.gz` | 补充实验 §3 |
+
+**重算示例**：
+
+```bash
+python tools/paired_bootstrap.py \
+    --runs fp16=results/bench_b200/fp16 nvfp4_mas=results/bench_b200/nvfp4_mas \
+           mas_w4a8=results/bench_b200/mas_w4a8 --tasks scienceqa_img textvqa_val --ref fp16
+```
+
+**PPL 抽取**（wikitext2 与 C4 都在日志里）：
+
+```bash
+zgrep -hoE "(wikitext2|c4) : [0-9.]+" results/repro_b200/logs/*.log.gz | sort | uniq -c
+```
+
+---
+
+## 13. 数字自查清单
 
 报告里每个数字都应能被 `results/` 复算。抽查方式：
 
