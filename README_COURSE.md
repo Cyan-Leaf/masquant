@@ -10,6 +10,7 @@
 | 文档 | 用途 |
 |---|---|
 | [docs/书面报告.md](docs/书面报告.md) | **书面报告**（按评分要求组织）：论文简介、改进原因、改进方案、实验结果、小组成员分工 |
+| [docs/改进F_平滑后GPTQ.md](docs/改进F_平滑后GPTQ.md) | **平滑后的多模态感知 GPTQ**：方法、PPL/下游/NVFP4 结果、校准集与求解器的关系 |
 | [docs/汇报提纲.md](docs/汇报提纲.md) | **15 分钟讲稿**：每页讲什么、时间分配、可能被问的问题 |
 | [docs/复现与改进_实验报告.md](docs/复现与改进_实验报告.md) | 完整实验数据：4 张图、配对 bootstrap、阴性结果、局限性 |
 | [docs/RESULTS_MAP.md](docs/RESULTS_MAP.md) | **结果索引**：每张表/图 → 脚本 → 原始文件，可复算 |
@@ -30,6 +31,21 @@
 > 20.21±0.23 → 18.53±0.11（C4，跨领域 p=0.0001）。
 
 ## 主要发现
+
+**0. 平滑之后把 RTN 换成多模态感知的 GPTQ：下游收益最大的改进**（[改进F_平滑后GPTQ.md](docs/改进F_平滑后GPTQ.md)）
+
+MAS 只决定"量化什么"，权重仍是逐元素 RTN。我们在平滑空间里按模态统计 Hessian 做 GPTQ，再按 Hessian 误差逐行选裁剪系数（clip），
+格式不变、推理零开销（TextVQA 前 2000 题 + ScienceQA 2000 题，同题配对）：
+
+| 配置 | ScienceQA | TextVQA |
+|---|---|---|
+| FP16 | 80.80 | 75.85 |
+| MAS + 混合校准 + RTN | 78.65 | 63.47 |
+| MAS + 混合校准 + **GPTQ + clip** | 79.15 | **70.98（+7.5，显著）** |
+| 统一 scale + **GPTQ + clip** | 79.30 | **73.53（与 FP16 只差 2.3）** |
+
+C4 PPL 在 8 个 MAS checkpoint 上**每个**降约 2.1（18.92 → 16.79）。多模态特有的前提：**原校准集（文本 8%）上分模态 GPTQ 在 9/9 个
+checkpoint 上反而变差**，Hessian 换成模态平衡的混合校准集后才生效。好的求解器下，"用什么平滑"基本不再重要。
 
 **1. 复现成功，但增益来源需要澄清**
 
@@ -87,6 +103,7 @@ wikitext 既是补充的校准文本又是测试集，有同域作弊风险。�
 ## 代码结构
 
 ```
+quantize/gptq.py       平滑后的多模态感知 GPTQ（分模态 Hessian + clip + 坐标下降，INT/NVFP4）← 新增
 quantize/nvfp4.py      NVFP4（E2M1 + FP8 块缩放）伪量化            ← 新增
 quantize/rank_alloc.py CMC 的按层自适应 rank 分配（下游评测后为阴性结果）← 新增
 tools/cmc_probe.py     CMC 单层诊断：不补偿 / 理想 / CMC 的逐模块 SQNR   ← 新增
@@ -119,6 +136,9 @@ inference_mode=split_scales python main.py --model $MODEL --mode train --epochs 
     --loss_multi_modal_mae_alpha --dataset-type text-vision --nsamples 128 --eval_ppl
 # 3) 本工作的改进：混合校准（纯文本占比可调）
 MAS_CALI_TEXT_RATIO=0.5 ... --dataset-type text-vision-mix
+# 4) 改进 F：在训练好的平滑尺度上用 GPTQ + clip 代替 RTN
+bash scripts/gptq_ppl.sh mas_clip 0 split_scales outputs/<ckpt>/mas_parameters.pth \
+    --gptq --gptq_clip 1.0,0.95,0.9,0.85
 ```
 
 环境依赖、**数据集下载链接**与所有新增开关见 [`docs/复现与改进_使用说明.md`](docs/复现与改进_使用说明.md)；

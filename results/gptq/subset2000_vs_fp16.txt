@@ -1,0 +1,50 @@
+
+=== scienceqa_img  n=2000 ===
+fp16             80.80
+mas_rtn          78.65
+sq_rtn           75.25
+uni_rtn          78.70
+mas_gptq         78.30
+mas_clip         79.15
+single_clip      79.70
+sq_clip          77.90
+uni_clip         79.30
+masinit_clip     78.75
+plain_gptq       76.10
+plain_clip       78.70
+fp16 - mas_rtn    =  +2.15 [ +0.85,  +3.45] p≈0.002 显著
+fp16 - sq_rtn     =  +5.55 [ +3.90,  +7.25] p≈0.000 显著
+fp16 - uni_rtn    =  +2.10 [ +0.80,  +3.40] p≈0.001 显著
+fp16 - mas_gptq   =  +2.50 [ +1.10,  +3.85] p≈0.001 显著
+fp16 - mas_clip   =  +1.65 [ +0.40,  +2.95] p≈0.009 显著
+fp16 - single_clip =  +1.10 [ -0.15,  +2.40] p≈0.100 不显著
+fp16 - sq_clip    =  +2.90 [ +1.70,  +4.15] p≈0.000 显著
+fp16 - uni_clip   =  +1.50 [ +0.25,  +2.75] p≈0.021 显著
+fp16 - masinit_clip =  +2.05 [ +0.85,  +3.30] p≈0.001 显著
+fp16 - plain_gptq =  +4.70 [ +3.30,  +6.15] p≈0.000 显著
+fp16 - plain_clip =  +2.10 [ +0.85,  +3.35] p≈0.000 显著
+
+=== textvqa_val  n=2000 ===
+fp16             75.85
+mas_rtn          63.47
+sq_rtn           61.05
+uni_rtn          64.39
+mas_gptq         70.91
+mas_clip         70.98
+single_clip      71.88
+sq_clip          71.76
+uni_clip         73.53
+masinit_clip     73.05
+plain_gptq       72.19
+plain_clip       72.95
+fp16 - mas_rtn    = +12.38 [+10.75, +14.01] p≈0.000 显著
+fp16 - sq_rtn     = +14.80 [+13.09, +16.48] p≈0.000 显著
+fp16 - uni_rtn    = +11.46 [ +9.78, +13.18] p≈0.000 显著
+fp16 - mas_gptq   =  +4.94 [ +3.67,  +6.28] p≈0.000 显著
+fp16 - mas_clip   =  +4.87 [ +3.53,  +6.18] p≈0.000 显著
+fp16 - single_clip =  +3.98 [ +2.73,  +5.21] p≈0.000 显著
+fp16 - sq_clip    =  +4.09 [ +2.82,  +5.40] p≈0.000 显著
+fp16 - uni_clip   =  +2.31 [ +1.09,  +3.52] p≈0.000 显著
+fp16 - masinit_clip =  +2.80 [ +1.55,  +4.06] p≈0.000 显著
+fp16 - plain_gptq =  +3.66 [ +2.34,  +5.01] p≈0.000 显著
+fp16 - plain_clip =  +2.90 [ +1.75,  +4.04] p≈0.000 显著

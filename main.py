@@ -617,6 +617,21 @@ def main_entry(args=None):
     parser.add_argument("--output_file", default="")    
     parser.add_argument("--grad_info_path", default="")    
     parser.add_argument("--eval_omni_task", action="store_true")
+    parser.add_argument("--gptq", action="store_true", help="平滑之后用 GPTQ 代替 RTN 求解量化权重（quantize/gptq.py）")
+    parser.add_argument("--gptq_hmode", default="raw", choices=["raw", "balanced"],
+                        help="一份权重服务多个模态时 Hessian 的合并方式：raw=按 token 数加权；balanced=各模态先归一化再平均")
+    parser.add_argument("--gptq_modw", default="", help="balanced 下各模态权重，如 text:1,vision:0.5")
+    parser.add_argument("--gptq_clip", default="1.0", help="逐行步长缩放候选 γ（逗号分隔），按 H 加权误差逐行选优")
+    parser.add_argument("--gptq_cd", type=int, default=0, help="GPTQ 之后坐标下降的遍数")
+    parser.add_argument("--gptq_actorder", action="store_true")
+    parser.add_argument("--gptq_percdamp", type=float, default=0.01)
+    parser.add_argument("--gptq_fp32_bs", action="store_true",
+                        help="NVFP4：求解时块缩放不做 E4M3 量化（部署写回时仍按 FP8），用于检验 FP8 块缩放对求解的干扰")
+    parser.add_argument("--gptq_actq", action="store_true", help="用量化后的激活统计 Hessian")
+    parser.add_argument("--gptq_hsrc", default="own", choices=["own", "all"],
+                        help="分模态权重的 Hessian 来源：own=只用本模态 token；all=全部 token（在本模态平滑空间里），再按 --gptq_hmode 合并")
+    parser.add_argument("--gptq_rtn_only", action="store_true", help="不做 GPTQ，只做按 H 加权误差逐行选 γ 的 RTN（clip 的消融对照）")
+    parser.add_argument("--gptq_cache", default="", help="GPTQ 结果缓存路径：存在则直接加载，否则求解后保存")
     parser.add_argument(
         "--dataset-type",
         type=str,

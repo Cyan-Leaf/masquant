@@ -1,0 +1,207 @@
+bench_mas_clip                           wikitext2=13.108 rec=76.0%
+bench_mas_gptq                           wikitext2=14.671 rec=67.1%
+bench_masinit_clip                       wikitext2=12.930 rec=76.6%
+bench_plain_clip                         wikitext2=13.702 rec=75.9%
+bench_plain_gptq                         wikitext2=14.049 rec=66.7%
+bench_single_clip                        wikitext2=12.919 rec=71.3%
+bench_sq_clip                            wikitext2=15.097 rec=71.4%
+bench_uni_clip                           wikitext2=13.201 rec=71.7%
+gsweep_mas_0.8                           wikitext2=13.928 c4=16.425 rec=78.0%
+gsweep_mas_0.85                          wikitext2=13.383 c4=16.517 rec=75.9%
+gsweep_mas_0.9                           wikitext2=13.877 c4=16.700 rec=73.3%
+gsweep_mas_0.95                          wikitext2=14.218 c4=16.863 rec=70.5%
+gsweep_mas_wide                          wikitext2=13.269 c4=16.361 rec=81.3%
+gsweep_plain_0.8                         wikitext2=13.121 c4=16.319 rec=78.2%
+gsweep_plain_0.85                        wikitext2=13.442 c4=16.938 rec=75.8%
+gsweep_plain_0.9                         wikitext2=13.018 c4=16.648 rec=73.3%
+gsweep_plain_0.95                        wikitext2=14.482 c4=17.060 rec=70.2%
+gsweep_plain_wide                        wikitext2=12.775 c4=16.429 rec=82.1%
+mas_b200_mas_mix_f_clip                  wikitext2=14.588 c4=16.941 rec=75.9%
+mas_b200_mas_mix_f_gptq                  wikitext2=15.769 c4=18.513 rec=66.9%
+mas_b200_mas_mix_f_rtn                   wikitext2=19.658 c4=19.168
+mas_b200_mas_mix_g_clip                  wikitext2=13.991 c4=17.205 rec=75.8%
+mas_b200_mas_mix_g_gptq                  wikitext2=15.500 c4=18.392 rec=66.6%
+mas_b200_mas_mix_g_rtn                   wikitext2=17.989 c4=19.447
+mas_b200_mas_mix_h_actq                  wikitext2=13.791 c4=17.343 rec=66.5%
+mas_b200_mas_mix_h_clip                  wikitext2=12.942 c4=16.400 rec=76.1%
+mas_b200_mas_mix_h_clipcd                wikitext2=12.944 c4=16.403 rec=77.8%
+mas_b200_mas_mix_h_gptq                  wikitext2=13.530 c4=17.431 rec=67.2%
+mas_b200_mas_mix_h_rtn                   wikitext2=15.897 c4=18.352
+mas_b200_mas_mix_h_rtnclip               wikitext2=14.950 c4=17.122 rec=32.7%
+mas_b200_mas_mix_i_actq                  wikitext2=13.754 c4=17.801 rec=66.4%
+mas_b200_mas_mix_i_clip                  wikitext2=13.277 c4=16.601 rec=76.1%
+mas_b200_mas_mix_i_clipcd                wikitext2=13.203 c4=16.781 rec=77.7%
+mas_b200_mas_mix_i_gptq                  wikitext2=13.493 c4=17.535 rec=67.2%
+mas_b200_mas_mix_i_rtn                   wikitext2=16.206 c4=18.600
+mas_b200_mas_mix_i_rtnclip               wikitext2=16.301 c4=17.313 rec=32.6%
+mas_val_mas_mix_actq                     wikitext2=14.068 c4=17.315 rec=66.5%
+mas_val_mas_mix_clip                     wikitext2=13.108 c4=16.483 rec=76.0%
+mas_val_mas_mix_clipcd                   wikitext2=12.666 c4=16.486 rec=77.7%
+mas_val_mas_mix_gptq                     wikitext2=14.671 c4=17.339 rec=67.1%
+mas_val_mas_mix_r0_clip                  wikitext2=18.792 c4=17.218 rec=75.8%
+mas_val_mas_mix_r0_gptq                  wikitext2=20.450 c4=18.376 rec=66.8%
+mas_val_mas_mix_r0_rtn                   wikitext2=22.929 c4=19.434
+mas_val_mas_mix_r1_clip                  wikitext2=18.396 c4=21.629 rec=76.1%
+mas_val_mas_mix_r1_gptq                  wikitext2=25.581 c4=29.979 rec=67.5%
+mas_val_mas_mix_r1_rtn                   wikitext2=35.516 c4=37.682
+mas_val_mas_mix_r2_actq                  wikitext2=13.582 c4=17.334 rec=66.5%
+mas_val_mas_mix_r2_clip                  wikitext2=13.147 c4=16.456 rec=76.1%
+mas_val_mas_mix_r2_clipcd                wikitext2=13.196 c4=16.456 rec=77.8%
+mas_val_mas_mix_r2_gptq                  wikitext2=13.557 c4=17.394 rec=67.1%
+mas_val_mas_mix_r2_rtn                   wikitext2=15.704 c4=18.464
+mas_val_mas_mix_r2_rtnclip               wikitext2=15.024 c4=17.106 rec=32.6%
+mas_val_mas_mix_r3_clip                  wikitext2=14.035 c4=17.046 rec=75.9%
+mas_val_mas_mix_r3_gptq                  wikitext2=14.858 c4=18.087 rec=67.0%
+mas_val_mas_mix_r3_rtn                   wikitext2=17.735 c4=19.238
+mas_val_mas_mix_rtn                      wikitext2=18.511 c4=18.656
+mas_val_mas_mix_rtnclip                  wikitext2=15.423 c4=17.124 rec=32.7%
+masinit_clip                             wikitext2=12.930 c4=16.853 rec=76.6%
+masinit_clipcd                           wikitext2=13.002 c4=16.987 rec=77.9%
+masinit_gptq                             wikitext2=13.959 c4=18.065 rec=67.4%
+masinit_rtn                              wikitext2=22.911 c4=21.819
+masinit_rtnclip                          wikitext2=15.079 c4=17.913 rec=33.6%
+masinitorig_clip                         wikitext2=15.607 c4=18.916 rec=88.6%
+masinitorig_gptq                         wikitext2=20.406 c4=23.367 rec=84.0%
+masinitorig_hall                         wikitext2=57.983 c4=22.824 rec=81.1%
+masinitorig_rtn                          wikitext2=19.273 c4=22.435
+nv_masinit_clip32                        wikitext2=12.633 c4=15.232 rec=82.9%
+nv_masinit_clipcd                        wikitext2=12.654 c4=15.375 rec=85.6%
+nv_masinit_gptq                          wikitext2=12.352 c4=15.280 rec=82.8%
+nv_masinit_gptq32                        wikitext2=11.972 c4=15.169 rec=82.5%
+nv_masinit_rtn                           wikitext2=11.725 c4=15.208
+nv_masinitmix_clipcd                     wikitext2=12.070 c4=15.104 rec=72.0%
+nv_masinitmix_gptq                       wikitext2=11.814 c4=15.073 rec=66.9%
+nv_masinitmix_gptq32                     wikitext2=11.734 c4=14.985 rec=66.2%
+nv_masinitmix_rtn                        wikitext2=11.814 c4=15.142
+nv_plain_clipcd                          wikitext2=12.468 c4=15.274 rec=69.8%
+nv_plain_gptq                            wikitext2=12.094 c4=15.185 rec=63.9%
+nv_plain_gptq32                          wikitext2=12.264 c4=15.242 rec=63.9%
+nv_plain_rtn                             wikitext2=12.233 c4=15.577
+orig_a_clip                              wikitext2=21.203 c4=19.541 rec=87.5%
+orig_a_gptq                              wikitext2=23.929 c4=22.330 rec=82.6%
+orig_a_hall                              wikitext2=20.019 c4=21.790 rec=79.6%
+orig_a_rtn                               wikitext2=19.624 c4=20.397
+orig_b_clip                              wikitext2=14.761 c4=18.705 rec=87.8%
+orig_b_gptq                              wikitext2=18.154 c4=21.625 rec=83.0%
+orig_b_hall                              wikitext2=16.077 c4=21.020 rec=80.1%
+orig_b_rtn                               wikitext2=17.997 c4=20.118
+orig_c_clip                              wikitext2=17.363 c4=19.745 rec=87.6%
+orig_c_gptq                              wikitext2=19.532 c4=22.185 rec=82.7%
+orig_c_hall                              wikitext2=20.081 c4=22.246 rec=79.8%
+orig_c_rtn                               wikitext2=18.935 c4=20.706
+orig_d_clip                              wikitext2=16.201 c4=19.186 rec=87.8%
+orig_d_gptq                              wikitext2=20.363 c4=23.652 rec=82.9%
+orig_d_hall                              wikitext2=17.807 c4=23.383 rec=79.9%
+orig_d_rtn                               wikitext2=18.109 c4=20.199
+orig_e_gptq                              wikitext2=22.169 c4=22.893 rec=82.6%
+orig_e_hall                              wikitext2=24.039 c4=23.109 rec=79.5%
+orig_e_rtn                               wikitext2=22.692 c4=21.440
+orig_f_gptq                              wikitext2=18.138 c4=22.602 rec=83.1%
+orig_f_hall                              wikitext2=17.484 c4=21.132 rec=80.1%
+orig_f_rtn                               wikitext2=18.378 c4=20.470
+orig_g_gptq                              wikitext2=21.942 c4=22.900 rec=82.9%
+orig_g_hall                              wikitext2=20.456 c4=23.316 rec=80.0%
+orig_g_rtn                               wikitext2=18.752 c4=20.225
+orig_h_gptq                              wikitext2=18.359 c4=21.025 rec=82.8%
+orig_h_hall                              wikitext2=18.274 c4=21.067 rec=79.8%
+orig_h_rtn                               wikitext2=19.121 c4=20.220
+orig_i_gptq                              wikitext2=20.604 c4=22.072 rec=83.2%
+orig_i_hall                              wikitext2=19.740 c4=21.195 rec=80.1%
+orig_i_rtn                               wikitext2=18.233 c4=19.851
+plain_clip                               wikitext2=13.702 c4=17.235 rec=75.9%
+plain_clipcd                             wikitext2=13.464 c4=17.088 rec=78.2%
+plain_clipcd4                            wikitext2=13.165 c4=16.598 rec=78.8%
+plain_clipnv                             wikitext2=12.924 c4=16.873 rec=73.2%
+plain_gptq                               wikitext2=14.049 c4=18.179 rec=66.7%
+plain_rtn                                wikitext2=6103.453 c4=5003.757
+plainorig_clip                           wikitext2=14.005 c4=17.895 rec=84.0%
+plainorig_gptq                           wikitext2=16.625 c4=20.144 rec=77.4%
+single_b200_mas_mix_h_bal                wikitext2=13.748 c4=17.577 rec=61.0%
+single_b200_mas_mix_h_gptq               wikitext2=14.244 c4=17.893 rec=60.9%
+single_b200_mas_mix_h_rtn                wikitext2=15.897 c4=18.352
+single_b200_mas_mix_i_bal                wikitext2=14.257 c4=17.754 rec=60.9%
+single_b200_mas_mix_i_gptq               wikitext2=13.738 c4=17.460 rec=60.7%
+single_b200_mas_mix_i_rtn                wikitext2=16.206 c4=18.600
+single_val_mas_mix_bal                   wikitext2=14.212 c4=17.814 rec=61.0%
+single_val_mas_mix_gptq                  wikitext2=14.284 c4=17.752 rec=60.8%
+single_val_mas_mix_r2_bal                wikitext2=13.887 c4=17.316 rec=60.9%
+single_val_mas_mix_r2_gptq               wikitext2=14.393 c4=17.586 rec=60.9%
+single_val_mas_mix_r2_rtn                wikitext2=15.704 c4=18.464
+single_val_mas_mix_rtn                   wikitext2=18.511 c4=18.656
+sq_bal                                   wikitext2=16.230 c4=18.159 rec=60.7%
+sq_clip                                  wikitext2=15.097 c4=16.938 rec=71.4%
+sq_clipcd                                wikitext2=13.358 c4=16.895 rec=73.2%
+sq_gptq                                  wikitext2=15.453 c4=18.606 rec=60.6%
+sq_rtn                                   wikitext2=23.111 c4=22.041
+uni_a_clip                               wikitext2=13.201 c4=16.357 rec=71.7%
+uni_a_gptq                               wikitext2=13.919 c4=17.399 rec=61.3%
+uni_a_rtn                                wikitext2=17.265 c4=18.690
+uni_b_clip                               wikitext2=13.114 c4=16.734 rec=71.7%
+uni_b_gptq                               wikitext2=13.862 c4=17.988 rec=61.0%
+uni_b_rtn                                wikitext2=17.187 c4=18.747
+uni_c_clip                               wikitext2=12.760 c4=16.413 rec=71.9%
+uni_c_gptq                               wikitext2=13.617 c4=17.653 rec=61.2%
+uni_c_rtn                                wikitext2=17.090 c4=18.501
+uni_d_clip                               wikitext2=14.105 c4=17.314 rec=71.4%
+uni_d_gptq                               wikitext2=15.567 c4=18.803 rec=60.6%
+uni_d_rtn                                wikitext2=20.646 c4=20.009
+uni_e_clip                               wikitext2=16.350 c4=18.286 rec=71.0%
+uni_e_gptq                               wikitext2=19.027 c4=19.305 rec=60.3%
+uni_e_rtn                                wikitext2=23.965 c4=20.588
+uni_f_clip                               wikitext2=12.793 c4=17.049 rec=71.8%
+uni_f_gptq                               wikitext2=14.762 c4=20.463 rec=61.1%
+uni_f_rtn                                wikitext2=17.404 c4=19.009
+uni_g_clip                               wikitext2=13.747 c4=17.276 rec=71.4%
+uni_g_gptq                               wikitext2=13.998 c4=18.399 rec=60.5%
+uni_g_rtn                                wikitext2=18.365 c4=19.922
+uni_h_clip                               wikitext2=13.152 c4=16.659 rec=71.9%
+uni_h_gptq                               wikitext2=13.536 c4=17.712 rec=61.4%
+uni_h_rtn                                wikitext2=19.254 c4=18.843
+uni_i_clip                               wikitext2=12.968 c4=16.457 rec=71.9%
+uni_i_gptq                               wikitext2=14.231 c4=17.566 rec=61.2%
+uni_i_rtn                                wikitext2=18.794 c4=18.635
+uni_j_clip                               wikitext2=12.847 c4=16.436 rec=71.8%
+uni_j_gptq                               wikitext2=14.053 c4=17.581 rec=61.4%
+uni_j_rtn                                wikitext2=16.579 c4=18.756
+uni_k_clip                               wikitext2=13.228 c4=16.361 rec=71.8%
+uni_k_gptq                               wikitext2=13.973 c4=17.626 rec=61.4%
+uni_k_rtn                                wikitext2=17.331 c4=18.587
+uni_l_clip                               wikitext2=13.958 c4=17.106 rec=71.4%
+uni_l_gptq                               wikitext2=14.588 c4=18.229 rec=60.6%
+uni_l_rtn                                wikitext2=18.867 c4=19.584
+xcal_b_clip                              wikitext2=13.420 c4=17.157 rec=75.2%
+xcal_c_clip                              wikitext2=13.967 c4=17.470 rec=75.2%
+xcal_d_clip                              wikitext2=14.071 c4=17.527 rec=75.2%
+xcal_f_clip                              wikitext2=12.987 c4=17.393 rec=75.3%
+
+== paired (b - a), t = paired t statistic ==
+mas     gptq   -rtn  wikitext2 n= 9 20.02±6.23 -> 16.38±4.06  Δ=-3.637±2.442 t=-4.47 wins=9/9
+mas     gptq   -rtn  c4        n= 9 21.00±6.27 -> 19.23±4.06  Δ=-1.777±2.230 t=-2.39 wins=9/9
+mas     rtnclip-rtn  wikitext2 n= 4 16.58±1.30 -> 15.42±0.62  Δ=-1.155±1.362 t=-1.70 wins=3/4
+mas     rtnclip-rtn  c4        n= 4 18.52±0.14 -> 17.17±0.10  Δ=-1.351±0.131 t=-20.66 wins=4/4
+mas     clip   -rtnclip wikitext2 n= 4 15.42±0.62 -> 13.12±0.14  Δ=-2.306±0.512 t=-9.00 wins=4/4
+mas     clip   -rtnclip c4        n= 4 17.17±0.10 -> 16.48±0.08  Δ=-0.681±0.041 t=-32.96 wins=4/4
+mas     clip   -gptq wikitext2 n= 9 16.38±4.06 -> 14.70±2.28  Δ=-1.681±2.130 t=-2.37 wins=9/9
+mas     clip   -gptq c4        n= 9 19.23±4.06 -> 17.33±1.64  Δ=-1.896±2.429 t=-2.34 wins=9/9
+mas     clipcd -gptq wikitext2 n= 4 13.81±0.57 -> 13.00±0.25  Δ=-0.810±0.806 t=-2.01 wins=4/4
+mas     clipcd -gptq c4        n= 4 17.43±0.08 -> 16.53±0.17  Δ=-0.893±0.117 t=-15.30 wins=4/4
+mas     actq   -gptq wikitext2 n= 4 13.81±0.57 -> 13.80±0.20  Δ=-0.014±0.408 t=-0.07 wins=1/4
+mas     actq   -gptq c4        n= 4 17.43±0.08 -> 17.45±0.24  Δ=+0.023±0.164 t=0.28 wins=3/4
+orig    gptq   -rtn  wikitext2 n= 9 19.09±1.45 -> 20.35±2.03  Δ=+1.261±1.816 t=2.08 wins=3/9
+orig    gptq   -rtn  c4        n= 9 20.40±0.46 -> 22.36±0.77  Δ=+1.962±0.780 t=7.55 wins=0/9
+orig    hall   -gptq wikitext2 n= 9 20.35±2.03 -> 19.33±2.29  Δ=-1.023±1.728 t=-1.78 wins=7/9
+orig    hall   -gptq c4        n= 9 22.36±0.77 -> 22.03±1.01  Δ=-0.336±0.599 t=-1.68 wins=5/9
+orig    hall   -rtn  wikitext2 n= 9 19.09±1.45 -> 19.33±2.29  Δ=+0.238±1.287 t=0.55 wins=4/9
+orig    hall   -rtn  c4        n= 9 20.40±0.46 -> 22.03±1.01  Δ=+1.626±0.920 t=5.30 wins=0/9
+orig    clip   -gptq wikitext2 n= 4 20.49±2.46 -> 17.38±2.76  Δ=-3.112±0.860 t=-7.24 wins=4/4
+orig    clip   -gptq c4        n= 4 22.45±0.86 -> 19.29±0.46  Δ=-3.154±0.898 t=-7.02 wins=4/4
+single  gptq   -rtn  wikitext2 n= 4 16.58±1.30 -> 14.16±0.29  Δ=-2.415±1.302 t=-3.71 wins=4/4
+single  gptq   -rtn  c4        n= 4 18.52±0.14 -> 17.67±0.19  Δ=-0.845±0.283 t=-5.97 wins=4/4
+single  bal    -gptq wikitext2 n= 4 14.16±0.29 -> 14.03±0.25  Δ=-0.139±0.483 t=-0.57 wins=3/4
+single  bal    -gptq c4        n= 4 17.67±0.19 -> 17.62±0.22  Δ=-0.058±0.289 t=-0.40 wins=2/4
+single  bal    -rtn  wikitext2 n= 4 16.58±1.30 -> 14.03±0.25  Δ=-2.554±1.172 t=-4.36 wins=4/4
+single  bal    -rtn  c4        n= 4 18.52±0.14 -> 17.62±0.22  Δ=-0.903±0.167 t=-10.83 wins=4/4
+uni     gptq   -rtn  wikitext2 n=12 18.56±2.06 -> 14.59±1.50  Δ=-3.968±1.005 t=-13.68 wins=12/12
+uni     gptq   -rtn  c4        n=12 19.16±0.69 -> 18.23±0.91  Δ=-0.929±0.781 t=-4.12 wins=11/12
+uni     clip   -gptq wikitext2 n=12 14.59±1.50 -> 13.52±1.00  Δ=-1.076±0.695 t=-5.36 wins=12/12
+uni     clip   -gptq c4        n=12 18.23±0.91 -> 16.87±0.57  Δ=-1.356±0.661 t=-7.11 wins=12/12

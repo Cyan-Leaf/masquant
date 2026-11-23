@@ -302,8 +302,16 @@ def masquant(
     layers[0] = Catcher(layers[0])
     layers[0].is_llama = is_llama
 
+    gptq_on = getattr(args, "gptq", False)
+    gptq_cache_path = getattr(args, "gptq_cache", "") or ""
+    gptq_cache = {}
+    if gptq_on and gptq_cache_path and os.path.exists(gptq_cache_path):
+        gptq_cache = torch.load(gptq_cache_path, map_location="cpu", weights_only=False)
+        logger.info(f"[gptq] loaded {len(gptq_cache)} layers from {gptq_cache_path}")
+    gptq_need_data = gptq_on and len(gptq_cache) < len(layers)
+
     with torch.no_grad():
-        if args.epochs > 0:
+        if args.epochs > 0 or gptq_need_data:
             for batch in dataloader:
                 if cache["i"] >= args.nsamples:
                     break
@@ -343,7 +351,7 @@ def masquant(
 
     # same input of first layer for fp model and quant model
     quant_inps = inps
-    fp_inps = copy.deepcopy(inps)   # take output of fp model as input
+    fp_inps = copy.deepcopy(inps) if args.epochs > 0 else None   # take output of fp model as input
     fp_inps_2 = copy.deepcopy(inps) if args.aug_loss else None # take output of quantization model as input
 
     loss_func = torch.nn.MSELoss()
@@ -353,6 +361,7 @@ def masquant(
     else:
         mas_parameters = {}
     
+    gptq_ctx = {"mm": None}
     for i in range(len(layers)):
         logger.info(f"=== Start quantize layer {i} ===")
         layer = layers[i].to(dev)
@@ -703,10 +712,29 @@ def masquant(
             del optimizer        
         # real smooth and quantization
         # smooth_and_quant_inplace(qlayer, args, is_llama)
+        def _run_sample(j):
+            if len(multi_modal_mask_cache):
+                gptq_ctx["mm"] = multi_modal_mask_cache[j]
+            x = quant_inps[j].unsqueeze(0) if quant_inps[j].dim() == 2 else quant_inps[j]
+            if len(position_embeddings_cache) and len(multi_modal_mask_cache):
+                return qlayer(x, attention_mask=attention_mask_cache[j], position_embeddings=position_embeddings_cache[j], multi_modal_mask=multi_modal_mask_cache[j])[0]
+            elif len(position_embeddings_cache):
+                return qlayer(x, attention_mask=attention_mask_cache[j], position_embeddings=position_embeddings_cache[j])[0]
+            return qlayer(x, attention_mask=attention_mask_cache[j])[0]
+
+        def _do_gptq():
+            from quantize.gptq import gptq_qlayer
+            with torch.no_grad():
+                out = gptq_qlayer(qlayer, _run_sample, len(quant_inps), gptq_ctx, args, logger, i,
+                                  cache=gptq_cache.get(i))
+            gptq_cache[i] = out
+
         if args.epochs>0:
             # 最后一次 optimizer.step 之后尺度可能又越过零点，保存/更新输入前再投影一次
             if os.getenv("MAS_SCALE_POS", "0") in ("1", "2"):
                 truncate_scale(qlayer, args)
+            if gptq_on:
+                _do_gptq()
             # update input of quantization model
             with torch.no_grad():
                 # with torch.cuda.amp.autocast():
@@ -728,11 +756,20 @@ def masquant(
             # args.resume 为 False，但是 act_scale 为 True，这说明是在跑 smoothquant 原始的效果
             if os.getenv('inference_mode', 'merged_scales') == 'merged_scales' or (args.resume is None and args.act_scales is not None):
                 reuse_scale(qlayer, args)
+            if gptq_on:
+                _do_gptq()
+                if gptq_need_data:
+                    with torch.no_grad():
+                        for j in range(len(quant_inps)):
+                            quant_inps[j] = _run_sample(j)
             register_scales_and_zeros(qlayer)
             layers[i] = qlayer.to("cpu")
         del layer
         torch.cuda.empty_cache()
 
+    if gptq_on and gptq_cache_path and gptq_need_data:
+        torch.save(gptq_cache, gptq_cache_path)
+        logger.info(f"[gptq] saved {len(gptq_cache)} layers to {gptq_cache_path}")
     del inps
     del quant_inps
     del fp_inps

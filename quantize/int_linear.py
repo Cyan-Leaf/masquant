@@ -24,6 +24,7 @@ FAST_FORWARD = os.getenv("MAS_FAST", "1") == "1"
 WQ_CACHE = os.getenv("MAS_WQ_CACHE", "1") == "1"
 SHARE_VIDEO_VISION = os.getenv("MAS_VIDEO_SHARE_VISION", "1") == "1"
 DISABLE_CMC = os.getenv("MAS_DISABLE_CMC", "0") == "1"
+SINGLE_SCALE = os.getenv("MAS_SINGLE_SCALE", "")
 
 
 def build_quantizer(params, shape=None):
@@ -372,6 +373,9 @@ class QuantLinear(nn.Module):
         # 否则 infer_mas.py 未设环境变量时会取到从未赋值的 all_in_one_smooth_scale（全 1）
         if self.mode != "infer" and self.inference_mode == 'merged_scales':
             return self.all_in_one_smooth_scale
+        if SINGLE_SCALE == "text":
+            # 单权重部署：所有 token 都用文本尺度（等价于 infer_mas 的 MAS_NO_CMC），只需一份量化权重
+            return self.text_smooth_scale
         return {"text": self.text_smooth_scale, "vision": self.vision_smooth_scale,
                 "audio": self.audio_smooth_scale, "video": self.video_smooth_scale}[name]
 
@@ -385,6 +389,10 @@ class QuantLinear(nn.Module):
 
     def _smoothed_weight(self, scale, tag, cur_dtype):
         target_dtype = torch.bfloat16
+        # quantize/gptq.py 求解出的量化权重（与 RTN 同格点），存在则替代 RTN
+        ov = self._buffers.get(f"gptq_w_{tag}") if self.use_weight_quant else None
+        if ov is not None:
+            return ov.to(cur_dtype)
 
         def build():
             w = (self.weight.to(target_dtype) * scale).to(cur_dtype)

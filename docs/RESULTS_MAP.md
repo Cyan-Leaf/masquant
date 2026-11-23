@@ -274,6 +274,27 @@ zgrep -hoE "(wikitext2|c4) : [0-9.]+" results/repro_b200/logs/*.log.gz | sort | 
 
 ---
 
+## 12b. 改进 F：平滑后的 GPTQ（2026-11-23 新增，B200）
+
+| 内容 | 数据文件 | 文档 |
+|---|---|---|
+| 全部 PPL 运行（~190 个：平滑方式 × 求解器 × checkpoint，wikitext2 + C4） | `results/gptq/ppl_summary.json`（`runs` 为每次的值，`paired` 为同一 ckpt 的配对差）、`ppl_summary.txt`、原始日志 `results/gptq/logs/gptq_<tag>.log.gz` | [`改进F_平滑后GPTQ.md`](改进F_平滑后GPTQ.md) §3.1–3.5 |
+| 下游逐题预测（mas_gptq / mas_clip / single_clip / sq_clip / plain_gptq / plain_clip / masinit_clip / uni_clip） | `results/gptq/bench/<name>/samples_*.jsonl` | 改进 F §3.3 |
+| 下游配对 bootstrap | `results/gptq/subset2000_vs_{plain,fp16,masrtn}.txt`（同一批前 2000 题）、`boot_solver_*.json` | 改进 F §3.3 |
+| Fig.5 / Fig.6 | `tools/make_fig_gptq.py results/gptq/ppl_summary.json docs/figs` | 书面报告 §4.6 |
+
+日志 tag 命名：`<组>_<ckpt>_<求解器>`。组：`mas`（混合校准训练的 MAS）、`uni`（统一 scale 训练）、`orig`（原校准训练的 MAS）、
+`xcal`（原校准训练的尺度 + 混合校准的 Hessian）、`single`（只用文本尺度单权重）、`sq`/`masinit`/`plain`（闭式解/不平滑）、`nv_*`（NVFP4 W4A4）。
+求解器：`rtn`、`gptq`、`clip`（GPTQ+clip）、`clipcd`、`rtnclip`（只 clip 不 GPTQ）、`actq`、`bal`、`hall`、`*32`（NVFP4 求解用 FP32 块缩放）。
+
+```bash
+python tools/gptq_summary.py <logs 目录> --json results/gptq/ppl_summary.json   # 重算 PPL 表与配对差
+python tools/subset_boot.py 2000 fp16=results/bench_b200/fp16 mas_rtn=results/bench_b200/mas_w4a8 \
+    mas_clip=results/gptq/bench/mas_clip plain_clip=results/gptq/bench/plain_clip --ref plain_clip
+```
+
+---
+
 ## 13. 数字自查清单
 
 报告里每个数字都应能被 `results/` 复算。抽查方式：
