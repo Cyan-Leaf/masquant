@@ -14,7 +14,7 @@
 | [docs/复现与改进_实验报告.md](docs/复现与改进_实验报告.md) | 完整实验数据：4 张图、配对 bootstrap、阴性结果、局限性 |
 | [docs/RESULTS_MAP.md](docs/RESULTS_MAP.md) | **结果索引**：每张表/图 → 脚本 → 原始文件，可复算 |
 | [docs/复现性诊断.md](docs/复现性诊断.md) | **换机器（4×B200）能否复现**：逐段排查，训练噪声的来源与证据 |
-| [docs/补充实验.md](docs/补充实验.md) | 补做的 NVFP4 W4A4 下游、W4A6 下游、学习率稳健性 |
+| [docs/补充实验.md](docs/补充实验.md) | 补做的 NVFP4 W4A4 下游、W4A6 下游、学习率稳健性、**CMC 全量下游（论文默认配置显著有害）** |
 | [docs/MASQuant_论文精读.md](docs/MASQuant_论文精读.md) | 论文推导、代码对照、与论文的分歧点 |
 | [docs/复现与改进_使用说明.md](docs/复现与改进_使用说明.md) | 环境搭建与所有开关 |
 
@@ -53,14 +53,27 @@ MAS 显著优于 SmoothQuant（+3.2 / +3.4，CI 不含 0）；但**分模态没�
 **同是 4-bit 权重，FP4（激活也 4-bit）在 TextVQA 上比 INT（激活 8-bit）高 10 个点** ——
 多模态量化的瓶颈不只是位宽，而是量化格式能否适应视觉 token 的离群分布。
 
-**3. 量化伤害的是视觉通路**（[Fig.3](docs/figs/fig3_breakdown.png)）
+**3. 论文的 CMC 低秩补偿在我们的 checkpoint 上显著有害**（[补充实验 §4](docs/补充实验.md)）
+
+同一混合校准 checkpoint，SQA 2000 + TextVQA 2000，配对 bootstrap：
+
+| 部署方式 | 额外参数 | ScienceQA | TextVQA |
+|---|---|---|---|
+| **只用文本尺度、不补偿** | 0 | **79.55** | **63.35** |
+| 视觉单独一份权重（CMC 想逼近的上界） | 1 份权重 | 78.65 | 63.47 |
+| CMC rank 0.05（论文默认） | ~1 GB | 78.45 | 56.48（**−6.9，显著**） |
+
+单层诊断：CMC 的平均 SQNR 最高，但 72 个模块中 23 个被"补偿坏"（`layers.3.k_proj` 12.1 → 3.5 dB）。
+**混合校准之后，最简单的部署（一份权重、零旁路）就是最好的。**
+
+**4. 量化伤害的是视觉通路**（[Fig.3](docs/figs/fig3_breakdown.png)）
 按 ScienceQA 的 `hint` 拆分：有文字提示的题上 MAS 已追平 FP16（+0.64，不显著），
 **必须读图的题上仍差 2.24 点（显著）** —— 量化剩余损失集中在依赖视觉定位的题上。
 
-**4. 改进经得起跨领域检验**（[Fig.1](docs/figs/fig1_calib_ratio.png)）
+**5. 改进经得起跨领域检验**（[Fig.1](docs/figs/fig1_calib_ratio.png)）
 wikitext 既是补充的校准文本又是测试集，有同域作弊风险。换到 C4 重测，收益保留约 80%，p=0.0001。
 
-**5. 修掉 7 个实现 bug**，其中 3 个会直接产出错误结论：
+**6. 修掉 7 个实现 bug**，其中 3 个会直接产出错误结论：
 
 | bug | 影响 |
 |---|---|
@@ -75,7 +88,8 @@ wikitext 既是补充的校准文本又是测试集，有同域作弊风险。�
 
 ```
 quantize/nvfp4.py      NVFP4（E2M1 + FP8 块缩放）伪量化            ← 新增
-quantize/rank_alloc.py CMC 的按层自适应 rank 分配                  ← 新增
+quantize/rank_alloc.py CMC 的按层自适应 rank 分配（下游评测后为阴性结果）← 新增
+tools/cmc_probe.py     CMC 单层诊断：不补偿 / 理想 / CMC 的逐模块 SQNR   ← 新增
 tools/snr_probe.py     按模态输出 SQNR（复现论文 Fig.2 的度量）      ← 新增
 tools/fidelity_eval.py 无标签保真度（相对 FP16 的 KL / top-1 一致率）← 新增
 tools/paired_bootstrap.py 配对 bootstrap 置信区间                   ← 新增

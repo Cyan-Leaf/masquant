@@ -41,7 +41,8 @@ def mas_quantize_model(
     for name, m in model.named_modules():
         #复制低秩分支
         if isinstance(m, QuantLinear) and not any(f in name for f in filter_modules):
-            if args.rank > 0 and name in low_rank_adapters["vision"].keys():
+            # 消融（不补偿）时 low_rank_adapters 为空 dict，不能直接下标访问
+            if args.rank > 0 and name in low_rank_adapters.get("vision", {}).keys():
                 m.Lv = low_rank_adapters["vision"][name]["L"].to(m.weight.dtype)
                 m.Rv = low_rank_adapters["vision"][name]["R"].to(m.weight.dtype)
                 if "audio" in low_rank_adapters.keys():

@@ -254,6 +254,9 @@ python tools/make_figures.py --outdir docs/figs
 | **NVFP4 W4A4 下游**（rtn / mas 闭式解） | `results/bench_b200/nvfp4_{rtn,mas}/`、`boot_nvfp4.json` | [`补充实验.md`](补充实验.md) §1 |
 | **W4A6 下游**（sq / mas 混合校准） | `results/bench_b200/{sq,mas}_w4a6/`、`boot_w4a6_nvfp4.json` | 补充实验 §2 |
 | 学习率稳健性（`--let_lr 1e-2` ×4） | `results/repro_b200/logs/lr01_*.log.gz` | 补充实验 §3 |
+| **CMC 全量下游**（新 ckpt：不补偿 / r0.05 / r0.2 / 自适应；旧 ckpt：不补偿 / r0.05） | `results/cmc_b200/{new,old}_*/`、`boot_cmc*.json` | 补充实验 §4.1–4.2 |
+| CMC 单层诊断（72 模块 × 校准/未见） | `results/cmc_b200/cmc_probe_{new,old}_r005.json`（`tools/cmc_probe.py`） | 补充实验 §4.3 |
+| B200 上所有 PPL 汇总（n / mean / std / 每次的值） | `results/repro_b200/ppl_b200_summary.json` | 复现性诊断 §2.6、§3.1 |
 
 **重算示例**：
 
