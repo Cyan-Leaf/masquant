@@ -12,3 +12,6 @@ __pycache__/
 *.pyc
 *.pth
 *.pt
+
+# 例外：复现性诊断用的原始日志（已脱敏）
+!results/repro_b200/logs/
