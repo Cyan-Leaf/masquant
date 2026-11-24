@@ -295,6 +295,26 @@ python tools/subset_boot.py 2000 fp16=results/bench_b200/fp16 mas_rtn=results/be
 
 ---
 
+## 12.5 报告 §6.7 / §2b 音频表（Qwen2.5-Omni-3B）
+
+**数据文件**：[`results/omni/`](../results/omni/)（逐条转写，`.jsonl.gz`，数据路径已脱敏为 `<DATA_ROOT>`）
+
+| 配置 | 文件 | 重算 |
+|---|---|---|
+| FP16 | `fp16_full.jsonl.gz` | `tools/omni_paired.py --ref ...` |
+| MAS 闭式解（原 / 混合 / 纯音频） | `mas_init*.jsonl.gz` | 同上 |
+| MAS 训练（原 / 混合 / 纯音频）×3 | `mas_*_r{1,2,3}.jsonl.gz` | 同上，`--group` 给三次 |
+| **统一 scale 训练 ×3** | `uni_mix_r{1,2,3}.jsonl.gz` | 同上 |
+| 闭式解 + GPTQ（原 / 混合） | `gptq*.jsonl.gz` | 同上 |
+| **训练 + GPTQ ×3** | `gt_mas_mix_r{1,2,3}.jsonl.gz` | 同上 |
+| **GPTQ + clip + cd** | `gt_clip_init_mix.jsonl.gz` | 同上 |
+| SQ / RTN（崩溃，提前停止） | `sq_head40 / rtn_head316.jsonl.gz` | 同上 |
+
+一键复算全表见 [`Omni_音频实验.md`](Omni_音频实验.md) §7；WER 定义（语料级、小写去标点）见 `tools/omni_wer.py`。
+**不需要 GPU**：参考转写从 LibriSpeech 的 `*.trans.txt` 回查，只需 `MASQUANT_DATA_ROOT`。
+
+---
+
 ## 13. 数字自查清单
 
 报告里每个数字都应能被 `results/` 复算。抽查方式：

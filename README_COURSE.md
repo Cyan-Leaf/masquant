@@ -16,7 +16,7 @@
 | [docs/复现与改进_实验报告.md](docs/复现与改进_实验报告.md) | 完整实验数据：4 张图、配对 bootstrap、阴性结果、局限性 |
 | [docs/RESULTS_MAP.md](docs/RESULTS_MAP.md) | **结果索引**：每张表/图 → 脚本 → 原始文件，可复算 |
 | [docs/复现性诊断.md](docs/复现性诊断.md) | **换机器（4×B200）能否复现**：逐段排查，训练噪声的来源与证据 |
-| [docs/Omni_音频实验.md](docs/Omni_音频实验.md) | **音频模态（Qwen2.5-Omni）实验链路**：数据构造、一键脚本、SmoothQuant 在音频上崩溃的初步复现、已知坑 |
+| [docs/Omni_音频实验.md](docs/Omni_音频实验.md) | **音频模态（Qwen2.5-Omni-3B / LibriSpeech）全量实验**：17 个配置、统一 vs 分模态的公平对照（$p=0.999$）、GPTQ、已知坑、一键复算 |
 | [docs/补充实验.md](docs/补充实验.md) | 补做的 NVFP4 W4A4 下游、W4A6 下游、学习率稳健性、**CMC 全量下游（论文默认配置显著有害）** |
 | [docs/MASQuant_论文精读.md](docs/MASQuant_论文精读.md) | 论文推导、代码对照、与论文的分歧点 |
 | [docs/复现与改进_使用说明.md](docs/复现与改进_使用说明.md) | 环境搭建与所有开关 |
