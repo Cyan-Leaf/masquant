@@ -5,6 +5,7 @@
 参考转写从输入 prompt 的音频路径回查 *.trans.txt（评测 jsonl 里不含答案，避免泄漏到生成）。
 归一化：小写、去标点、合并空白（与 Whisper/Qwen 报 LibriSpeech WER 的常用口径一致）。
 """
+import gzip
 import json
 import os
 import re
@@ -39,9 +40,13 @@ def edit(a, b):
     return prev[-1]
 
 
+def _open(path):
+    return gzip.open(path, "rt") if path.endswith(".gz") else open(path)
+
+
 def wer_file(path):
     err = tot = n = 0
-    for line in open(path):
+    for line in _open(path):
         d = json.loads(line)
         audio = next(c["audio"] for m in d["prompt"] if m["role"] == "user"
                      for c in m["content"] if c["type"] == "audio")
