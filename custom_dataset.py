@@ -190,7 +190,8 @@ def prepare_dataset(n_sample: int = 8, data_type: str = 'text-vision') -> list[l
             dataset_ret.append(item)
         return dataset_ret
     elif data_type == 'text-audio-vision' or data_type == 'mas_mix_dataset' :
-        dataset_json = os.path.join(DATA_ROOT, 'jsonls', 'omnibench.jsonl')
+        dataset_json = os.environ.get("MASQUANT_OMNI_CALIB_JSON",
+                                      os.path.join(DATA_ROOT, 'jsonls', 'omnibench.jsonl'))
         if data_type == 'mas_mix_dataset':
             dataset_json = os.path.join(DATA_ROOT, 'jsonls', 'mas_mix_dataset.jsonl')
         conversations = []

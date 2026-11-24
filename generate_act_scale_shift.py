@@ -253,6 +253,8 @@ def main():
     args.ratio_tag = ""
     if args.dataset_type == "text-vision-mix" and os.environ.get("MAS_CALI_TEXT_RATIO", "0.5") != "0.5":
         args.ratio_tag = f"_tr{os.environ['MAS_CALI_TEXT_RATIO']}"
+    if os.environ.get("MASQUANT_OMNI_CALIB_JSON"):
+        args.ratio_tag += "_" + os.path.basename(os.environ["MASQUANT_OMNI_CALIB_JSON"]).rsplit(".", 1)[0]
     cache_dataloader = f'{args.cache_dir}/dataloader_{args.net}_{args.dataset_type}{args.ratio_tag}_{args.nsamples}.cache'
     if os.path.exists(cache_dataloader):
         dataloader = torch.load(cache_dataloader, weights_only=False)

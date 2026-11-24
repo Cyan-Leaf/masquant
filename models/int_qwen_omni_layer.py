@@ -304,7 +304,14 @@ class QuantQwenAttentionV2(nn.Module):
         value_states = repeat_kv(value_states, self.num_key_value_groups)
 
         causal_mask = attention_mask
-        if attention_mask is not None:  # no matter the length, we just slice it
+        if attention_mask is not None and attention_mask.dim() == 2:
+            # 模型以 flash_attention_2 加载时，批量生成传进来的是 2D padding mask；这里转成 SDPA 需要的 4D 因果 mask
+            kv_len = key_states.shape[-2]
+            pad = attention_mask[:, None, None, :kv_len].bool()
+            q_pos = torch.arange(kv_len - q_len, kv_len, device=pad.device)[:, None]
+            k_pos = torch.arange(kv_len, device=pad.device)[None, :]
+            causal_mask = (pad & (k_pos <= q_pos)[None, None]) | (k_pos == q_pos)[None, None]
+        elif attention_mask is not None:  # no matter the length, we just slice it
             causal_mask = attention_mask[:, :, :, : key_states.shape[-2]]
 
         # SDPA with memory-efficient backend is currently (torch==2.1.2) bugged with non-contiguous inputs with custom attn_mask,

@@ -552,6 +552,12 @@ def evaluate(llm, args, logger):
     return results
 
 
+def _omni_calib_tag():
+    """MASQUANT_OMNI_CALIB_JSON 换了 Omni 校准文件时，把文件名带进缓存/act_scales 的名字，避免串用。"""
+    p = os.environ.get("MASQUANT_OMNI_CALIB_JSON", "")
+    return "_" + os.path.basename(p).rsplit(".", 1)[0] if p else ""
+
+
 def main_entry(args=None):
     import argparse
 
@@ -755,10 +761,13 @@ def main_entry(args=None):
     if args.act_scales is None:
         _tr = os.environ.get("MAS_CALI_TEXT_RATIO", "0.5")
         _act_tag = f"_tr{_tr}" if (args.dataset_type == "text-vision-mix" and _tr != "0.5") else ""
+        _act_tag += _omni_calib_tag()
         args.act_scales = f'./act_scales/{args.net}-{args.dataset_type}{_act_tag}-{args.nsamples}.pt'
-        if _act_tag and not os.path.exists(args.act_scales):
+        if _act_tag and not _omni_calib_tag() and not os.path.exists(args.act_scales):
             # 没有该比例专属的激活统计时回退到 0.5 混合的统计（上一轮比例扫描就是这样跑的）
             args.act_scales = f'./act_scales/{args.net}-{args.dataset_type}-{args.nsamples}.pt'
+        if _omni_calib_tag() and not os.path.exists(args.act_scales):
+            raise FileNotFoundError(f"{args.act_scales} 不存在：Omni 校准换了文件，请先用同一 MASQUANT_OMNI_CALIB_JSON 跑 generate_act_scale_shift.py")
         print(f"act_scales: {args.act_scales}")
     if args.act_shifts is None:
         args.act_shifts = f'./act_shifts/{args.net}-{args.dataset_type}.pt'
@@ -772,6 +781,7 @@ def main_entry(args=None):
         _ratio_tag = ""
         if args.dataset_type == "text-vision-mix":
             _ratio_tag = f"_tr{os.environ.get('MAS_CALI_TEXT_RATIO', '0.5')}"
+        _ratio_tag += _omni_calib_tag()
         cache_dataloader = f'{args.cache_dir}/dataloader_{args.net}_{args.dataset_type}{_ratio_tag}_{args.nsamples}.cache'
         print(f'try to load cache from: {cache_dataloader}')
         if os.path.exists(cache_dataloader):
