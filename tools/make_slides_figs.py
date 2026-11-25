@@ -207,15 +207,17 @@ def fig11(outdir):
     box(5.9, 3.35, W, H, "default:  round to nearest (RTN)\nevery weight decided alone")
     box(5.9, 2.25, W, H, "GPTQ:  error feedback (dithering)\nkernel = inverse Hessian",
         fc="#eaf7ea", ec="#2ca02c")
-    box(5.9, 1.15, W, H, "+ coordinate descent\n→ 1-opt: no single flip helps",
-        fc="#eaf7ea", ec="#2ca02c")
+    box(5.9, 1.15, W, H, "+ coordinate descent → 1-opt\nstructurally final · off by default (no gain)",
+        fc="#f2f2f2", ec="#8c8c8c")
     arrow(7.65, 3.32, 7.65, 2.95)
     arrow(7.65, 2.22, 7.65, 1.85)
 
-    ax.add_patch(FancyBboxPatch((0.6, 0.12), 8.8, 0.66, boxstyle="round,pad=0.05",
+    ax.add_patch(FancyBboxPatch((0.6, 0.05), 8.8, 0.8, boxstyle="round,pad=0.05",
                                 fc="#fff6e5", ec="#ff7f0e", lw=1.1))
-    ax.text(5.0, 0.45, "TextVQA 63.5 → 71.0 (+7.5)   ·   gap to FP16 12.4 → 4.0   ·   same format, zero inference cost",
-            ha="center", va="center", fontsize=9.2)
+    ax.text(5.0, 0.45,
+            "GPTQ alone +7.2   ·   + clip → +7.5   (TextVQA 63.5 → 71.0, gap to FP16 12.4 → 4.9)"
+            "\ncoordinate descent: no downstream gain, kept off  ·  same format, zero inference cost",
+            ha="center", va="center", fontsize=8.6)
     p = os.path.join(outdir, "fig11_two_knobs.png")
     fig.savefig(p)
     plt.close(fig)
