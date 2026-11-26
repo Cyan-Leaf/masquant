@@ -85,22 +85,19 @@ def fig8(outdir):
     a.set_ylabel("TextVQA (n=2000)")
     a.set_title("(a) downstream task", fontsize=9)
 
-    # (b) wikitext2 PPL，逐次重复
+    # (b) C4 PPL，B200 口径（14 vs 12 个 checkpoint，p=0.20）
     a = ax[1]
-    runs = {"MAS": [15.855, 16.5254, 16.1764], "Uniform": [15.9094, 16.5555, 16.1219]}
-    for i, (k, vs) in enumerate(runs.items()):
-        c = C_MAIN if i == 0 else C_ALT
-        a.scatter(np.full(len(vs), i) + np.linspace(-0.06, 0.06, len(vs)), vs, s=28, color=c, zorder=3)
-        a.plot([i - 0.18, i + 0.18], [np.mean(vs)] * 2, color=c, lw=2)
-        a.text(i, max(vs) + 0.06, f"{np.mean(vs):.2f} \u00b1 {np.std(vs, ddof=1):.2f}",
-               ha="center", fontsize=8, color=c)
+    rows = [("MAS", 18.88, 0.50, 14, C_MAIN), ("Uniform", 19.16, 0.69, 12, C_ALT)]
+    for i, (lab, m, sd, n, c) in enumerate(rows):
+        a.bar(i, m, 0.62, color=c, yerr=sd, capsize=4)
+        a.text(i, 0.6, f"{m:.1f}\n\u00b1{sd:.1f}\n(n={n})", ha="center", color="white", fontsize=8)
     a.set_xticks([0, 1])
     a.set_xticklabels(["MAS", "Uniform"], fontsize=8)
     a.set_xlim(-0.5, 1.5)
-    a.set_ylim(15.55, 16.95)
-    a.set_ylabel("wikitext2 PPL")
-    a.set_title("(b) text PPL (3 runs each)", fontsize=9)
-    a.text(0.5, 15.62, "FP16 = 11.1 (far below, off scale)", ha="center", fontsize=7.5, color=C_FP16)
+    a.set_ylim(0, 23)
+    a.set_ylabel("C4 PPL over checkpoints")
+    a.set_title("(b) text PPL (n.s., p=0.20)", fontsize=9)
+    a.text(0.5, 21.4, "FP16 = 14.1", ha="center", fontsize=7.5, color=C_FP16)
 
     # (c) 音频 WER
     a = ax[2]
@@ -118,7 +115,7 @@ def fig8(outdir):
     a.set_title("(c) audio ASR, n=2676", fontsize=9)
 
     fig.suptitle("Three different measurements, one verdict: per-modality scales add nothing "
-                 "(p=0.97 on PPL, p=0.999 on WER)", fontsize=10, y=1.04)
+                 "(60/40 downstream split, PPL n.s., 6.58 vs 6.58 on ASR)", fontsize=10, y=1.04)
     p = os.path.join(outdir, "fig8_three_ties.png")
     fig.savefig(p)
     plt.close(fig)
